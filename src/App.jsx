@@ -3,31 +3,37 @@ import { useState } from 'react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulamos envío (en producción conectarías a un backend o Netlify Forms)
-    setTimeout(() => {
+
+    const formData = new FormData(e.target);
+    // Aseguramos que form-name esté presente
+    formData.set('form-name', 'demo-request');
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitSuccess(true);
+        e.target.reset(); // Limpia los campos del formulario
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        alert('Hubo un error al enviar el formulario. Inténtalo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error de conexión. Verifica tu red.');
+    } finally {
       setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({ name: '', email: '', company: '', message: '' });
-      // Reset éxito después de 5 segundos
-      setTimeout(() => setSubmitSuccess(false), 5000);
-    }, 800);
+    }
   };
 
   const features = [
@@ -235,60 +241,65 @@ function App() {
               method="post"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
-              action="/#demo" // Redirige de vuelta a la sección demo tras enviar
+              onSubmit={handleSubmit}
               className="space-y-6"
             >
               {/* Campos ocultos requeridos por Netlify */}
               <input type="hidden" name="form-name" value="demo-request" />
               <input type="hidden" name="bot-field" />
 
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1">Nombre completo</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">Correo electrónico</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div>
-              <label htmlFor="company" className="block text-sm font-medium mb-1">Empresa</label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                required
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-1">Mensaje (opcional)</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full py-3 px-6 bg-primary hover:bg-sky-600 text-slate-900 font-bold rounded-lg transition"
-            >
-              Enviar Solicitud
-            </button>
-          </form>
-        )}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">Nombre completo</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium mb-1">Empresa</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-1">Mensaje (opcional)</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-3 px-6 rounded-lg font-bold transition ${
+                  isSubmitting
+                    ? 'bg-slate-600 cursor-not-allowed'
+                    : 'bg-primary hover:bg-sky-600 text-slate-900'
+                }`}
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
