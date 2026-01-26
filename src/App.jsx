@@ -11,7 +11,6 @@ function App() {
     setIsSubmitting(true);
 
     const formData = new FormData(e.target);
-    // Aseguramos que form-name esté presente
     formData.set('form-name', 'demo-request');
 
     try {
@@ -23,7 +22,7 @@ function App() {
 
       if (response.ok) {
         setSubmitSuccess(true);
-        e.target.reset(); // Limpia los campos del formulario
+        e.target.reset();
         setTimeout(() => setSubmitSuccess(false), 5000);
       } else {
         alert('Hubo un error al enviar el formulario. Inténtalo de nuevo.');
@@ -117,6 +116,7 @@ function App() {
               <a href="#about" className="hover:text-primary transition">Producto</a>
               <a href="#features" className="hover:text-primary transition">Funcionalidades</a>
               <a href="#integrations" className="hover:text-primary transition">Integraciones</a>
+              <a href="#about-us" className="hover:text-primary transition">Sobre Nosotros</a>
               <a href="#demo" className="bg-primary hover:bg-sky-600 text-slate-900 px-4 py-2 rounded font-medium transition">
                 Solicitar Demo
               </a>
@@ -145,6 +145,7 @@ function App() {
               <a href="#about" className="block py-2 hover:text-primary">Producto</a>
               <a href="#features" className="block py-2 hover:text-primary">Funcionalidades</a>
               <a href="#integrations" className="block py-2 hover:text-primary">Integraciones</a>
+              <a href="#about-us" className="block py-2 hover:text-primary">Sobre Nosotros</a>
               <a href="#demo" className="block py-2 bg-primary text-slate-900 text-center rounded mt-2">Solicitar Demo</a>
             </div>
           )}
@@ -171,7 +172,7 @@ function App() {
         </div>
       </header>
 
-      {/* About Section */}
+      {/* About Product Section */}
       <section id="about" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -222,6 +223,26 @@ function App() {
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section id="about-us" className="py-16 bg-dark/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Sobre SentinelArg</h2>
+            <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
+          </div>
+          <p className="text-gray-300 text-lg leading-relaxed text-center">
+            SentinelArg fue creado por un ingeniero especializado en ciberseguridad con experiencia en operaciones de SOC, análisis forense y desarrollo de herramientas para la detección de amenazas avanzadas. 
+            La plataforma surge de la necesidad real de integrar inteligencia artificial, correlación de eventos y respuesta automatizada en un entorno seguro, auditado y listo para entornos críticos.
+          </p>
+          <p className="text-gray-400 text-center mt-4">
+            Hoy, SentinelArg se prepara para su lanzamiento comercial con una arquitectura robusta, compatible con los principales SIEMs y diseñada para cumplir con los más altos estándares de gobernanza y trazabilidad.
+          </p>
+          <p className="text-gray-300 text-center mt-6 font-medium">
+            — Selinger Matías, Fundador & Lead Engineer
+          </p>
+        </div>
+      </section>
+
       {/* Demo Request Section */}
       <section id="demo" className="py-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -244,7 +265,6 @@ function App() {
               onSubmit={handleSubmit}
               className="space-y-6"
             >
-              {/* Campos ocultos requeridos por Netlify */}
               <input type="hidden" name="form-name" value="demo-request" />
               <input type="hidden" name="bot-field" />
 
