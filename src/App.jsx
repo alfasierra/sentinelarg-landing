@@ -230,67 +230,65 @@ function App() {
               ¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve.
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">Nombre completo</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">Correo electrónico</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium mb-1">Empresa</label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">Mensaje (opcional)</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-bold transition ${
-                  isSubmitting
-                    ? 'bg-slate-600 cursor-not-allowed'
-                    : 'bg-primary hover:bg-sky-600 text-slate-900'
-                }`}
-              >
-                {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
-              </button>
-            </form>
-          )}
+            <form
+              name="demo-request"
+              method="post"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              action="/#demo" // Redirige de vuelta a la sección demo tras enviar
+              className="space-y-6"
+            >
+              {/* Campos ocultos requeridos por Netlify */}
+              <input type="hidden" name="form-name" value="demo-request" />
+              <input type="hidden" name="bot-field" />
+
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium mb-1">Nombre completo</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-1">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label htmlFor="company" className="block text-sm font-medium mb-1">Empresa</label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                required
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-1">Mensaje (opcional)</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 px-6 bg-primary hover:bg-sky-600 text-slate-900 font-bold rounded-lg transition"
+            >
+              Enviar Solicitud
+            </button>
+          </form>
+        )}
         </div>
       </section>
 
