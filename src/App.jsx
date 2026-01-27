@@ -236,6 +236,11 @@ function App() {
           </div>
         </div>
       </section>
+       
+       {/* demo interactica Section */}
+      <a href="/demo" className="inline-block mt-4 text-primary hover:underline">
+        Ver demo interactiva →
+      </a>
 
       {/* About Us Section */}
       <section id="about-us" className="py-16 bg-dark/50">
