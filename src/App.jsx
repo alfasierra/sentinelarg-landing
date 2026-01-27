@@ -152,11 +152,17 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <header id="home" className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-            Inteligencia artificial al servicio de la <span className="text-primary">ciberdefensa</span>
+     {/* Hero Section */}
+      <header id="home" className="py-16 md:py-24 bg-darker relative overflow-hidden">
+        {/* Imagen de fondo con opacidad */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url('/sentinelarg-hero.jpg')` }}
+        ></div>
+        
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+            Cyber Defense with Intelligence
           </h1>
           <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
             SentinelArg es una plataforma integral de seguridad operativa (SOC) que unifica detección, análisis, correlación y respuesta automatizada en un entorno seguro y auditado.
@@ -171,6 +177,7 @@ function App() {
           </div>
         </div>
       </header>
+
 
       {/* About Product Section */}
       <section id="about" className="py-16 bg-dark/50">
