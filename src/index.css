@@ -26,3 +26,24 @@
     @apply text-primary hover:underline transition;
   }
 }
+
+/* Micro-interacción para botones CTA */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(14, 165, 233, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+}
+
+.bg-primary:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* Smooth scroll para toda la página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Evita que el sticky navbar tape el contenido al scrollear a un ID */
+section[id] {
+  scroll-margin-top: 4rem;
+}

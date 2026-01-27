@@ -154,12 +154,20 @@ function App() {
 
      {/* Hero Section */}
       <header id="home" className="py-16 md:py-24 bg-darker relative overflow-hidden">
-        {/* Imagen de fondo con opacidad */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url('/sentinelarg-hero.jpg')` }}
-        ></div>
+        {/* Fondo de respaldo sólido (mismo tono que la imagen) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950"></div>
         
+        {/* Imagen optimizada con lazy load y fade-in */}
+        <img
+          src="/sentinelarg-hero.jpg"
+          alt="SentinelArg - Cyber Defense with Intelligence"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 transition-opacity duration-700"
+          onError={(e) => {
+            e.target.style.display = 'none';
+          }}
+        />
+
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
             Cyber Defense with Intelligence
@@ -170,7 +178,7 @@ function App() {
           <div className="mt-10">
             <a
               href="#demo"
-              className="inline-block bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-8 rounded-lg text-lg transition shadow-lg"
+              className="inline-block bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-8 rounded-lg text-lg transition shadow-lg hover:shadow-primary/30"
             >
               Solicitar Demo Técnica
             </a>
