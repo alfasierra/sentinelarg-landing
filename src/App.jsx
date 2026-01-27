@@ -185,7 +185,18 @@ function App() {
           </div>
         </div>
       </header>
+      
+      {/* Call-to-action: Demo interactiva */}
+      <div className="text-center py-6">
+        <a 
+          href="/demo" 
+          className="inline-block px-6 py-3 bg-slate-800 hover:bg-slate-700 text-primary rounded-lg font-medium transition border border-slate-700"
+        >
+          👁️ Ver demo interactiva →
+        </a>
+      </div>
 
+      
       {/* About Product Section */}
       <section id="about" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -237,11 +248,7 @@ function App() {
         </div>
       </section>
        
-       {/* demo interactica Section */}
-      <a href="/demo" className="inline-block mt-4 text-primary hover:underline">
-        Ver demo interactiva →
-      </a>
-
+            
       {/* About Us Section */}
       <section id="about-us" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
