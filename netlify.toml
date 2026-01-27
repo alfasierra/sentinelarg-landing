@@ -1,0 +1,15 @@
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+# También puedes redirigir cualquier ruta no encontrada a index.html (para SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
