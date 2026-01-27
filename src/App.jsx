@@ -188,12 +188,9 @@ function App() {
       
       {/* Call-to-action: Demo interactiva */}
       <div className="text-center py-6">
-        <button
-          onClick={() => window.location.href = '/demo'}
-          className="inline-block mt-4 px-6 py-2 bg-slate-800 hover:bg-slate-700 text-primary rounded-lg font-medium transition border border-slate-700"
-        >
-          👁️ Ver demo interactiva
-        </button>
+        <a href="/images.html" target="_blank" rel="noopener noreferrer">
+          🖼️ Ver imágenes
+        </a>
       </div>
 
       
