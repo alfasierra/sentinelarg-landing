@@ -1,7 +1,10 @@
 // src/App.jsx
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import i18n from './i18n';
 
 function App() {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -25,11 +28,11 @@ function App() {
         e.target.reset();
         setTimeout(() => setSubmitSuccess(false), 5000);
       } else {
-        alert('Hubo un error al enviar el formulario. Inténtalo de nuevo.');
+        alert(t('errors.formError'));
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error de conexión. Verifica tu red.');
+      alert(t('errors.connectionError'));
     } finally {
       setIsSubmitting(false);
     }
@@ -37,8 +40,8 @@ function App() {
 
   const features = [
     {
-      title: "Correlación inteligente de amenazas",
-      desc: "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning.",
+      title: t('features["Correlación inteligente de amenazas"]'),
+      desc: t('features["Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning."]'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -46,8 +49,8 @@ function App() {
       )
     },
     {
-      title: "Integración nativa con SIEMs",
-      desc: "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas.",
+      title: t('features["Integración nativa con SIEMs"]'),
+      desc: t('features["Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas."]'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
@@ -55,8 +58,8 @@ function App() {
       )
     },
     {
-      title: "Dashboards por rol",
-      desc: "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js.",
+      title: t('features["Dashboards por rol"]'),
+      desc: t('features["Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js."]'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -64,8 +67,8 @@ function App() {
       )
     },
     {
-      title: "Auto-remediación segura",
-      desc: "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones.",
+      title: t('features["Auto-remediación segura"]'),
+      desc: t('features["Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones."]'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -73,8 +76,8 @@ function App() {
       )
     },
     {
-      title: "Módulo forense integrado",
-      desc: "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes.",
+      title: t('features["Módulo forense integrado"]'),
+      desc: t('features["Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes."]'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -82,8 +85,8 @@ function App() {
       )
     },
     {
-      title: "Gobernanza completa",
-      desc: "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total.",
+      title: t('features["Gobernanza completa"]'),
+      desc: t('features["RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total."]'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -112,13 +115,40 @@ function App() {
             </div>
 
             {/* Desktop menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="hover:text-primary transition">Producto</a>
-              <a href="#features" className="hover:text-primary transition">Funcionalidades</a>
-              <a href="#integrations" className="hover:text-primary transition">Integraciones</a>
-              <a href="#about-us" className="hover:text-primary transition">Sobre Nosotros</a>
+            <div className="hidden md:flex items-center space-x-4">
+              <a href="#about" className="hover:text-primary transition">{t('nav.producto')}</a>
+              <a href="#features" className="hover:text-primary transition">{t('nav.funcionalidades')}</a>
+              <a href="#integrations" className="hover:text-primary transition">{t('nav.integraciones')}</a>
+              <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros')}</a>
+              
+              {/* Language Switch - Desktop */}
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={() => i18n.changeLanguage('es')}
+                  className={`px-2 py-1 text-xs rounded ${
+                    i18n.language.startsWith('es')
+                      ? 'bg-slate-700 text-white'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                  aria-label="Español"
+                >
+                  ES
+                </button>
+                <button
+                  onClick={() => i18n.changeLanguage('en')}
+                  className={`px-2 py-1 text-xs rounded ${
+                    i18n.language.startsWith('en')
+                      ? 'bg-slate-700 text-white'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                  aria-label="English"
+                >
+                  EN
+                </button>
+              </div>
+
               <a href="#demo" className="bg-primary hover:bg-sky-600 text-slate-900 px-4 py-2 rounded font-medium transition">
-                Solicitar Demo
+                {t('nav.solicitarDemo')}
               </a>
             </div>
 
@@ -142,68 +172,87 @@ function App() {
           {/* Mobile menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-slate-800">
-              <a href="#about" className="block py-2 hover:text-primary">Producto</a>
-              <a href="#features" className="block py-2 hover:text-primary">Funcionalidades</a>
-              <a href="#integrations" className="block py-2 hover:text-primary">Integraciones</a>
-              <a href="#about-us" className="block py-2 hover:text-primary">Sobre Nosotros</a>
-              <a href="#demo" className="block py-2 bg-primary text-slate-900 text-center rounded mt-2">Solicitar Demo</a>
+              <a href="#about" className="block py-2 hover:text-primary">{t('nav.producto')}</a>
+              <a href="#features" className="block py-2 hover:text-primary">{t('nav.funcionalidades')}</a>
+              <a href="#integrations" className="block py-2 hover:text-primary">{t('nav.integraciones')}</a>
+              <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros')}</a>
+              
+              {/* Language Switch - Mobile */}
+              <div className="flex justify-center space-x-2 mt-4">
+                <button
+                  onClick={() => {
+                    i18n.changeLanguage('es');
+                    setIsMenuOpen(false);
+                  }}
+                  className={`px-2 py-1 text-xs rounded ${
+                    i18n.language.startsWith('es') ? 'bg-slate-700 text-white' : 'text-gray-400'
+                  }`}
+                >
+                  ES
+                </button>
+                <button
+                  onClick={() => {
+                    i18n.changeLanguage('en');
+                    setIsMenuOpen(false);
+                  }}
+                  className={`px-2 py-1 text-xs rounded ${
+                    i18n.language.startsWith('en') ? 'bg-slate-700 text-white' : 'text-gray-400'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+              
+              <a href="#demo" className="block py-2 bg-primary text-slate-900 text-center rounded mt-2">{t('nav.solicitarDemo')}</a>
             </div>
           )}
         </div>
       </nav>
 
-     {/* Hero Section */}
+      {/* Hero Section */}
       <header id="home" className="py-16 md:py-24 bg-darker relative overflow-hidden">
-        {/* Fondo de respaldo sólido (mismo tono que la imagen) */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950"></div>
-        
-        {/* Imagen optimizada con lazy load y fade-in */}
         <img
           src="/sentinelarg-hero.jpg"
-          alt="SentinelArg - Cyber Defense with Intelligence"
+          alt={t('hero.title')}
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover opacity-20 transition-opacity duration-700"
-          onError={(e) => {
-            e.target.style.display = 'none';
-          }}
+          onError={(e) => { e.target.style.display = 'none'; }}
         />
-
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-            Cyber Defense with Intelligence
+            {t('hero.title')}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            SentinelArg es una plataforma integral de seguridad operativa (SOC) que unifica detección, análisis, correlación y respuesta automatizada en un entorno seguro y auditado.
+            {t('hero.subtitle')}
           </p>
           <div className="mt-10">
             <a
               href="#demo"
               className="inline-block bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-8 rounded-lg text-lg transition shadow-lg hover:shadow-primary/30"
             >
-              Solicitar Demo Técnica
+              {t('cta.demo')}
             </a>
           </div>
         </div>
       </header>
-      
-      {/* Call-to-action: Demo interactiva */}
+
+      {/* Call-to-action: Ver imágenes */}
       <div className="text-center py-6">
-        <a href="/images.html" target="_blank" rel="noopener noreferrer">
-          🖼️ Ver imágenes
+        <a href="/images.html" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-6 py-2 bg-primary hover:bg-sky-600 text-slate-900 rounded-lg font-medium transition shadow-lg">
+          🖼️ {t('images.title')}
         </a>
       </div>
 
-      
       {/* About Product Section */}
       <section id="about" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">¿Qué es SentinelArg?</h2>
+            <h2 className="text-3xl font-bold">{t('about.title')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
           </div>
           <p className="text-gray-300 text-lg text-center leading-relaxed">
-            Diseñada para empresas que exigen control total, trazabilidad forense y defensa proactiva contra amenazas avanzadas. 
-            SentinelArg combina lo mejor de los SIEM, SOAR y herramientas de threat hunting en una única plataforma comercial lista para entornos críticos.
+            {t('about.desc')}
           </p>
         </div>
       </section>
@@ -212,7 +261,7 @@ function App() {
       <section id="features" className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Funcionalidades Clave</h2>
+            <h2 className="text-3xl font-bold">{t('features.title')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -231,9 +280,9 @@ function App() {
       <section id="integrations" className="py-16 bg-dark/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Integraciones Nativas</h2>
+            <h2 className="text-3xl font-bold">{t('integrations')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
-            <p className="mt-4 text-gray-400">Compatible desde el primer día con las herramientas que ya usas</p>
+            <p className="mt-4 text-gray-400">{t('integrations.subtitle')}</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             {integrations.map((tech, index) => (
@@ -244,24 +293,22 @@ function App() {
           </div>
         </div>
       </section>
-       
-            
+
       {/* About Us Section */}
       <section id="about-us" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Sobre SentinelArg</h2>
+            <h2 className="text-3xl font-bold">{t('aboutUs.title')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
           </div>
           <p className="text-gray-300 text-lg leading-relaxed text-center">
-            SentinelArg fue creado por un ingeniero especializado en ciberseguridad con experiencia en operaciones de SOC, análisis forense y desarrollo de herramientas para la detección de amenazas avanzadas. 
-            La plataforma surge de la necesidad real de integrar inteligencia artificial, correlación de eventos y respuesta automatizada en un entorno seguro, auditado y listo para entornos críticos.
+            {t('aboutUs.desc')}
           </p>
           <p className="text-gray-400 text-center mt-4">
-            Hoy, SentinelArg se prepara para su lanzamiento comercial con una arquitectura robusta, compatible con los principales SIEMs y diseñada para cumplir con los más altos estándares de gobernanza y trazabilidad.
+            {t('aboutUs.desc2')}
           </p>
           <p className="text-gray-300 text-center mt-6 font-medium">
-            — Selinger Matías, Fundador & Lead Engineer
+            — {t('aboutUs.signature')}
           </p>
         </div>
       </section>
@@ -270,14 +317,14 @@ function App() {
       <section id="demo" className="py-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">Solicita una Demo Técnica</h2>
+            <h2 className="text-3xl font-bold">{t('demo.title')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
-            <p className="mt-4 text-gray-400">Agenda una presentación personalizada con nuestro equipo de ingeniería</p>
+            <p className="mt-4 text-gray-400">{t('demo.subtitle')}</p>
           </div>
 
           {submitSuccess ? (
             <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-6 rounded-lg text-center">
-              ¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve.
+              {t('demo.success')}
             </div>
           ) : (
             <form
@@ -292,7 +339,7 @@ function App() {
               <input type="hidden" name="bot-field" />
 
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">Nombre completo</label>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">{t('form.name')}</label>
                 <input
                   type="text"
                   id="name"
@@ -302,7 +349,7 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">Correo electrónico</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">{t('form.email')}</label>
                 <input
                   type="email"
                   id="email"
@@ -312,7 +359,7 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="company" className="block text-sm font-medium mb-1">Empresa</label>
+                <label htmlFor="company" className="block text-sm font-medium mb-1">{t('form.company')}</label>
                 <input
                   type="text"
                   id="company"
@@ -322,7 +369,7 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">Mensaje (opcional)</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-1">{t('form.message')}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -339,7 +386,7 @@ function App() {
                     : 'bg-primary hover:bg-sky-600 text-slate-900'
                 }`}
               >
-                {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+                {isSubmitting ? t('form.sending') : t('form.send')}
               </button>
             </form>
           )}
@@ -349,23 +396,20 @@ function App() {
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 text-sm border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} SentinelArg. Todos los derechos reservados.</p>
+          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
           
-          {/* Enlaces legales */}
           <p className="mt-3">
-            <a href="/privacy" className="hover:text-primary transition mx-2">Política de Privacidad</a>
+            <a href="/privacy" className="hover:text-primary transition mx-2">{t('footer.privacy')}</a>
             <span>•</span>
-            <a href="/terms" className="hover:text-primary transition mx-2">Términos y Condiciones</a>
+            <a href="/terms" className="hover:text-primary transition mx-2">{t('footer.terms')}</a>
           </p>
 
-          {/* Contacto por email */}
           <p className="mt-3">
             <a href="mailto:contacto@sentinelarg.com.ar" className="hover:text-primary transition">
-              contacto@sentinelarg.com.ar
+              {t('footer.contact')}
             </a>
           </p>
 
-          {/* WhatsApp y Telegram */}
           <div className="mt-4 flex justify-center space-x-6">
             {/* WhatsApp */}
             <a
@@ -373,7 +417,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-green-500 transition"
-              aria-label="Contactar por WhatsApp"
+              aria-label={t('footer.whatsapp')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -386,7 +430,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-blue-400 transition"
-              aria-label="Contactar por Telegram"
+              aria-label={t('footer.telegram')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.682-.537.842-1.142.521l-3.25-2.02-1.528 1.457c-.14.133-.28.28-.42.42-.23.23-.47.33-.74.33-.3 0-.57-.18-.83-.53l-2.6-3.56 9.24-6.16c.39-.25.78-.1.78.34 0 .13-.05.26-.15.38z"/>
@@ -404,7 +448,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label="Contactar por WhatsApp"
+          aria-label={t('footer.whatsapp')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -417,7 +461,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label="Contactar por Telegram"
+          aria-label={t('footer.telegram')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.682-.537.842-1.142.521l-3.25-2.02-1.528 1.457c-.14.133-.28.28-.42.42-.23.23-.47.33-.74.33-.3 0-.57-.18-.83-.53l-2.6-3.56 9.24-6.16c.39-.25.78-.1.78.34 0 .13-.05.26-.15.38z"/>
