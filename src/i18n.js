@@ -26,18 +26,30 @@ const resources = {
       },
       features: {
         title: "Funcionalidades Clave",
-        "Correlación inteligente de amenazas": "Correlación inteligente de amenazas",
-        "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning.": "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning.",
-        "Integración nativa con SIEMs": "Integración nativa con SIEMs",
-        "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas.": "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas.",
-        "Dashboards por rol": "Dashboards por rol",
-        "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js.": "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js.",
-        "Auto-remediación segura": "Auto-remediación segura",
-        "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones.": "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones.",
-        "Módulo forense integrado": "Módulo forense integrado",
-        "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes.": "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes.",
-        "Gobernanza completa": "Gobernanza completa",
-        "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total.": "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total."
+        correlation: {
+          title: "Correlación inteligente de amenazas",
+          desc: "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning."
+        },
+        siem: {
+          title: "Integración nativa con SIEMs",
+          desc: "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas."
+        },
+        dashboards: {
+          title: "Dashboards por rol",
+          desc: "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js."
+        },
+        remediation: {
+          title: "Auto-remediación segura",
+          desc: "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones."
+        },
+        forensic: {
+          title: "Módulo forense integrado",
+          desc: "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes."
+        },
+        governance: {
+          title: "Gobernanza completa",
+          desc: "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total."
+        }
       },
       integrations: "Integraciones Nativas",
       "integrations.subtitle": "Compatible desde el primer día con las herramientas que ya usas",
@@ -99,18 +111,30 @@ const resources = {
       },
       features: {
         title: "Key Features",
-        "Correlación inteligente de amenazas": "Intelligent Threat Correlation",
-        "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning.": "Detects multi-stage attacks and lateral movements using advanced rules and machine learning.",
-        "Integración nativa con SIEMs": "Native SIEM Integration",
-        "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas.": "Connects Wazuh, Splunk, and QRadar in a single panel with normalized events and unified alerts.",
-        "Dashboards por rol": "Role-Based Dashboards",
-        "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js.": "Custom interfaces for analysts, operators, auditors, and administrators with D3.js visualizations.",
-        "Auto-remediación segura": "Secure Auto-Remediation",
-        "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones.": "Executes validated mitigation commands with human confirmation and full action logging.",
-        "Módulo forense integrado": "Integrated Forensic Module",
-        "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes.": "Memory analysis with Volatility and YARA rules for advanced hunting and incident response.",
-        "Gobernanza completa": "Complete Governance",
-        "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total.": "RBAC, OAuth 2.0, action auditing, and full alert state tracking with complete traceability."
+        correlation: {
+          title: "Intelligent Threat Correlation",
+          desc: "Detects multi-stage attacks and lateral movements using advanced rules and machine learning."
+        },
+        siem: {
+          title: "Native SIEM Integration",
+          desc: "Connects Wazuh, Splunk, and QRadar in a single panel with normalized events and unified alerts."
+        },
+        dashboards: {
+          title: "Role-Based Dashboards",
+          desc: "Custom interfaces for analysts, operators, auditors, and administrators with D3.js visualizations."
+        },
+        remediation: {
+          title: "Secure Auto-Remediation",
+          desc: "Executes validated mitigation commands with human confirmation and full action logging."
+        },
+        forensic: {
+          title: "Integrated Forensic Module",
+          desc: "Memory analysis with Volatility and YARA rules for advanced hunting and incident response."
+        },
+        governance: {
+          title: "Complete Governance",
+          desc: "RBAC, OAuth 2.0, action auditing, and full alert state tracking with complete traceability."
+        }
       },
       integrations: "Native Integrations",
       "integrations.subtitle": "Compatible from day one with the tools you already use",
