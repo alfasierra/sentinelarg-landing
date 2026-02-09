@@ -8,6 +8,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isSubmittingCareers, setIsSubmittingCareers] = useState(false);
+  const [submitSuccessCareers, setSubmitSuccessCareers] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,20 +30,49 @@ function App() {
         e.target.reset();
         setTimeout(() => setSubmitSuccess(false), 5000);
       } else {
-        alert(t('errors.formError'));
+        alert(t('errors.formError', 'Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.'));
       }
     } catch (error) {
       console.error('Error:', error);
-      alert(t('errors.connectionError'));
+      alert(t('errors.connectionError', 'Error de conexión. Verifica tu internet e inténtalo de nuevo.'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const handleSubmitCareers = async (e) => {
+    e.preventDefault();
+    setIsSubmittingCareers(true);
+
+    const formData = new FormData(e.target);
+    formData.set('form-name', 'job-application');
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitSuccessCareers(true);
+        e.target.reset();
+        setTimeout(() => setSubmitSuccessCareers(false), 5000);
+      } else {
+        alert(t('errors.formError', 'Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.'));
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert(t('errors.connectionError', 'Error de conexión. Verifica tu internet e inténtalo de nuevo.'));
+    } finally {
+      setIsSubmittingCareers(false);
+    }
+  };
+
   const features = [
     {
-      title: t('features.correlation.title'),
-      desc: t('features.correlation.desc'),
+      title: t('features.correlation.title', 'Correlación inteligente de amenazas'),
+      desc: t('features.correlation.desc', 'Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning.'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -49,8 +80,8 @@ function App() {
       )
     },
     {
-      title: t('features.siem.title'),
-      desc: t('features.siem.desc'),
+      title: t('features.siem.title', 'Integración nativa con SIEMs'),
+      desc: t('features.siem.desc', 'Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas.'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
@@ -58,8 +89,8 @@ function App() {
       )
     },
     {
-      title: t('features.dashboards.title'),
-      desc: t('features.dashboards.desc'),
+      title: t('features.dashboards.title', 'Dashboards por rol'),
+      desc: t('features.dashboards.desc', 'Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js.'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -67,8 +98,8 @@ function App() {
       )
     },
     {
-      title: t('features.remediation.title'),
-      desc: t('features.remediation.desc'),
+      title: t('features.remediation.title', 'Auto-remediación segura'),
+      desc: t('features.remediation.desc', 'Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones.'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -76,8 +107,8 @@ function App() {
       )
     },
     {
-      title: t('features.forensic.title'),
-      desc: t('features.forensic.desc'),
+      title: t('features.forensic.title', 'Módulo forense integrado'),
+      desc: t('features.forensic.desc', 'Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes.'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -85,8 +116,8 @@ function App() {
       )
     },
     {
-      title: t('features.governance.title'),
-      desc: t('features.governance.desc'),
+      title: t('features.governance.title', 'Gobernanza completa'),
+      desc: t('features.governance.desc', 'RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total.'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -116,10 +147,11 @@ function App() {
 
             {/* Desktop menu */}
             <div className="hidden md:flex items-center space-x-4">
-              <a href="#about" className="hover:text-primary transition">{t('nav.producto')}</a>
-              <a href="#features" className="hover:text-primary transition">{t('nav.funcionalidades')}</a>
-              <a href="#integrations" className="hover:text-primary transition">{t('nav.integraciones')}</a>
-              <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros')}</a>
+              <a href="#about" className="hover:text-primary transition">{t('nav.producto', 'Producto')}</a>
+              <a href="#features" className="hover:text-primary transition">{t('nav.funcionalidades', 'Funcionalidades')}</a>
+              <a href="#integrations" className="hover:text-primary transition">{t('nav.integraciones', 'Integraciones')}</a>
+              <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
+              <a href="#careers" className="hover:text-primary transition">{t('nav.trabajaConNosotros', 'Trabaja con Nosotros')}</a>
               
               {/* Language Switch - Desktop */}
               <div className="flex items-center space-x-1">
@@ -148,7 +180,7 @@ function App() {
               </div>
 
               <a href="#demo" className="bg-primary hover:bg-sky-600 text-slate-900 px-4 py-2 rounded font-medium transition">
-                {t('nav.solicitarDemo')}
+                {t('nav.solicitarDemo', 'Solicitar Demo')}
               </a>
             </div>
 
@@ -172,10 +204,11 @@ function App() {
           {/* Mobile menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-slate-800">
-              <a href="#about" className="block py-2 hover:text-primary">{t('nav.producto')}</a>
-              <a href="#features" className="block py-2 hover:text-primary">{t('nav.funcionalidades')}</a>
-              <a href="#integrations" className="block py-2 hover:text-primary">{t('nav.integraciones')}</a>
-              <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros')}</a>
+              <a href="#about" className="block py-2 hover:text-primary">{t('nav.producto', 'Producto')}</a>
+              <a href="#features" className="block py-2 hover:text-primary">{t('nav.funcionalidades', 'Funcionalidades')}</a>
+              <a href="#integrations" className="block py-2 hover:text-primary">{t('nav.integraciones', 'Integraciones')}</a>
+              <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
+              <a href="#careers" className="block py-2 hover:text-primary">{t('nav.trabajaConNosotros', 'Trabaja con Nosotros')}</a>
               
               {/* Language Switch - Mobile */}
               <div className="flex justify-center space-x-2 mt-4">
@@ -203,7 +236,7 @@ function App() {
                 </button>
               </div>
               
-              <a href="#demo" className="block py-2 bg-primary text-slate-900 text-center rounded mt-2">{t('nav.solicitarDemo')}</a>
+              <a href="#demo" className="block py-2 bg-primary text-slate-900 text-center rounded mt-2">{t('nav.solicitarDemo', 'Solicitar Demo')}</a>
             </div>
           )}
         </div>
@@ -214,24 +247,24 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950"></div>
         <img
           src="/sentinelarg-hero.jpg"
-          alt={t('hero.title')}
+          alt={t('hero.title', 'Protección Cibernética Inteligente para Empresas Argentinas')}
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover opacity-20 transition-opacity duration-700"
           onError={(e) => { e.target.style.display = 'none'; }}
         />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-            {t('hero.title')}
+            {t('hero.title', 'Protección Cibernética Inteligente para Empresas Argentinas')}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            {t('hero.subtitle')}
+            {t('hero.subtitle', 'Plataforma unificada de seguridad que correlaciona amenazas, automatiza respuestas y simplifica la gestión de riesgos con integración nativa a tus herramientas existentes.')}
           </p>
           <div className="mt-10">
             <a
               href="#demo"
               className="inline-block bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-8 rounded-lg text-lg transition shadow-lg hover:shadow-primary/30"
             >
-              {t('cta.demo')}
+              {t('cta.demo', 'Ver Demo')}
             </a>
           </div>
         </div>
@@ -240,7 +273,7 @@ function App() {
       {/* Call-to-action: Ver imágenes */}
       <div className="text-center py-6">
         <a href="/images.html" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-6 py-2 bg-primary hover:bg-sky-600 text-slate-900 rounded-lg font-medium transition shadow-lg">
-          🖼️ {t('images.title')}
+          🖼️ {t('images.title', 'Ver imágenes')}
         </a>
       </div>
 
@@ -248,11 +281,11 @@ function App() {
       <section id="about" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('about.title')}</h2>
+            <h2 className="text-3xl font-bold">{t('about.title', 'Sobre SentinelArg')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
           </div>
           <p className="text-gray-300 text-lg text-center leading-relaxed">
-            {t('about.desc')}
+            {t('about.desc', 'SentinelArg es una plataforma avanzada de ciberseguridad diseñada para detectar, investigar y responder a amenazas complejas en entornos empresariales. Combina inteligencia artificial con integraciones nativas para ofrecer una visibilidad completa de tu infraestructura.')}
           </p>
         </div>
       </section>
@@ -261,7 +294,7 @@ function App() {
       <section id="features" className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('features.title')}</h2>
+            <h2 className="text-3xl font-bold">{t('features.title', 'Funcionalidades Clave')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -280,9 +313,9 @@ function App() {
       <section id="integrations" className="py-16 bg-dark/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('integrations')}</h2>
+            <h2 className="text-3xl font-bold">{t('integrations.title', 'Integraciones Tecnológicas')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
-            <p className="mt-4 text-gray-400">{t('integrations.subtitle')}</p>
+            <p className="mt-4 text-gray-400">{t('integrations.subtitle', 'Funciona sin problemas con tu stack de seguridad actual')}</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             {integrations.map((tech, index) => (
@@ -298,18 +331,188 @@ function App() {
       <section id="about-us" className="py-16 bg-dark/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('aboutUs.title')}</h2>
+            <h2 className="text-3xl font-bold">{t('aboutUs.title', 'Sobre Nosotros')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
           </div>
           <p className="text-gray-300 text-lg leading-relaxed text-center">
-            {t('aboutUs.desc')}
+            {t('aboutUs.desc', 'Somos un equipo argentino apasionado por la ciberseguridad, construyendo herramientas que realmente resuelven problemas del mundo real.')}
           </p>
           <p className="text-gray-400 text-center mt-4">
-            {t('aboutUs.desc2')}
+            {t('aboutUs.desc2', 'Desarrollamos SentinelArg desde cero para empresas que necesitan protección avanzada sin complejidad innecesaria.')}
           </p>
           <p className="text-gray-300 text-center mt-6 font-medium">
-            — {t('aboutUs.signature')}
+            — {t('aboutUs.signature', 'El equipo de SentinelArg')}
           </p>
+        </div>
+      </section>
+
+      {/* Careers Section - NUEVA SECCIÓN */}
+      <section id="careers" className="py-16 bg-dark/50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">{t('careers.title', 'Trabaja con Nosotros')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            <p className="mt-4 text-gray-400">{t('careers.subtitle', 'Únete a nuestro equipo y construye el futuro de la ciberseguridad')}</p>
+          </div>
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+            <h3 className="text-xl font-semibold text-primary mb-3">{t('careers.whyJoin.title', '¿Por qué unirte a SentinelArg?')}</h3>
+            <p className="text-gray-300">{t('careers.whyJoin.desc', 'Somos una startup en crecimiento que valora el talento, la innovación y el impacto real en la seguridad de empresas argentinas.')}</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit1', 'Trabajo remoto flexible')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit2', 'Proyectos desafiantes con tecnologías de vanguardia')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit3', 'Crecimiento profesional y capacitación continua')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit4', 'Equipo colaborativo y cultura de aprendizaje')}</span>
+              </div>
+            </div>
+          </div>
+
+          {submitSuccessCareers ? (
+            <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-6 rounded-lg text-center">
+              {t('careers.success', '¡Gracias por tu interés! Hemos recibido tu postulación y te contactaremos si hay una oportunidad que coincida con tu perfil.')}
+            </div>
+          ) : (
+            <form
+              name="job-application"
+              method="post"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmitCareers}
+              className="space-y-6"
+            >
+              <input type="hidden" name="form-name" value="job-application" />
+              <input type="hidden" name="bot-field" />
+
+              <div>
+                <label htmlFor="career-name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
+                <input
+                  type="text"
+                  id="career-name"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="career-email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
+                <input
+                  type="email"
+                  id="career-email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="career-phone" className="block text-sm font-medium mb-1">{t('careers.form.phone', 'Teléfono')}</label>
+                <input
+                  type="tel"
+                  id="career-phone"
+                  name="phone"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="career-position" className="block text-sm font-medium mb-1">{t('careers.form.position', 'Posición de interés')}</label>
+                <select
+                  id="career-position"
+                  name="position"
+                  required
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="">{t('careers.form.selectPosition', 'Selecciona una posición...')}</option>
+                  <option value="desarrollador-fullstack">{t('careers.positions.fullstack', 'Desarrollador Fullstack')}</option>
+                  <option value="desarrollador-frontend">{t('careers.positions.frontend', 'Desarrollador Frontend')}</option>
+                  <option value="desarrollador-backend">{t('careers.positions.backend', 'Desarrollador Backend')}</option>
+                  <option value="analista-ciberseguridad">{t('careers.positions.securityAnalyst', 'Analista de Ciberseguridad')}</option>
+                  <option value="devops">{t('careers.positions.devops', 'DevOps / SRE')}</option>
+                  <option value="otro">{t('careers.positions.other', 'Otro (especificar en mensaje)')}</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="career-linkedin" className="block text-sm font-medium mb-1">{t('careers.form.linkedin', 'Perfil de LinkedIn (opcional)')}</label>
+                <input
+                  type="url"
+                  id="career-linkedin"
+                  name="linkedin"
+                  placeholder="https://linkedin.com/in/tu-perfil"
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="career-github" className="block text-sm font-medium mb-1">{t('careers.form.github', 'Perfil de GitHub (opcional)')}</label>
+                <input
+                  type="url"
+                  id="career-github"
+                  name="github"
+                  placeholder="https://github.com/tu-usuario"
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="career-cv" className="block text-sm font-medium mb-1">{t('careers.form.cv', 'Curriculum Vitae (CV)')}</label>
+                <input
+                  type="file"
+                  id="career-cv"
+                  name="cv"
+                  accept=".pdf,.doc,.docx"
+                  required
+                  className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-slate-900 hover:file:bg-sky-600"
+                />
+                <p className="text-xs text-gray-500 mt-1">{t('careers.form.cvHelp', 'Formatos aceptados: PDF, DOC, DOCX (máx. 5MB)')}</p>
+              </div>
+
+              <div>
+                <label htmlFor="career-message" className="block text-sm font-medium mb-1">{t('careers.form.message', 'Carta de presentación o mensaje')}</label>
+                <textarea
+                  id="career-message"
+                  name="message"
+                  rows="4"
+                  placeholder={t('careers.form.messagePlaceholder', 'Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...')}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmittingCareers}
+                className={`w-full py-3 px-6 rounded-lg font-bold transition ${
+                  isSubmittingCareers
+                    ? 'bg-slate-600 cursor-not-allowed'
+                    : 'bg-primary hover:bg-sky-600 text-slate-900'
+                }`}
+              >
+                {isSubmittingCareers ? t('form.sending', 'Enviando...') : t('careers.form.submit', 'Enviar postulación')}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
@@ -317,14 +520,14 @@ function App() {
       <section id="demo" className="py-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">{t('demo.title')}</h2>
+            <h2 className="text-3xl font-bold">{t('demo.title', 'Solicita una Demostración')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
-            <p className="mt-4 text-gray-400">{t('demo.subtitle')}</p>
+            <p className="mt-4 text-gray-400">{t('demo.subtitle', 'Agenda una sesión personalizada y descubre cómo SentinelArg puede proteger tu organización.')}</p>
           </div>
 
           {submitSuccess ? (
             <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-6 rounded-lg text-center">
-              {t('demo.success')}
+              {t('demo.success', '¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve para coordinar tu demostración.')}
             </div>
           ) : (
             <form
@@ -339,7 +542,7 @@ function App() {
               <input type="hidden" name="bot-field" />
 
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">{t('form.name')}</label>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
                 <input
                   type="text"
                   id="name"
@@ -349,7 +552,7 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">{t('form.email')}</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
                 <input
                   type="email"
                   id="email"
@@ -359,7 +562,7 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="company" className="block text-sm font-medium mb-1">{t('form.company')}</label>
+                <label htmlFor="company" className="block text-sm font-medium mb-1">{t('form.company', 'Empresa')}</label>
                 <input
                   type="text"
                   id="company"
@@ -369,7 +572,7 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">{t('form.message')}</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-1">{t('form.message', 'Mensaje (opcional)')}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -386,7 +589,7 @@ function App() {
                     : 'bg-primary hover:bg-sky-600 text-slate-900'
                 }`}
               >
-                {isSubmitting ? t('form.sending') : t('form.send')}
+                {isSubmitting ? t('form.sending', 'Enviando...') : t('form.send', 'Enviar solicitud')}
               </button>
             </form>
           )}
@@ -396,17 +599,17 @@ function App() {
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 text-sm border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
+          <p>{t('footer.copyright', `© ${new Date().getFullYear()} SentinelArg. Todos los derechos reservados.`)}</p>
           
           <p className="mt-3">
-            <a href="/privacy" className="hover:text-primary transition mx-2">{t('footer.privacy')}</a>
+            <a href="/privacy" className="hover:text-primary transition mx-2">{t('footer.privacy', 'Política de Privacidad')}</a>
             <span>•</span>
-            <a href="/terms" className="hover:text-primary transition mx-2">{t('footer.terms')}</a>
+            <a href="/terms" className="hover:text-primary transition mx-2">{t('footer.terms', 'Términos de Servicio')}</a>
           </p>
 
           <p className="mt-3">
             <a href="mailto:contacto@sentinelarg.com.ar" className="hover:text-primary transition">
-              {t('footer.contact')}
+              {t('footer.contact', 'contacto@sentinelarg.com.ar')}
             </a>
           </p>
 
@@ -417,7 +620,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-green-500 transition"
-              aria-label={t('footer.whatsapp')}
+              aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -430,7 +633,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-blue-400 transition"
-              aria-label={t('footer.telegram')}
+              aria-label={t('footer.telegram', 'Contactar por Telegram')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.682-.537.842-1.142.521l-3.25-2.02-1.528 1.457c-.14.133-.28.28-.42.42-.23.23-.47.33-.74.33-.3 0-.57-.18-.83-.53l-2.6-3.56 9.24-6.16c.39-.25.78-.1.78.34 0 .13-.05.26-.15.38z"/>
@@ -448,7 +651,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label={t('footer.whatsapp')}
+          aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -461,7 +664,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label={t('footer.telegram')}
+          aria-label={t('footer.telegram', 'Contactar por Telegram')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.682-.537.842-1.142.521l-3.25-2.02-1.528 1.457c-.14.133-.28.28-.42.42-.23.23-.47.33-.74.33-.3 0-.57-.18-.83-.53l-2.6-3.56 9.24-6.16c.39-.25.78-.1.78.34 0 .13-.05.26-.15.38z"/>

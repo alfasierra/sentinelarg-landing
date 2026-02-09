@@ -49,6 +49,23 @@ const resources = {
         governance: {
           title: "Gobernanza completa",
           desc: "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total."
+        } // ← ✅ ¡Aquí estaba el error! Faltaba esta llave
+      },
+      useCases: {
+        title: "Casos de Uso Técnicos",
+        subtitle: "Escenarios reales donde SentinelArg agrega valor inmediato",
+        demoAvailable: "Disponible en demo",
+        advancedThreats: {
+          title: "Detección de amenazas avanzadas",
+          desc: "Identifica ataques multietapa y movimientos laterales antes de que comprometan tu red."
+        },
+        socGovernance: {
+          title: "Gobernanza de operaciones de SOC",
+          desc: "Audita, asigna y sigue el estado de alertas con trazabilidad completa y RBAC."
+        },
+        siemIntegration: {
+          title: "Integración con SIEMs existentes",
+          desc: "Conecta Wazuh, Splunk o QRadar sin reemplazar tu infraestructura actual."
         }
       },
       integrations: "Integraciones Nativas",
@@ -134,6 +151,23 @@ const resources = {
         governance: {
           title: "Complete Governance",
           desc: "RBAC, OAuth 2.0, action auditing, and full alert state tracking with complete traceability."
+        } // ← ✅ ¡Y aquí también faltaba!
+      },
+      useCases: {
+        title: "Technical Use Cases",
+        subtitle: "Real-world scenarios where SentinelArg delivers immediate value",
+        demoAvailable: "Available in demo",
+        advancedThreats: {
+          title: "Advanced Threat Detection",
+          desc: "Identify multi-stage attacks and lateral movements before they compromise your network."
+        },
+        socGovernance: {
+          title: "SOC Operations Governance",
+          desc: "Audit, assign, and track alert status with full traceability and RBAC."
+        },
+        siemIntegration: {
+          title: "Integration with Existing SIEMs",
+          desc: "Connect Wazuh, Splunk, or QRadar without replacing your current infrastructure."
         }
       },
       integrations: "Native Integrations",
