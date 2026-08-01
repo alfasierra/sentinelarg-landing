@@ -1,0 +1,148 @@
+{
+  "nav": {
+    "producto": "Product",
+    "funcionalidades": "Features",
+    "integraciones": "Integrations",
+    "sobreNosotros": "About Us",
+    "trabajaConNosotros": "Careers",
+    "solicitarDemo": "Request Demo"
+  },
+  "hero": {
+    "title": "Intelligent Cyber Defense for Argentine Enterprises",
+    "subtitle": "Unified security platform that correlates threats, automates responses, and simplifies risk management with native integration to your existing tools."
+  },
+  "cta": {
+    "demo": "View Demo"
+  },
+  "about": {
+    "title": "About SentinelArg",
+    "desc": "SentinelArg is an advanced cybersecurity platform designed to detect, investigate, and respond to complex threats in enterprise environments. It combines artificial intelligence with native integrations to provide complete visibility of your infrastructure."
+  },
+  "features": {
+    "title": "Key Features",
+    "correlation": {
+      "title": "Intelligent Threat Correlation",
+      "desc": "Detects multi-stage attacks and lateral movements using advanced rules and machine learning."
+    },
+    "siem": {
+      "title": "Native SIEM Integration",
+      "desc": "Connects Wazuh, Splunk, and QRadar in a single panel with normalized events and unified alerts."
+    },
+    "dashboards": {
+      "title": "Role-Based Dashboards",
+      "desc": "Custom interfaces for analysts, operators, auditors, and administrators with D3.js visualizations."
+    },
+    "remediation": {
+      "title": "Secure Auto-Remediation",
+      "desc": "Executes validated mitigation commands with human confirmation and full action logging."
+    },
+    "forensic": {
+      "title": "Integrated Forensic Module",
+      "desc": "Memory analysis with Volatility and YARA rules for advanced hunting and incident response."
+    },
+    "governance": {
+      "title": "Complete Governance",
+      "desc": "RBAC, OAuth 2.0, action auditing, and full alert state tracking with complete traceability."
+    }
+  },
+  "useCases": {
+    "title": "Technical Use Cases",
+    "subtitle": "Real-world scenarios where SentinelArg delivers immediate value",
+    "demoAvailable": "Available in demo",
+    "advancedThreats": {
+      "title": "Advanced Threat Detection",
+      "desc": "Identify multi-stage attacks and lateral movements before they compromise your network."
+    },
+    "socGovernance": {
+      "title": "SOC Operations Governance",
+      "desc": "Audit, assign, and track alert status with full traceability and RBAC."
+    },
+    "siemIntegration": {
+      "title": "Integration with Existing SIEMs",
+      "desc": "Connect Wazuh, Splunk, or QRadar without replacing your current infrastructure."
+    }
+  },
+  "integrations": {
+    "title": "Technology Integrations",
+    "subtitle": "Works seamlessly with your current security stack"
+  },
+  "aboutUs": {
+    "title": "About Us",
+    "desc": "We are an Argentine team passionate about cybersecurity, building tools that truly solve real-world problems.",
+    "desc2": "We developed SentinelArg from scratch for companies that need advanced protection without unnecessary complexity.",
+    "signature": "The SentinelArg Team"
+  },
+  "demo": {
+    "title": "Request a Demonstration",
+    "subtitle": "Schedule a personalized session and discover how SentinelArg can protect your organization.",
+    "success": "Thank you! We have received your request. We will contact you shortly to coordinate your demonstration."
+  },
+  "form": {
+    "name": "Full Name",
+    "email": "Email Address",
+    "company": "Company",
+    "message": "Message (optional)",
+    "sending": "Sending...",
+    "send": "Send Request",
+    "errors": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email",
+      "minLength": "Must be at least {{count}} characters"
+    }
+  },
+  "careers": {
+    "title": "Careers",
+    "subtitle": "Join our team and build the future of cybersecurity",
+    "whyJoin": {
+      "title": "Why Join SentinelArg?",
+      "desc": "We are a growing startup that values talent, innovation, and real impact on the security of Argentine companies.",
+      "benefit1": "Flexible remote work",
+      "benefit2": "Challenging projects with cutting-edge technologies",
+      "benefit3": "Professional growth and continuous training",
+      "benefit4": "Collaborative team and learning culture"
+    },
+    "success": "Thank you for your interest! We have received your application and will contact you if there is an opportunity that matches your profile.",
+    "form": {
+      "phone": "Phone",
+      "position": "Position of Interest",
+      "selectPosition": "Select a position...",
+      "linkedin": "LinkedIn Profile (optional)",
+      "github": "GitHub Profile (optional)",
+      "cv": "Curriculum Vitae (CV)",
+      "cvHelp": "Accepted formats: PDF, DOC, DOCX (max. 5MB)",
+      "message": "Cover Letter or Message",
+      "messagePlaceholder": "Tell us why you're interested in working with us and what you bring to the team...",
+      "submit": "Submit Application"
+    },
+    "positions": {
+      "fullstack": "Fullstack Developer",
+      "frontend": "Frontend Developer",
+      "backend": "Backend Developer",
+      "securityAnalyst": "Cybersecurity Analyst",
+      "devops": "DevOps / SRE",
+      "other": "Other (specify in message)"
+    }
+  },
+  "errors": {
+    "formError": "There was an error submitting the form. Please try again.",
+    "connectionError": "Connection error. Please check your network."
+  },
+  "footer": {
+    "copyright": "© {{year}} SentinelArg. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "contact": "contact@sentinelarg.com.ar",
+    "whatsapp": "Contact via WhatsApp",
+    "telegram": "Contact via Telegram",
+    "linkedin": "Visit Company LinkedIn"
+  },
+  "images": {
+    "title": "View Images"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "languageSelector": "Language selector"
+  }
+}

@@ -1,3 +1,29 @@
+# Headers de seguridad HTTP
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Content Security Policy - Restringe fuentes de scripts, estilos, imágenes, etc.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://plausible.io https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://plausible.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    
+    # Previene clickjacking
+    X-Frame-Options = "DENY"
+    
+    # Previene MIME sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Fuerza HTTPS (1 año)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    
+    # Controla información de referer
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Restringe APIs del navegador
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    
+    # Protección XSS legacy (para navegadores antiguos)
+    X-XSS-Protection = "1; mode=block"
+
+# Redirecciones para páginas estáticas
 [[redirects]]
   from = "/privacy"
   to = "/privacy.html"
@@ -8,7 +34,7 @@
   to = "/terms.html"
   status = 200
 
-# También puedes redirigir cualquier ruta no encontrada a index.html (para SPA)
+# SPA fallback - cualquier ruta no encontrada va a index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"

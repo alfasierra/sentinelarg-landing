@@ -1,0 +1,148 @@
+{
+  "nav": {
+    "producto": "Producto",
+    "funcionalidades": "Funcionalidades",
+    "integraciones": "Integraciones",
+    "sobreNosotros": "Sobre Nosotros",
+    "trabajaConNosotros": "Trabaja con Nosotros",
+    "solicitarDemo": "Solicitar Demo"
+  },
+  "hero": {
+    "title": "Protección Cibernética Inteligente para Empresas Argentinas",
+    "subtitle": "Plataforma unificada de seguridad que correlaciona amenazas, automatiza respuestas y simplifica la gestión de riesgos con integración nativa a tus herramientas existentes."
+  },
+  "cta": {
+    "demo": "Ver Demo"
+  },
+  "about": {
+    "title": "Sobre SentinelArg",
+    "desc": "SentinelArg es una plataforma avanzada de ciberseguridad diseñada para detectar, investigar y responder a amenazas complejas en entornos empresariales. Combina inteligencia artificial con integraciones nativas para ofrecer una visibilidad completa de tu infraestructura."
+  },
+  "features": {
+    "title": "Funcionalidades Clave",
+    "correlation": {
+      "title": "Correlación inteligente de amenazas",
+      "desc": "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning."
+    },
+    "siem": {
+      "title": "Integración nativa con SIEMs",
+      "desc": "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas."
+    },
+    "dashboards": {
+      "title": "Dashboards por rol",
+      "desc": "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js."
+    },
+    "remediation": {
+      "title": "Auto-remediación segura",
+      "desc": "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones."
+    },
+    "forensic": {
+      "title": "Módulo forense integrado",
+      "desc": "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes."
+    },
+    "governance": {
+      "title": "Gobernanza completa",
+      "desc": "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total."
+    }
+  },
+  "useCases": {
+    "title": "Casos de Uso Técnicos",
+    "subtitle": "Escenarios reales donde SentinelArg agrega valor inmediato",
+    "demoAvailable": "Disponible en demo",
+    "advancedThreats": {
+      "title": "Detección de amenazas avanzadas",
+      "desc": "Identifica ataques multietapa y movimientos laterales antes de que comprometan tu red."
+    },
+    "socGovernance": {
+      "title": "Gobernanza de operaciones de SOC",
+      "desc": "Audita, asigna y sigue el estado de alertas con trazabilidad completa y RBAC."
+    },
+    "siemIntegration": {
+      "title": "Integración con SIEMs existentes",
+      "desc": "Conecta Wazuh, Splunk o QRadar sin reemplazar tu infraestructura actual."
+    }
+  },
+  "integrations": {
+    "title": "Integraciones Tecnológicas",
+    "subtitle": "Funciona sin problemas con tu stack de seguridad actual"
+  },
+  "aboutUs": {
+    "title": "Sobre Nosotros",
+    "desc": "Somos un equipo argentino apasionado por la ciberseguridad, construyendo herramientas que realmente resuelven problemas del mundo real.",
+    "desc2": "Desarrollamos SentinelArg desde cero para empresas que necesitan protección avanzada sin complejidad innecesaria.",
+    "signature": "El equipo de SentinelArg"
+  },
+  "demo": {
+    "title": "Solicita una Demostración",
+    "subtitle": "Agenda una sesión personalizada y descubre cómo SentinelArg puede proteger tu organización.",
+    "success": "¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve para coordinar tu demostración."
+  },
+  "form": {
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "company": "Empresa",
+    "message": "Mensaje (opcional)",
+    "sending": "Enviando...",
+    "send": "Enviar solicitud",
+    "errors": {
+      "required": "Este campo es requerido",
+      "invalidEmail": "Ingresa un email válido",
+      "minLength": "Debe tener al menos {{count}} caracteres"
+    }
+  },
+  "careers": {
+    "title": "Trabaja con Nosotros",
+    "subtitle": "Únete a nuestro equipo y construye el futuro de la ciberseguridad",
+    "whyJoin": {
+      "title": "¿Por qué unirte a SentinelArg?",
+      "desc": "Somos una startup en crecimiento que valora el talento, la innovación y el impacto real en la seguridad de empresas argentinas.",
+      "benefit1": "Trabajo remoto flexible",
+      "benefit2": "Proyectos desafiantes con tecnologías de vanguardia",
+      "benefit3": "Crecimiento profesional y capacitación continua",
+      "benefit4": "Equipo colaborativo y cultura de aprendizaje"
+    },
+    "success": "¡Gracias por tu interés! Hemos recibido tu postulación y te contactaremos si hay una oportunidad que coincida con tu perfil.",
+    "form": {
+      "phone": "Teléfono",
+      "position": "Posición de interés",
+      "selectPosition": "Selecciona una posición...",
+      "linkedin": "Perfil de LinkedIn (opcional)",
+      "github": "Perfil de GitHub (opcional)",
+      "cv": "Curriculum Vitae (CV)",
+      "cvHelp": "Formatos aceptados: PDF, DOC, DOCX (máx. 5MB)",
+      "message": "Carta de presentación o mensaje",
+      "messagePlaceholder": "Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...",
+      "submit": "Enviar postulación"
+    },
+    "positions": {
+      "fullstack": "Desarrollador Fullstack",
+      "frontend": "Desarrollador Frontend",
+      "backend": "Desarrollador Backend",
+      "securityAnalyst": "Analista de Ciberseguridad",
+      "devops": "DevOps / SRE",
+      "other": "Otro (especificar en mensaje)"
+    }
+  },
+  "errors": {
+    "formError": "Hubo un error al enviar el formulario. Inténtalo de nuevo.",
+    "connectionError": "Error de conexión. Verifica tu red."
+  },
+  "footer": {
+    "copyright": "© {{year}} SentinelArg. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos y Condiciones",
+    "contact": "contacto@sentinelarg.com.ar",
+    "whatsapp": "Contactar por WhatsApp",
+    "telegram": "Contactar por Telegram",
+    "linkedin": "Visitar LinkedIn de la empresa"
+  },
+  "images": {
+    "title": "Ver imágenes"
+  },
+  "accessibility": {
+    "skipToContent": "Saltar al contenido principal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "languageSelector": "Selector de idioma"
+  }
+}
