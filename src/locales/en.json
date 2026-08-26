@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "about": "About Us",
+    "careers": "Careers",
+    "contact": "Contact",
+    "demo": "Request Demo",
+    "product": "SentinelArg Red AI"
+  },
+  "hero": {
+    "title": "Offensive Cybersecurity with Artificial Intelligence",
+    "subtitle": "Protect your company with the most advanced automated pentesting platform on the market",
+    "cta_primary": "Get Started",
+    "cta_secondary": "View Demo"
+  },
+  "features": {
+    "title": "Key Features",
+    "subtitle": "Everything you need for professional security audits",
+    "item1_title": "Automated Pentesting",
+    "item1_desc": "Run 150+ security tools simultaneously",
+    "item2_title": "PDF Reports",
+    "item2_desc": "Automatic generation of executive reports",
+    "item3_title": "Local AI",
+    "item3_desc": "Contextual analysis without sending data to the cloud"
+  },
+  "about": {
+    "title": "About SentinelArg",
+    "description": "Developed in Argentina, we combine enterprise-level pentesting tools with local artificial intelligence.",
+    "about_us_title": "About Us",
+    "about_us_text": "We are a team of cybersecurity experts committed to protecting Latin American companies."
+  },
+  "demoForm": {
+    "title": "Request Demo",
+    "name_label": "Full Name",
+    "email_label": "Corporate Email",
+    "company_label": "Company",
+    "message_label": "Message",
+    "submit": "Send Request",
+    "success": "Thank you! We will contact you soon.",
+    "error": "Error sending. Please try again."
+  },
+  "footer": {
+    "description": "Automated pentesting platform with AI for enterprises.",
+    "quick_links": "Quick Links",
+    "contact": "Contact",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "copyright": "© {{year}} SentinelArg. All rights reserved."
+  }
+}
