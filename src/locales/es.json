@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "features": "Características",
+    "about": "Nosotros",
+    "careers": "Empleo",
+    "contact": "Contacto",
+    "demo": "Solicitar Demo",
+    "product": "SentinelArg Red AI"
+  },
+  "hero": {
+    "title": "Ciberseguridad Ofensiva con Inteligencia Artificial",
+    "subtitle": "Protege tu empresa con la plataforma de pentesting automatizado más avanzada del mercado",
+    "cta_primary": "Comenzar Ahora",
+    "cta_secondary": "Ver Demo"
+  },
+  "features": {
+    "title": "Características Principales",
+    "subtitle": "Todo lo que necesitas para auditorías de seguridad profesionales",
+    "item1_title": "Pentesting Automatizado",
+    "item1_desc": "Ejecuta 150+ herramientas de seguridad simultáneamente",
+    "item2_title": "Reportes PDF",
+    "item2_desc": "Generación automática de reportes ejecutivos",
+    "item3_title": "IA Local",
+    "item3_desc": "Análisis contextual sin enviar datos a la nube"
+  },
+  "about": {
+    "title": "Sobre SentinelArg",
+    "description": "Desarrollada en Argentina, combinamos herramientas de pentesting de nivel empresarial con inteligencia artificial local.",
+    "about_us_title": "Sobre Nosotros",
+    "about_us_text": "Somos un equipo de expertos en ciberseguridad comprometidos con proteger empresas latinoamericanas."
+  },
+  "demoForm": {
+    "title": "Solicitar Demo",
+    "name_label": "Nombre Completo",
+    "email_label": "Email Corporativo",
+    "company_label": "Empresa",
+    "message_label": "Mensaje",
+    "submit": "Enviar Solicitud",
+    "success": "¡Gracias! Te contactaremos pronto.",
+    "error": "Error al enviar. Por favor intenta nuevamente."
+  },
+  "footer": {
+    "description": "Plataforma de pentesting automatizado con IA para empresas.",
+    "quick_links": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "legal": "Legal",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos y Condiciones",
+    "copyright": "© {{year}} SentinelArg. Todos los derechos reservados."
+  }
+}
