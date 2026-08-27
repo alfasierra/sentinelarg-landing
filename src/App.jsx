@@ -387,13 +387,10 @@ function App() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button className="bg-[#8B0000] hover:bg-red-800 text-white font-bold py-4 px-10 rounded-lg text-lg transition shadow-lg shadow-red-900/50">
-              Solicitar Demo Red AI
-            </button>
-            <button className="bg-transparent border-2 border-[#00FF00] text-[#00FF00] hover:bg-[#00FF00] hover:text-black font-bold py-4 px-10 rounded-lg text-lg transition">
-              Descargar Versión de Prueba
-            </button>
+          <div className="flex justify-center">
+            <a href="#videos" className="bg-transparent border-2 border-[#00FF00] text-[#00FF00] hover:bg-[#00FF00] hover:text-black font-bold py-4 px-10 rounded-lg text-lg transition">
+              Ver cómo funciona Red AI
+            </a>
           </div>
 
           {/* Disclaimer */}
@@ -402,11 +399,107 @@ function App() {
           </p>
         </div>
       </section>
+{/* SECCIÓN: Videos de Red AI */}
+<section id="videos" className="py-20 bg-darker">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-white mb-4">
+        Sentinel<span className="text-[#8B0000]">Arg</span> <span className="text-[#00FF00]">Red AI</span> en Acción
+      </h2>
+      <div className="w-20 h-1 bg-[#8B0000] mx-auto mt-4"></div>
+      <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
+        Mirá cómo SentinelArg Red AI automatiza el pentesting, detecta vulnerabilidades y genera reportes ejecutivos en tiempo real.
+      </p>
+    </div>
+
+    {/* Grid de Videos de YouTube */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Video 1 */}
+      <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
+        <div className="aspect-video">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/ID_DEL_VIDEO_1"
+            title="SentinelArg Red AI - Demo 1"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="p-4">
+          <h3 className="text-white font-bold text-lg">Escaneo Automatizado con Red AI</h3>
+          <p className="text-gray-400 text-sm mt-1">Demostración del flujo completo de pentesting</p>
+        </div>
+      </div>
+
+      {/* Video 2 */}
+      <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
+        <div className="aspect-video">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/ID_DEL_VIDEO_2"
+            title="SentinelArg Red AI - Demo 2"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="p-4">
+          <h3 className="text-white font-bold text-lg">Generación de Reportes PDF</h3>
+          <p className="text-gray-400 text-sm mt-1">Reportes ejecutivos con CVEs y CVSS</p>
+        </div>
+      </div>
+
+      {/* Video 3 */}
+      <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
+        <div className="aspect-video">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/ID_DEL_VIDEO_3"
+            title="SentinelArg Red AI - Demo 3"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="p-4">
+          <h3 className="text-white font-bold text-lg">Análisis con IA Local</h3>
+          <p className="text-gray-400 text-sm mt-1">Priorización inteligente de vulnerabilidades</p>
+        </div>
+      </div>
+
+      {/* Video 4 */}
+      <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
+        <div className="aspect-video">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/ID_DEL_VIDEO_4"
+            title="SentinelArg Red AI - Demo 4"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="p-4">
+          <h3 className="text-white font-bold text-lg">Versión Classic vs Pro</h3>
+          <p className="text-gray-400 text-sm mt-1">Comparativa entre ambas modalidades</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Botón para volver arriba */}
+    <div className="text-center mt-12">
+      <a href="#redai" className="inline-block bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg transition">
+        ← Volver a Red AI
+      </a>
+    </div>
+  </div>
+</section>
 
       {/* Call-to-action: Ver imágenes */}
       <div className="text-center py-6">
         <a href="/images.html" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-6 py-2 bg-primary hover:bg-sky-600 text-slate-900 rounded-lg font-medium transition shadow-lg">
-          ️ {t('images.title', 'Ver imágenes')}
+          🖼️ Ver imágenes de SentinelArg
         </a>
       </div>
 
