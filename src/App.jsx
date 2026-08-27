@@ -366,7 +366,7 @@ function App() {
               </div>
               <div className="flex items-center mb-4">
                 <h3 className="text-2xl font-bold text-white">Pro</h3>
-                <span className="ml-3 bg-red-900 text-[#8B0000] px-3 py-1 rounded text-xs font-bold">CON IA</span>
+                <span className="ml-3 bg-red-900/50 text-white px-3 py-1 rounded text-xs font-bold">CON IA</span>
               </div>
               <p className="text-gray-400 mb-6">Versión con inteligencia artificial para análisis contextual inteligente de vulnerabilidades.</p>
               <ul className="space-y-3 mb-8">
