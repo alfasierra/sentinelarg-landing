@@ -842,7 +842,7 @@ function App() {
                 <h3 className="text-xl font-bold text-[#00FF00]">SentinelArg Red AI - Cliente v1.0.0</h3>
                 <p className="text-gray-400 text-sm mt-1">Compilado para Linux x86_64 (Sin dependencias de Python)</p>
                 <p className="text-gray-500 text-xs mt-2 font-mono">
-                  SHA256: <span className="text-[#00FFFF]">c8088a6290061b7bd7ec6bcd638424156a5856bcb28e0d22b90fbe0d2873fb04</span>
+                  SHA256: <span className="text-[#00FFFF]">d0af7be7181d3776ff791a8b0d668e3a37d3ff91a6cbc307f3b0a3e05b5a0fe9</span>
                 </p>
               </div>
               <a
