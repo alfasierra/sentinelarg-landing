@@ -839,14 +839,14 @@ function App() {
           <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8 shadow-2xl">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
               <div>
-                <h3 className="text-xl font-bold text-[#00FF00]">SentinelArg Red AI - Cliente v1.0.0</h3>
+                <h3 className="text-xl font-bold text-[#00FF00]">SentinelArg Red AI - Cliente v1.0.1</h3>
                 <p className="text-gray-400 text-sm mt-1">Compilado para Linux x86_64 (Sin dependencias de Python)</p>
                 <p className="text-gray-500 text-xs mt-2 font-mono">
-                  SHA256: <span className="text-[#00FFFF]">d0af7be7181d3776ff791a8b0d668e3a37d3ff91a6cbc307f3b0a3e05b5a0fe9</span>
+                  SHA256: <span className="text-[#00FFFF]">8679e6e1c67fcb58a3b18a2f7d5db015236bc99076d0c4c55b0be0f74ddfc344</span>
                 </p>
               </div>
               <a
-                href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.0/sentinelarg-v1.0.0-client.tar.gz"
+                href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz"
                 className="bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg transition flex items-center gap-2 whitespace-nowrap"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
