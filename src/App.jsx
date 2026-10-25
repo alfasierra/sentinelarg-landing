@@ -336,33 +336,61 @@ function App() {
             ))}
           </div>
 
-          {/* Versiones */}
+          {/* Versiones CON PRECIOS Y BOTONES DE PAGO */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Classic */}
-            <div className="bg-gray-900 rounded-2xl p-8 border-2 border-gray-700 hover:border-[#00FF00] transition-all">
+            <div className="bg-gray-900 rounded-2xl p-8 border-2 border-gray-700 hover:border-[#00FF00] transition-all flex flex-col">
               <div className="flex items-center mb-4">
                 <h3 className="text-2xl font-bold text-white">Classic</h3>
                 <span className="ml-3 bg-green-900 text-[#00FF00] px-3 py-1 rounded text-xs font-bold">DETERMINISTA</span>
               </div>
-              <p className="text-gray-400 mb-6">Versión 100% determinista, ideal para entornos corporativos restrictivos y bancos.</p>
-              <ul className="space-y-3 mb-8">
+              <p className="text-gray-400 mb-4">Versión 100% determinista, ideal para entornos corporativos restrictivos y bancos.</p>
+              
+              {/* PRECIO */}
+              <div className="mb-6">
+                <span className="text-4xl font-bold text-white">$XX.XXX</span>
+                <span className="text-gray-400 text-lg"> / año</span>
+              </div>
+
+              <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#00FF00] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   Sin IA, reglas estáticas
                 </li>
                 <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#00FF00] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   100% Offline
                 </li>
                 <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#00FF00] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   Compliance ISO 27001, PCI-DSS
                 </li>
               </ul>
+
+              {/* BOTONES DE PAGO CLASSIC */}
+              <div className="space-y-3 mt-auto">
+                <a 
+                  href="https://mpago.la/TU_LINK_MERCADOPAGO_CLASSIC" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                  Pagar con MercadoPago (ARS)
+                </a>
+                <a 
+                  href="https://buy.stripe.com/TU_LINK_INTERNACIONAL_CLASSIC" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full border border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
+                >
+                  🌍 Pagar con Tarjeta Internacional (USD)
+                </a>
+              </div>
             </div>
 
             {/* Pro */}
-            <div className="bg-gray-900 rounded-2xl p-8 border-2 border-[#8B0000] shadow-2xl shadow-red-900/20 relative overflow-hidden">
+            <div className="bg-gray-900 rounded-2xl p-8 border-2 border-[#8B0000] shadow-2xl shadow-red-900/20 relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 bg-[#8B0000] text-white px-4 py-1 rounded-bl-lg text-sm font-bold">
                 RECOMENDADO
               </div>
@@ -370,21 +398,49 @@ function App() {
                 <h3 className="text-2xl font-bold text-white">Pro</h3>
                 <span className="ml-3 bg-red-900/50 text-white px-3 py-1 rounded text-xs font-bold">CON IA</span>
               </div>
-              <p className="text-gray-400 mb-6">Versión con inteligencia artificial para análisis contextual inteligente de vulnerabilidades.</p>
-              <ul className="space-y-3 mb-8">
+              <p className="text-gray-400 mb-4">Versión con inteligencia artificial para análisis contextual inteligente de vulnerabilidades.</p>
+              
+              {/* PRECIO */}
+              <div className="mb-6">
+                <span className="text-4xl font-bold text-white">$XX.XXX</span>
+                <span className="text-gray-400 text-lg"> / año</span>
+              </div>
+
+              <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#8B0000] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   IA local para análisis contextual
                 </li>
                 <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#8B0000] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   Priorización inteligente de CVEs
                 </li>
                 <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#8B0000] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   Reportes ejecutivos con IA
                 </li>
               </ul>
+
+              {/* BOTONES DE PAGO PRO */}
+              <div className="space-y-3 mt-auto">
+                <a 
+                  href="https://mpago.la/1tUxGKf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2 shadow-lg shadow-red-900/30"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                  Pagar con MercadoPago (ARS)
+                </a>
+                <a 
+                  href="https://buy.stripe.com/TU_LINK_INTERNACIONAL_PRO" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full border border-[#8B0000] hover:bg-[#8B0000]/10 text-gray-300 hover:text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
+                >
+                  🌍 Pagar con Tarjeta Internacional (USD)
+                </a>
+              </div>
             </div>
           </div>
 
@@ -860,10 +916,10 @@ function App() {
             <div className="bg-black rounded-lg p-4 border border-slate-800 relative group">
               <p className="text-gray-500 text-xs mb-2 font-mono">Descarga directa vía terminal:</p>
               <code className="text-[#00FF00] font-mono text-sm break-all">
-                wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.0/sentinelarg-v1.0.0-client.tar.gz
+                wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz
               </code>
               <button
-                onClick={() => navigator.clipboard.writeText('wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.0/sentinelarg-v1.0.0-client.tar.gz')}
+                onClick={() => navigator.clipboard.writeText('wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz')}
                 className="absolute top-2 right-2 bg-slate-800 hover:bg-slate-700 text-gray-300 text-xs px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition border border-slate-600"
               >
                 Copiar
