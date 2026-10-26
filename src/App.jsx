@@ -348,7 +348,7 @@ function App() {
               
               {/* PRECIO */}
               <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$XX.XXX</span>
+                <span className="text-4xl font-bold text-white">$54.342 o usd $33</span>
                 <span className="text-gray-400 text-lg"> / año</span>
               </div>
 
@@ -370,7 +370,7 @@ function App() {
               {/* BOTONES DE PAGO CLASSIC */}
               <div className="space-y-3 mt-auto">
                 <a 
-                  href="https://mpago.la/TU_LINK_MERCADOPAGO_CLASSIC" 
+                  href="https://mpago.la/1tUxGKf" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
@@ -402,7 +402,7 @@ function App() {
               
               {/* PRECIO */}
               <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$XX.XXX</span>
+                <span className="text-4xl font-bold text-white">$54.342 o usd $33</span>
                 <span className="text-gray-400 text-lg"> / año</span>
               </div>
 
