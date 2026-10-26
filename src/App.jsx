@@ -11,6 +11,17 @@ function App() {
   const [isSubmittingCareers, setIsSubmittingCareers] = useState(false);
   const [submitSuccessCareers, setSubmitSuccessCareers] = useState(false);
 
+  // Estados para el modal de captura de datos de pago
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('mp'); // 'mp' o 'stripe'
+  const [customerName, setCustomerName] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [customerCompany, setCustomerCompany] = useState('');
+
+  // Links de pago (REEMPLAZA el de Stripe cuando lo tengas)
+  const MP_LINK = "https://mpago.la/1tUxGKf";
+  const STRIPE_LINK = "https://buy.stripe.com/TU_LINK_INTERNACIONAL_PRO";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -67,6 +78,43 @@ function App() {
     } finally {
       setIsSubmittingCareers(false);
     }
+  };
+
+  const openPaymentModal = (method) => {
+    setPaymentMethod(method);
+    setShowPaymentModal(true);
+  };
+
+  const handlePaymentSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!customerName || !customerEmail) {
+      alert('Por favor completa tu nombre y email para poder enviarte la licencia.');
+      return;
+    }
+
+    // Guardar los datos del prospecto en el navegador (por si abandona el pago y vuelve)
+    const prospectData = {
+      name: customerName,
+      email: customerEmail,
+      company: customerCompany,
+      plan: 'pro',
+      method: paymentMethod,
+      timestamp: new Date().toISOString()
+    };
+    localStorage.setItem('sentinelarg_prospect', JSON.stringify(prospectData));
+    console.log("Prospecto guardado:", prospectData);
+
+    setShowPaymentModal(false);
+
+    // Redirigir al link de pago correspondiente en una nueva pestaña
+    const targetLink = paymentMethod === 'mp' ? MP_LINK : STRIPE_LINK;
+    window.open(targetLink, '_blank');
+
+    // Limpiar formulario
+    setCustomerName('');
+    setCustomerEmail('');
+    setCustomerCompany('');
   };
 
   const features = [
@@ -336,76 +384,35 @@ function App() {
             ))}
           </div>
 
-          {/* Versiones CON PRECIOS Y BOTONES DE PAGO */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Classic */}
-            <div className="bg-gray-900 rounded-2xl p-8 border-2 border-gray-700 hover:border-[#00FF00] transition-all flex flex-col">
-              <div className="flex items-center mb-4">
-                <h3 className="text-2xl font-bold text-white">Classic</h3>
-                <span className="ml-3 bg-green-900 text-[#00FF00] px-3 py-1 rounded text-xs font-bold">DETERMINISTA</span>
-              </div>
-              <p className="text-gray-400 mb-4">Versión 100% determinista, ideal para entornos corporativos restrictivos y bancos.</p>
-              
-              {/* PRECIO */}
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$54.342 o usd $33</span>
-                <span className="text-gray-400 text-lg"> / año</span>
-              </div>
-
-              <ul className="space-y-3 mb-8 flex-grow">
-                <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  Sin IA, reglas estáticas
-                </li>
-                <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  100% Offline
-                </li>
-                <li className="flex items-center text-gray-300">
-                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  Compliance ISO 27001, PCI-DSS
-                </li>
-              </ul>
-
-              {/* BOTONES DE PAGO CLASSIC */}
-              <div className="space-y-3 mt-auto">
-                <a 
-                  href="https://mpago.la/1tUxGKf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                  Pagar con MercadoPago (ARS)
-                </a>
-                <a 
-                  href="https://buy.stripe.com/TU_LINK_INTERNACIONAL_CLASSIC" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full border border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
-                >
-                  🌍 Pagar con Tarjeta Internacional (USD)
-                </a>
-              </div>
-            </div>
-
-            {/* Pro */}
-            <div className="bg-gray-900 rounded-2xl p-8 border-2 border-[#8B0000] shadow-2xl shadow-red-900/20 relative overflow-hidden flex flex-col">
+          {/* ========================================== */}
+          {/* SECCIÓN DE PRECIOS: SOLO VERSIÓN PRO (IA)  */}
+          {/* ========================================== */}
+          <div className="max-w-3xl mx-auto mb-12">
+            <div className="bg-gray-900 rounded-2xl p-8 md:p-10 border-2 border-[#8B0000] shadow-2xl shadow-red-900/20 relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 bg-[#8B0000] text-white px-4 py-1 rounded-bl-lg text-sm font-bold">
-                RECOMENDADO
+                VERSIÓN COMPLETA
               </div>
+              
               <div className="flex items-center mb-4">
-                <h3 className="text-2xl font-bold text-white">Pro</h3>
+                <h3 className="text-3xl font-bold text-white">SentinelArg Pro</h3>
                 <span className="ml-3 bg-red-900/50 text-white px-3 py-1 rounded text-xs font-bold">CON IA</span>
               </div>
-              <p className="text-gray-400 mb-4">Versión con inteligencia artificial para análisis contextual inteligente de vulnerabilidades.</p>
+              
+              <p className="text-gray-400 mb-6">
+                Plataforma completa de pentesting automatizado con inteligencia artificial local. 
+                Ideal para equipos de seguridad, consultores y empresas que necesitan auditorías 
+                profundas con reportes ejecutivos automáticos.
+              </p>
               
               {/* PRECIO */}
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$54.342 o usd $33</span>
-                <span className="text-gray-400 text-lg"> / año</span>
+              <div className="mb-8 flex items-baseline gap-2 flex-wrap">
+                <span className="text-4xl font-bold text-white">$54.342 ARS</span>
+                <span className="text-gray-500">o</span>
+                <span className="text-3xl font-bold text-[#00FF00]">USD $33</span>
+                <span className="text-gray-400 text-lg">/ año</span>
               </div>
 
+              {/* CARACTERÍSTICAS */}
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -419,27 +426,27 @@ function App() {
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   Reportes ejecutivos con IA
                 </li>
+                <li className="flex items-center text-gray-300">
+                  <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  150+ Herramientas integradas y 100% Offline
+                </li>
               </ul>
 
-              {/* BOTONES DE PAGO PRO */}
+              {/* BOTONES DE PAGO QUE ABREN EL MODAL */}
               <div className="space-y-3 mt-auto">
-                <a 
-                  href="https://mpago.la/1tUxGKf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2 shadow-lg shadow-red-900/30"
+                <button 
+                  onClick={() => openPaymentModal('mp')}
+                  className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                   Pagar con MercadoPago (ARS)
-                </a>
-                <a 
-                  href="https://buy.stripe.com/TU_LINK_INTERNACIONAL_PRO" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full border border-[#8B0000] hover:bg-[#8B0000]/10 text-gray-300 hover:text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
+                </button>
+                <button 
+                  onClick={() => openPaymentModal('stripe')}
+                  className="w-full border border-[#00FF00] hover:bg-[#00FF00]/10 text-[#00FF00] font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
                 >
                   🌍 Pagar con Tarjeta Internacional (USD)
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -1034,6 +1041,93 @@ function App() {
           </svg>
         </a>
       </div>
+
+      {/* ========================================== */}
+      {/* MODAL DE CAPTURA DE DATOS DE PAGO          */}
+      {/* ========================================== */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-gray-900 border border-gray-700 rounded-2xl p-8 max-w-md w-full shadow-2xl relative">
+            <button 
+              onClick={() => setShowPaymentModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              aria-label="Cerrar"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-white mb-2">Completa tus datos</h3>
+              <p className="text-gray-400 text-sm">
+                Te enviaremos la clave de activación a este email inmediatamente después de confirmar tu pago.
+              </p>
+              <p className="text-[#00FF00] text-xs mt-2 font-semibold">
+                {paymentMethod === 'mp' ? 'Serás redirigido a MercadoPago' : 'Serás redirigido a la pasarela segura (USD)'}
+              </p>
+            </div>
+
+            <form onSubmit={handlePaymentSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="modal-name" className="block text-sm font-medium text-gray-300 mb-1">Nombre completo *</label>
+                <input
+                  type="text"
+                  id="modal-name"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-[#009EE3] text-white"
+                  placeholder="Juan Pérez"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="modal-email" className="block text-sm font-medium text-gray-300 mb-1">Email *</label>
+                <input
+                  type="email"
+                  id="modal-email"
+                  value={customerEmail}
+                  onChange={(e) => setCustomerEmail(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-[#009EE3] text-white"
+                  placeholder="juan@empresa.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="modal-company" className="block text-sm font-medium text-gray-300 mb-1">Empresa (opcional)</label>
+                <input
+                  type="text"
+                  id="modal-company"
+                  value={customerCompany}
+                  onChange={(e) => setCustomerCompany(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-[#009EE3] text-white"
+                  placeholder="Empresa S.A."
+                />
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className={`w-full font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2 ${
+                    paymentMethod === 'mp' 
+                      ? 'bg-[#009EE3] hover:bg-[#0088cc] text-white' 
+                      : 'bg-[#00FF00] hover:bg-[#00cc00] text-black'
+                  }`}
+                >
+                  Continuar al Pago →
+                </button>
+              </div>
+            </form>
+            
+            <p className="text-xs text-gray-500 text-center mt-4">
+               Tus datos están protegidos y se usarán únicamente para enviarte tu licencia.
+            </p>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
