@@ -93,7 +93,6 @@ function App() {
       return;
     }
 
-    // Guardar los datos del prospecto en el navegador (por si abandona el pago y vuelve)
     const prospectData = {
       name: customerName,
       email: customerEmail,
@@ -107,11 +106,9 @@ function App() {
 
     setShowPaymentModal(false);
 
-    // Redirigir al link de pago correspondiente en una nueva pestaña
     const targetLink = paymentMethod === 'mp' ? MP_LINK : STRIPE_LINK;
     window.open(targetLink, '_blank');
 
-    // Limpiar formulario
     setCustomerName('');
     setCustomerEmail('');
     setCustomerCompany('');
@@ -226,7 +223,6 @@ function App() {
               <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
               <a href="#careers" className="hover:text-primary transition">{t('nav.trabajaConNosotros', 'Trabaja con Nosotros')}</a>
               
-              {/* Language Switch - Desktop */}
               <div className="flex items-center space-x-1">
                 <button
                   onClick={() => i18n.changeLanguage('es')}
@@ -285,7 +281,6 @@ function App() {
               <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
               <a href="#careers" className="block py-2 hover:text-primary">{t('nav.trabajaConNosotros', 'Trabaja con Nosotros')}</a>
               
-              {/* Language Switch - Mobile */}
               <div className="flex justify-center space-x-2 mt-4">
                 <button
                   onClick={() => {
@@ -354,7 +349,6 @@ function App() {
       {/* NUEVA SECCIÓN: SentinelArg Red AI */}
       <section id="redai" className="py-20 bg-gradient-to-b from-gray-950 to-dark border-t-4 border-[#8B0000]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Banner */}
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
               <span className="bg-[#8B0000] text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
@@ -384,9 +378,7 @@ function App() {
             ))}
           </div>
 
-          {/* ========================================== */}
-          {/* SECCIÓN DE PRECIOS: SOLO VERSIÓN PRO (IA)  */}
-          {/* ========================================== */}
+          {/* SECCIÓN DE PRECIOS: SOLO VERSIÓN PRO (IA) */}
           <div className="max-w-3xl mx-auto mb-12">
             <div className="bg-gray-900 rounded-2xl p-8 md:p-10 border-2 border-[#8B0000] shadow-2xl shadow-red-900/20 relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 bg-[#8B0000] text-white px-4 py-1 rounded-bl-lg text-sm font-bold">
@@ -404,7 +396,6 @@ function App() {
                 profundas con reportes ejecutivos automáticos.
               </p>
               
-              {/* PRECIO */}
               <div className="mb-8 flex items-baseline gap-2 flex-wrap">
                 <span className="text-4xl font-bold text-white">$54.342 ARS</span>
                 <span className="text-gray-500">o</span>
@@ -412,7 +403,6 @@ function App() {
                 <span className="text-gray-400 text-lg">/ año</span>
               </div>
 
-              {/* CARACTERÍSTICAS */}
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -432,7 +422,6 @@ function App() {
                 </li>
               </ul>
 
-              {/* BOTONES DE PAGO QUE ABREN EL MODAL */}
               <div className="space-y-3 mt-auto">
                 <button 
                   onClick={() => openPaymentModal('mp')}
@@ -451,17 +440,115 @@ function App() {
             </div>
           </div>
 
-          {/* CTA Buttons */}
           <div className="flex justify-center">
             <a href="#videos" className="bg-transparent border-2 border-[#00FF00] text-[#00FF00] hover:bg-[#00FF00] hover:text-black font-bold py-4 px-10 rounded-lg text-lg transition">
               Ver cómo funciona Red AI
             </a>
           </div>
 
-          {/* Disclaimer */}
           <p className="text-center text-gray-500 text-sm mt-8">
             ⚠️ Herramienta diseñada exclusivamente para auditorías de seguridad autorizadas, Red Teaming y pruebas de penetración éticas
           </p>
+        </div>
+      </section>
+
+      {/* SECCIÓN: Especificaciones Técnicas y Uso Responsable */}
+      <section id="tech-specs" className="py-20 bg-darker border-t border-slate-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="bg-red-950/30 border-l-4 border-[#8B0000] p-6 rounded-r-xl mb-16">
+            <h3 className="text-xl font-bold text-[#8B0000] mb-3 flex items-center">
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              Aviso Legal y Uso Responsable
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada <span className="text-white font-bold">ÚNICAMENTE</span> para uso autorizado. Su uso está restringido a:
+            </p>
+            <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-400">
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Pruebas de penetración con autorización explícita.</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Auditorías de seguridad y Red Team operations.</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Competiciones CTF y entornos de laboratorio controlados.</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Investigación de seguridad ética.</li>
+            </ul>
+            <p className="text-gray-500 text-xs mt-4 italic">
+              El uso no autorizado es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA).
+            </p>
+          </div>
+
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Arquitectura y Capacidades</h2>
+            <div className="w-20 h-1 bg-[#00FFFF] mx-auto"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {[
+              {
+                icon: "🧠",
+                title: "Inteligencia Artificial Local",
+                desc: "Orquestador IA para correlación de hallazgos, eliminación de falsos positivos y asistente de seguridad interactivo (Ollama) sin enviar datos a la nube."
+              },
+              {
+                icon: "🌐",
+                title: "Auditoría Web Profunda",
+                desc: "Detección de tecnologías, descubrimiento de contenido (Katana, FFUF) y escaneo de vulnerabilidades (Nuclei, Dalfox, Nikto) con análisis SSL/TLS."
+              },
+              {
+                icon: "🪟",
+                title: "Windows & Active Directory",
+                desc: "Enumeración de red (NetExec, Nbtscan), evaluación de políticas AD (SMBMap, Enum4linux) y harvesting de credenciales (LLMNR/NBT-NS)."
+              },
+              {
+                icon: "🐧",
+                title: "Servidores Linux",
+                desc: "Detección de servicios, análisis de configuración y detección de cifrados débiles o protocolos obsoletos (SSH-Audit, Nmap NSE)."
+              },
+              {
+                icon: "📊",
+                title: "Reportes de Compliance",
+                desc: "Formato ejecutivo limpio con mapeo directo a OWASP Top 10, MITRE ATT&CK, CWE y PCI-DSS, clasificados por severidad."
+              },
+              {
+                icon: "🐳",
+                title: "Despliegue Dockerizado",
+                desc: "Instalación en segundos sin dependencias del host. Todas las 150+ herramientas se ejecutan en contenedores aislados para garantizar la estabilidad."
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-dark p-6 rounded-xl border border-slate-800 hover:border-[#00FFFF] transition-all group">
+                <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
+                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-slate-900 rounded-2xl p-8 border border-slate-700">
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-[#00FF00] text-4xl mb-3">🔄</div>
+                <h4 className="text-white font-bold mb-2">Actualización Segura</h4>
+                <p className="text-gray-400 text-sm">Script `update.sh` que preserva tu base de datos y configuraciones mientras descarga las últimas plantillas de vulnerabilidades.</p>
+              </div>
+              <div>
+                <div className="text-[#00FFFF] text-4xl mb-3">🔑</div>
+                <h4 className="text-white font-bold mb-2">Activación por Dispositivo</h4>
+                <p className="text-gray-400 text-sm">Licencia vinculada al hardware. Simplemente coloca el archivo `sentinelarg.license` y reinicia el contenedor.</p>
+              </div>
+              <div>
+                <div className="text-[#8B0000] text-4xl mb-3">🛡️</div>
+                <h4 className="text-white font-bold mb-2">Soporte Dedicado</h4>
+                <p className="text-gray-400 text-sm">Acceso a la Wiki completa, documentación de API y soporte técnico directo en <span className="text-white">soporte@sentinelarg.com.ar</span>.</p>
+              </div>
+            </div>
+            
+            <div className="text-center mt-8 pt-8 border-t border-slate-800">
+              <p className="text-gray-400 text-sm mb-4">¿Necesitas ver los comandos de instalación o la configuración avanzada?</p>
+              <a href="https://github.com/alfasierra/sentinelarg-landing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition">
+                Ir a la Documentación Técnica Completa (GitHub)
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </a>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -478,19 +565,10 @@ function App() {
             </p>
           </div>
 
-          {/* Grid de Videos de YouTube */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Video 1 */}
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/ID_DEL_VIDEO_1"
-                  title="SentinelArg Red AI - Demo 1"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_1" title="SentinelArg Red AI - Demo 1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">Escaneo Automatizado con Red AI</h3>
@@ -498,17 +576,9 @@ function App() {
               </div>
             </div>
 
-            {/* Video 2 */}
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/ID_DEL_VIDEO_2"
-                  title="SentinelArg Red AI - Demo 2"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_2" title="SentinelArg Red AI - Demo 2" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">Generación de Reportes PDF</h3>
@@ -516,17 +586,9 @@ function App() {
               </div>
             </div>
 
-            {/* Video 3 */}
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/ID_DEL_VIDEO_3"
-                  title="SentinelArg Red AI - Demo 3"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_3" title="SentinelArg Red AI - Demo 3" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">Análisis con IA Local</h3>
@@ -534,17 +596,9 @@ function App() {
               </div>
             </div>
 
-            {/* Video 4 */}
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/ID_DEL_VIDEO_4"
-                  title="SentinelArg Red AI - Demo 4"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_4" title="SentinelArg Red AI - Demo 4" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">Versión Classic vs Pro</h3>
@@ -553,7 +607,6 @@ function App() {
             </div>
           </div>
 
-          {/* Botón para volver arriba */}
           <div className="text-center mt-12">
             <a href="#redai" className="inline-block bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg transition">
               ← Volver a Red AI
@@ -652,65 +705,27 @@ function App() {
               {t('demo.success', '¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve para coordinar tu demostración.')}
             </div>
           ) : (
-            <form
-              name="demo-request"
-              method="post"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
+            <form name="demo-request" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-6">
               <input type="hidden" name="form-name" value="demo-request" />
               <input type="hidden" name="bot-field" />
 
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
                 <label htmlFor="company" className="block text-sm font-medium mb-1">{t('form.company', 'Empresa')}</label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="text" id="company" name="company" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-1">{t('form.message', 'Mensaje (opcional)')}</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                ></textarea>
+                <textarea id="message" name="message" rows="4" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
               </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-bold transition ${
-                  isSubmitting
-                    ? 'bg-slate-600 cursor-not-allowed'
-                    : 'bg-primary hover:bg-sky-600 text-slate-900'
-                }`}
-              >
+              <button type="submit" disabled={isSubmitting} className={`w-full py-3 px-6 rounded-lg font-bold transition ${isSubmitting ? 'bg-slate-600 cursor-not-allowed' : 'bg-primary hover:bg-sky-600 text-slate-900'}`}>
                 {isSubmitting ? t('form.sending', 'Enviando...') : t('form.send', 'Enviar solicitud')}
               </button>
             </form>
@@ -733,27 +748,19 @@ function App() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 <span className="text-gray-300">{t('careers.whyJoin.benefit1', 'Trabajo remoto flexible')}</span>
               </div>
               <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 <span className="text-gray-300">{t('careers.whyJoin.benefit2', 'Proyectos desafiantes con tecnologías de vanguardia')}</span>
               </div>
               <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 <span className="text-gray-300">{t('careers.whyJoin.benefit3', 'Crecimiento profesional y capacitación continua')}</span>
               </div>
               <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 <span className="text-gray-300">{t('careers.whyJoin.benefit4', 'Equipo colaborativo y cultura de aprendizaje')}</span>
               </div>
             </div>
@@ -764,58 +771,25 @@ function App() {
               {t('careers.success', '¡Gracias por tu interés! Hemos recibido tu postulación y te contactaremos si hay una oportunidad que coincida con tu perfil.')}
             </div>
           ) : (
-            <form
-              name="job-application"
-              method="post"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmitCareers}
-              className="space-y-6"
-            >
+            <form name="job-application" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmitCareers} className="space-y-6">
               <input type="hidden" name="form-name" value="job-application" />
               <input type="hidden" name="bot-field" />
 
               <div>
                 <label htmlFor="career-name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
-                <input
-                  type="text"
-                  id="career-name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="text" id="career-name" name="name" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
-
               <div>
                 <label htmlFor="career-email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
-                <input
-                  type="email"
-                  id="career-email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="email" id="career-email" name="email" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
-
               <div>
                 <label htmlFor="career-phone" className="block text-sm font-medium mb-1">{t('careers.form.phone', 'Teléfono')}</label>
-                <input
-                  type="tel"
-                  id="career-phone"
-                  name="phone"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="tel" id="career-phone" name="phone" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
-
               <div>
                 <label htmlFor="career-position" className="block text-sm font-medium mb-1">{t('careers.form.position', 'Posición de interés')}</label>
-                <select
-                  id="career-position"
-                  name="position"
-                  required
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                >
+                <select id="career-position" name="position" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                   <option value="">{t('careers.form.selectPosition', 'Selecciona una posición...')}</option>
                   <option value="desarrollador-fullstack">{t('careers.positions.fullstack', 'Desarrollador Fullstack')}</option>
                   <option value="desarrollador-frontend">{t('careers.positions.frontend', 'Desarrollador Frontend')}</option>
@@ -825,62 +799,24 @@ function App() {
                   <option value="otro">{t('careers.positions.other', 'Otro (especificar en mensaje)')}</option>
                 </select>
               </div>
-
               <div>
                 <label htmlFor="career-linkedin" className="block text-sm font-medium mb-1">{t('careers.form.linkedin', 'Perfil de LinkedIn (opcional)')}</label>
-                <input
-                  type="url"
-                  id="career-linkedin"
-                  name="linkedin"
-                  placeholder="https://linkedin.com/in/tu-perfil"
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="url" id="career-linkedin" name="linkedin" placeholder="https://linkedin.com/in/tu-perfil" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
-
               <div>
                 <label htmlFor="career-github" className="block text-sm font-medium mb-1">{t('careers.form.github', 'Perfil de GitHub (opcional)')}</label>
-                <input
-                  type="url"
-                  id="career-github"
-                  name="github"
-                  placeholder="https://github.com/tu-usuario"
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input type="url" id="career-github" name="github" placeholder="https://github.com/tu-usuario" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
-
               <div>
                 <label htmlFor="career-cv" className="block text-sm font-medium mb-1">{t('careers.form.cv', 'Curriculum Vitae (CV)')}</label>
-                <input
-                  type="file"
-                  id="career-cv"
-                  name="cv"
-                  accept=".pdf,.doc,.docx"
-                  required
-                  className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-slate-900 hover:file:bg-sky-600"
-                />
+                <input type="file" id="career-cv" name="cv" accept=".pdf,.doc,.docx" required className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-slate-900 hover:file:bg-sky-600" />
                 <p className="text-xs text-gray-500 mt-1">{t('careers.form.cvHelp', 'Formatos aceptados: PDF, DOC, DOCX (máx. 5MB)')}</p>
               </div>
-
               <div>
                 <label htmlFor="career-message" className="block text-sm font-medium mb-1">{t('careers.form.message', 'Carta de presentación o mensaje')}</label>
-                <textarea
-                  id="career-message"
-                  name="message"
-                  rows="4"
-                  placeholder={t('careers.form.messagePlaceholder', 'Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...')}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                ></textarea>
+                <textarea id="career-message" name="message" rows="4" placeholder={t('careers.form.messagePlaceholder', 'Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...')} className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
               </div>
-
-              <button
-                type="submit"
-                disabled={isSubmittingCareers}
-                className={`w-full py-3 px-6 rounded-lg font-bold transition ${
-                  isSubmittingCareers
-                    ? 'bg-slate-600 cursor-not-allowed'
-                    : 'bg-primary hover:bg-sky-600 text-slate-900'
-                }`}
-              >
+              <button type="submit" disabled={isSubmittingCareers} className={`w-full py-3 px-6 rounded-lg font-bold transition ${isSubmittingCareers ? 'bg-slate-600 cursor-not-allowed' : 'bg-primary hover:bg-sky-600 text-slate-900'}`}>
                 {isSubmittingCareers ? t('form.sending', 'Enviando...') : t('careers.form.submit', 'Enviar postulación')}
               </button>
             </form>
@@ -919,7 +855,6 @@ function App() {
               </a>
             </div>
 
-            {/* Bloque de código para wget */}
             <div className="bg-black rounded-lg p-4 border border-slate-800 relative group">
               <p className="text-gray-500 text-xs mb-2 font-mono">Descarga directa vía terminal:</p>
               <code className="text-[#00FF00] font-mono text-sm break-all">
@@ -958,40 +893,17 @@ function App() {
           </p>
 
           <div className="mt-4 flex justify-center space-x-6">
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/5492234548879?text=Hola,%20estoy%20interesado%20en%20una%20demo%20de%20SentinelArg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-green-500 transition"
-              aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}
-            >
+            <a href="https://wa.me/5492234548879?text=Hola,%20estoy%20interesado%20en%20una%20demo%20de%20SentinelArg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-500 transition" aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
             </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/company/sentinelarg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-700 transition"
-              aria-label={t('footer.linkedin', 'Visitar LinkedIn de la empresa')}
-            >
+            <a href="https://www.linkedin.com/company/sentinelarg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-700 transition" aria-label={t('footer.linkedin', 'Visitar LinkedIn de la empresa')}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20.447 20.447H16.393V15.234c0-.447-.038-.894-.126-1.34-.088-.446-.264-.873-.528-1.28-.264-.407-.616-.734-1.056-1.001-.44-.267-.952-.4-.156-.4-.53 0-1.055.136-1.57.408l-.232-.232c.53-.53 1.256-.86 2.065-.86.82 0 1.532.306 2.118.918.586.612.86 1.403.86 2.403v6.112h-4.055v-8.05h-3.908v8.05h-4.055V6.394h-4.055v-4.055h4.055v-3.908h8.11v3.908h4.055v4.055h-4.055v6.112z"/>
               </svg>
             </a>
-
-            {/* Telegram */}
-            <a
-              href="https://t.me/SentinelArg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-400 transition"
-              aria-label={t('footer.telegram', 'Contactar por Telegram')}
-            >
+            <a href="https://t.me/SentinelArg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition" aria-label={t('footer.telegram', 'Contactar por Telegram')}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.682-.537.842-1.142.521l-3.25-2.02-1.528 1.457c-.14.133-.28.28-.42.42-.23.23-.47.33-.74.33-.3 0-.57-.18-.83-.53l-2.6-3.56 9.24-6.16c.39-.25.78-.1.78.34 0 .13-.05.26-.15.38z"/>
               </svg>
@@ -1002,49 +914,24 @@ function App() {
 
       {/* Botones flotantes de contacto */}
       <div className="fixed bottom-6 right-6 flex flex-col space-y-3 z-50">
-        {/* WhatsApp */}
-        <a
-          href="https://wa.me/5492234548879?text=Hola,%20estoy%20interesado%20en%20una%20demo%20de%20SentinelArg"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}
-        >
+        <a href="https://wa.me/5492234548879?text=Hola,%20estoy%20interesado%20en%20una%20demo%20de%20SentinelArg" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110" aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
         </a>
-
-        {/* LinkedIn */}
-        <a
-          href="https://www.linkedin.com/company/sentinelarg"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full bg-blue-700 hover:bg-blue-800 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label={t('footer.linkedin', 'Visitar LinkedIn de la empresa')}
-        >
+        <a href="https://www.linkedin.com/company/sentinelarg" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-blue-700 hover:bg-blue-800 flex items-center justify-center shadow-lg transition-all transform hover:scale-110" aria-label={t('footer.linkedin', 'Visitar LinkedIn de la empresa')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M20.447 20.447H16.393V15.234c0-.447-.038-.894-.126-1.34-.088-.446-.264-.873-.528-1.28-.264-.407-.616-.734-1.056-1.001-.44-.267-.952-.4-.156-.4-.53 0-1.055.136-1.57.408l-.232-.232c.53-.53 1.256-.86 2.065-.86.82 0 1.532.306 2.118.918.586.612.86 1.403.86 2.403v6.112h-4.055v-8.05h-3.908v8.05h-4.055V6.394h-4.055v-4.055h4.055v-3.908h8.11v3.908h4.055v4.055h-4.055v6.112z"/>
           </svg>
         </a>
-
-        {/* Telegram */}
-        <a
-          href="https://t.me/SentinelArg"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110"
-          aria-label={t('footer.telegram', 'Contactar por Telegram')}
-        >
+        <a href="https://t.me/SentinelArg" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110" aria-label={t('footer.telegram', 'Contactar por Telegram')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.682-.537.842-1.142.521l-3.25-2.02-1.528 1.457c-.14.133-.28.28-.42.42-.23.23-.47.33-.74.33-.3 0-.57-.18-.83-.53l-2.6-3.56 9.24-6.16c.39-.25.78-.1.78.34 0 .13-.05.26-.15.38z"/>
           </svg>
         </a>
       </div>
 
-      {/* ========================================== */}
-      {/* MODAL DE CAPTURA DE DATOS DE PAGO          */}
-      {/* ========================================== */}
+      {/* MODAL DE CAPTURA DE DATOS DE PAGO */}
       {showPaymentModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-gray-900 border border-gray-700 rounded-2xl p-8 max-w-md w-full shadow-2xl relative">
