@@ -20,7 +20,7 @@ function App() {
 
   // Links de pago (REEMPLAZA el de Stripe cuando lo tengas)
   const MP_LINK = "https://mpago.la/1tUxGKf";
-  const STRIPE_LINK = "https://buy.stripe.com/TU_LINK_INTERNACIONAL_PRO";
+  const STRIPE_LINK = "https://sentinelarg.lemonsqueezy.com/checkout/buy/56104be0-fdf4-417d-92aa-6278eff5c093";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
