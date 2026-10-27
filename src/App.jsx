@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18n';
 
@@ -17,6 +17,11 @@ function App() {
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerCompany, setCustomerCompany] = useState('');
+
+  // Sincronizar el atributo lang del HTML con el idioma actual
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   // Links de pago (REEMPLAZA el de Stripe cuando lo tengas)
   const MP_LINK = "https://mpago.la/1tUxGKf";
@@ -89,7 +94,7 @@ function App() {
     e.preventDefault();
     
     if (!customerName || !customerEmail) {
-      alert('Por favor completa tu nombre y email para poder enviarte la licencia.');
+      alert(t('modal.alert.incomplete', 'Por favor completa tu nombre y email para poder enviarte la licencia.'));
       return;
     }
 
@@ -183,23 +188,23 @@ function App() {
   const redAIFeatures = [
     {
       icon: "🛡️",
-      title: "150+ Herramientas Integradas",
-      desc: "Nmap, Nuclei, SQLMap, Gobuster, FFuf, Nikto y más ejecutándose simultáneamente"
+      title: t('redai.features.tools.title', '150+ Herramientas Integradas'),
+      desc: t('redai.features.tools.desc', 'Nmap, Nuclei, SQLMap, Gobuster, FFuf, Nikto y más ejecutándose simultáneamente')
     },
     {
       icon: "📄",
-      title: "Reportes PDF Ejecutivos",
-      desc: "Generación automática con CVEs, CVSS y recomendaciones listas para gerencia"
+      title: t('redai.features.reports.title', 'Reportes PDF Ejecutivos'),
+      desc: t('redai.features.reports.desc', 'Generación automática con CVEs, CVSS y recomendaciones listas para gerencia')
     },
     {
       icon: "🤖",
-      title: "IA Local Privada",
-      desc: "Análisis contextual inteligente sin enviar datos sensibles a la nube"
+      title: t('redai.features.ia.title', 'IA Local Privada'),
+      desc: t('redai.features.ia.desc', 'Análisis contextual inteligente sin enviar datos sensibles a la nube')
     },
     {
       icon: "⚡",
-      title: "Sin Dependencias",
-      desc: "No requiere Python ni librerías. Compilado y listo para usar"
+      title: t('redai.features.standalone.title', 'Sin Dependencias'),
+      desc: t('redai.features.standalone.desc', 'No requiere Python ni librerías. Compilado y listo para usar')
     }
   ];
 
@@ -219,7 +224,7 @@ function App() {
               <a href="#redai" className="text-[#8B0000] hover:text-red-700 transition font-semibold">Red AI</a>
               <a href="#features" className="hover:text-primary transition">{t('nav.funcionalidades', 'Funcionalidades')}</a>
               <a href="#integrations" className="hover:text-primary transition">{t('nav.integraciones', 'Integraciones')}</a>
-              <a href="#downloads" className="hover:text-primary transition">Descargas</a>
+              <a href="#downloads" className="hover:text-primary transition">{t('nav.descargas', 'Descargas')}</a>
               <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
               <a href="#careers" className="hover:text-primary transition">{t('nav.trabajaConNosotros', 'Trabaja con Nosotros')}</a>
               
@@ -277,7 +282,7 @@ function App() {
               <a href="#redai" className="block py-2 text-[#8B0000] font-semibold">SentinelArg Red AI</a>
               <a href="#features" className="block py-2 hover:text-primary">{t('nav.funcionalidades', 'Funcionalidades')}</a>
               <a href="#integrations" className="block py-2 hover:text-primary">{t('nav.integraciones', 'Integraciones')}</a>
-              <a href="#downloads" className="block py-2 hover:text-primary">Descargas</a>
+              <a href="#downloads" className="block py-2 hover:text-primary">{t('nav.descargas', 'Descargas')}</a>
               <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
               <a href="#careers" className="block py-2 hover:text-primary">{t('nav.trabajaConNosotros', 'Trabaja con Nosotros')}</a>
               
@@ -340,7 +345,7 @@ function App() {
               href="#redai"
               className="inline-block bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition shadow-lg shadow-red-900/50"
             >
-              Conocer Red AI
+              {t('cta.redai', 'Conocer Red AI')}
             </a>
           </div>
         </div>
@@ -352,18 +357,17 @@ function App() {
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
               <span className="bg-[#8B0000] text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
-                Nuevo Producto
+                {t('redai.badge', 'Nuevo Producto')}
               </span>
             </div>
             <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-4">
               Sentinel<span className="text-[#8B0000]">Arg</span> <span className="text-[#00FF00]">Red AI</span>
             </h2>
             <p className="text-xl md:text-2xl text-[#00FFFF] font-mono mb-6">
-              Plataforma de Pentesting Automatizado con Inteligencia Artificial
+              {t('redai.subtitle', 'Plataforma de Pentesting Automatizado con Inteligencia Artificial')}
             </p>
             <p className="text-gray-400 max-w-3xl mx-auto text-lg">
-              Navaja suiza de pentesting que integra 150+ herramientas de seguridad con IA local para análisis de vulnerabilidades. 
-              Detecta CVEs críticos y genera reportes ejecutivos en PDF automáticamente.
+              {t('redai.description', 'Navaja suiza de pentesting que integra 150+ herramientas de seguridad con IA local para análisis de vulnerabilidades. Detecta CVEs críticos y genera reportes ejecutivos en PDF automáticamente.')}
             </p>
           </div>
 
@@ -382,43 +386,41 @@ function App() {
           <div className="max-w-3xl mx-auto mb-12">
             <div className="bg-gray-900 rounded-2xl p-8 md:p-10 border-2 border-[#8B0000] shadow-2xl shadow-red-900/20 relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 bg-[#8B0000] text-white px-4 py-1 rounded-bl-lg text-sm font-bold">
-                VERSIÓN COMPLETA
+                {t('pricing.badge', 'VERSIÓN COMPLETA')}
               </div>
               
               <div className="flex items-center mb-4">
-                <h3 className="text-3xl font-bold text-white">SentinelArg Pro</h3>
-                <span className="ml-3 bg-red-900/50 text-white px-3 py-1 rounded text-xs font-bold">CON IA</span>
+                <h3 className="text-3xl font-bold text-white">{t('pricing.pro.title', 'SentinelArg Pro')}</h3>
+                <span className="ml-3 bg-red-900/50 text-white px-3 py-1 rounded text-xs font-bold">{t('pricing.pro.badge', 'CON IA')}</span>
               </div>
               
               <p className="text-gray-400 mb-6">
-                Plataforma completa de pentesting automatizado con inteligencia artificial local. 
-                Ideal para equipos de seguridad, consultores y empresas que necesitan auditorías 
-                profundas con reportes ejecutivos automáticos.
+                {t('pricing.pro.desc', 'Plataforma completa de pentesting automatizado con inteligencia artificial local. Ideal para equipos de seguridad, consultores y empresas que necesitan auditorías profundas con reportes ejecutivos automáticos.')}
               </p>
               
               <div className="mb-8 flex items-baseline gap-2 flex-wrap">
                 <span className="text-4xl font-bold text-white">$54.342 ARS</span>
-                <span className="text-gray-500">o</span>
+                <span className="text-gray-500">{t('pricing.or', 'o')}</span>
                 <span className="text-3xl font-bold text-[#00FF00]">USD $33</span>
-                <span className="text-gray-400 text-lg">/ año</span>
+                <span className="text-gray-400 text-lg">/ {t('pricing.per_year', 'año')}</span>
               </div>
 
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  IA local para análisis contextual
+                  {t('pricing.pro.feat1', 'IA local para análisis contextual')}
                 </li>
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  Priorización inteligente de CVEs
+                  {t('pricing.pro.feat2', 'Priorización inteligente de CVEs')}
                 </li>
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  Reportes ejecutivos con IA
+                  {t('pricing.pro.feat3', 'Reportes ejecutivos con IA')}
                 </li>
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#00FF00] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  150+ Herramientas integradas y 100% Offline
+                  {t('pricing.pro.feat4', '150+ Herramientas integradas y 100% Offline')}
                 </li>
               </ul>
 
@@ -428,13 +430,13 @@ function App() {
                   className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                  Pagar con MercadoPago (ARS)
+                  {t('pricing.btn.mp', 'Pagar con MercadoPago (ARS)')}
                 </button>
                 <button 
                   onClick={() => openPaymentModal('stripe')}
                   className="w-full border border-[#00FF00] hover:bg-[#00FF00]/10 text-[#00FF00] font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
                 >
-                  🌍 Pagar con Tarjeta Internacional (USD)
+                  🌍 {t('pricing.btn.stripe', 'Pagar con Tarjeta Internacional (USD)')}
                 </button>
               </div>
             </div>
@@ -442,12 +444,12 @@ function App() {
 
           <div className="flex justify-center">
             <a href="#videos" className="bg-transparent border-2 border-[#00FF00] text-[#00FF00] hover:bg-[#00FF00] hover:text-black font-bold py-4 px-10 rounded-lg text-lg transition">
-              Ver cómo funciona Red AI
+              {t('redai.cta_videos', 'Ver cómo funciona Red AI')}
             </a>
           </div>
 
           <p className="text-center text-gray-500 text-sm mt-8">
-            ⚠️ Herramienta diseñada exclusivamente para auditorías de seguridad autorizadas, Red Teaming y pruebas de penetración éticas
+            ⚠️ {t('redai.disclaimer', 'Herramienta diseñada exclusivamente para auditorías de seguridad autorizadas, Red Teaming y pruebas de penetración éticas')}
           </p>
         </div>
       </section>
@@ -459,24 +461,24 @@ function App() {
           <div className="bg-red-950/30 border-l-4 border-[#8B0000] p-6 rounded-r-xl mb-16">
             <h3 className="text-xl font-bold text-[#8B0000] mb-3 flex items-center">
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-              Aviso Legal y Uso Responsable
+              {t('legal.title', 'Aviso Legal y Uso Responsable')}
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada <span className="text-white font-bold">ÚNICAMENTE</span> para uso autorizado. Su uso está restringido a:
+              {t('legal.intro', 'SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada ÚNICAMENTE para uso autorizado. Su uso está restringido a:')}
             </p>
             <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-400">
-              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Pruebas de penetración con autorización explícita.</li>
-              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Auditorías de seguridad y Red Team operations.</li>
-              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Competiciones CTF y entornos de laboratorio controlados.</li>
-              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> Investigación de seguridad ética.</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> {t('legal.item1', 'Pruebas de penetración con autorización explícita.')}</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> {t('legal.item2', 'Auditorías de seguridad y Red Team operations.')}</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> {t('legal.item3', 'Competiciones CTF y entornos de laboratorio controlados.')}</li>
+              <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> {t('legal.item4', 'Investigación de seguridad ética.')}</li>
             </ul>
             <p className="text-gray-500 text-xs mt-4 italic">
-              El uso no autorizado es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA).
+              {t('legal.footer', 'El uso no autorizado es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA).')}
             </p>
           </div>
 
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Arquitectura y Capacidades</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{t('specs.title', 'Arquitectura y Capacidades')}</h2>
             <div className="w-20 h-1 bg-[#00FFFF] mx-auto"></div>
           </div>
 
@@ -484,33 +486,33 @@ function App() {
             {[
               {
                 icon: "🧠",
-                title: "Inteligencia Artificial Local",
-                desc: "Orquestador IA para correlación de hallazgos, eliminación de falsos positivos y asistente de seguridad interactivo (Ollama) sin enviar datos a la nube."
+                title: t('specs.f1.title', 'Inteligencia Artificial Local'),
+                desc: t('specs.f1.desc', 'Orquestador IA para correlación de hallazgos, eliminación de falsos positivos y asistente de seguridad interactivo (Ollama) sin enviar datos a la nube.')
               },
               {
                 icon: "🌐",
-                title: "Auditoría Web Profunda",
-                desc: "Detección de tecnologías, descubrimiento de contenido (Katana, FFUF) y escaneo de vulnerabilidades (Nuclei, Dalfox, Nikto) con análisis SSL/TLS."
+                title: t('specs.f2.title', 'Auditoría Web Profunda'),
+                desc: t('specs.f2.desc', 'Detección de tecnologías, descubrimiento de contenido (Katana, FFUF) y escaneo de vulnerabilidades (Nuclei, Dalfox, Nikto) con análisis SSL/TLS.')
               },
               {
                 icon: "🪟",
-                title: "Windows & Active Directory",
-                desc: "Enumeración de red (NetExec, Nbtscan), evaluación de políticas AD (SMBMap, Enum4linux) y harvesting de credenciales (LLMNR/NBT-NS)."
+                title: t('specs.f3.title', 'Windows & Active Directory'),
+                desc: t('specs.f3.desc', 'Enumeración de red (NetExec, Nbtscan), evaluación de políticas AD (SMBMap, Enum4linux) y harvesting de credenciales (LLMNR/NBT-NS).')
               },
               {
                 icon: "🐧",
-                title: "Servidores Linux",
-                desc: "Detección de servicios, análisis de configuración y detección de cifrados débiles o protocolos obsoletos (SSH-Audit, Nmap NSE)."
+                title: t('specs.f4.title', 'Servidores Linux'),
+                desc: t('specs.f4.desc', 'Detección de servicios, análisis de configuración y detección de cifrados débiles o protocolos obsoletos (SSH-Audit, Nmap NSE).')
               },
               {
                 icon: "📊",
-                title: "Reportes de Compliance",
-                desc: "Formato ejecutivo limpio con mapeo directo a OWASP Top 10, MITRE ATT&CK, CWE y PCI-DSS, clasificados por severidad."
+                title: t('specs.f5.title', 'Reportes de Compliance'),
+                desc: t('specs.f5.desc', 'Formato ejecutivo limpio con mapeo directo a OWASP Top 10, MITRE ATT&CK, CWE y PCI-DSS, clasificados por severidad.')
               },
               {
                 icon: "🐳",
-                title: "Despliegue Dockerizado",
-                desc: "Instalación en segundos sin dependencias del host. Todas las 150+ herramientas se ejecutan en contenedores aislados para garantizar la estabilidad."
+                title: t('specs.f6.title', 'Despliegue Dockerizado'),
+                desc: t('specs.f6.desc', 'Instalación en segundos sin dependencias del host. Todas las 150+ herramientas se ejecutan en contenedores aislados para garantizar la estabilidad.')
               }
             ].map((item, idx) => (
               <div key={idx} className="bg-dark p-6 rounded-xl border border-slate-800 hover:border-[#00FFFF] transition-all group">
@@ -525,25 +527,22 @@ function App() {
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-[#00FF00] text-4xl mb-3">🔄</div>
-                <h4 className="text-white font-bold mb-2">Actualización Segura</h4>
-                
+                <h4 className="text-white font-bold mb-2">{t('specs.bottom1.title', 'Actualización Segura')}</h4>
               </div>
               <div>
                 <div className="text-[#00FFFF] text-4xl mb-3">🔑</div>
-                <h4 className="text-white font-bold mb-2">Activación por Dispositivo</h4>
-                
+                <h4 className="text-white font-bold mb-2">{t('specs.bottom2.title', 'Activación por Dispositivo')}</h4>
               </div>
               <div>
                 <div className="text-[#8B0000] text-4xl mb-3">🛡️</div>
-                <h4 className="text-white font-bold mb-2">Soporte Dedicado</h4>
-                
+                <h4 className="text-white font-bold mb-2">{t('specs.bottom3.title', 'Soporte Dedicado')}</h4>
               </div>
             </div>
             
             <div className="text-center mt-8 pt-8 border-t border-slate-800">
-              <p className="text-gray-400 text-sm mb-4">¿Necesitas ver los comandos de instalación o la configuración avanzada?</p>
+              <p className="text-gray-400 text-sm mb-4">{t('specs.docs.prompt', '¿Necesitas ver los comandos de instalación o la configuración avanzada?')}</p>
               <a href="https://github.com/alfasierra/sentinelarg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition">
-                Ir a la Documentación Técnica Completa (GitHub)
+                {t('specs.docs.link', 'Ir a la Documentación Técnica Completa (GitHub)')}
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>
             </div>
@@ -557,11 +556,11 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-extrabold text-white mb-4">
-              Sentinel<span className="text-[#8B0000]">Arg</span> <span className="text-[#00FF00]">Red AI</span> en Acción
+              Sentinel<span className="text-[#8B0000]">Arg</span> <span className="text-[#00FF00]">Red AI</span> {t('videos.title_suffix', 'en Acción')}
             </h2>
             <div className="w-20 h-1 bg-[#8B0000] mx-auto mt-4"></div>
             <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
-              Mirá cómo SentinelArg Red AI automatiza el pentesting, detecta vulnerabilidades y genera reportes ejecutivos en tiempo real.
+              {t('videos.subtitle', 'Mirá cómo SentinelArg Red AI automatiza el pentesting, detecta vulnerabilidades y genera reportes ejecutivos en tiempo real.')}
             </p>
           </div>
 
@@ -571,8 +570,8 @@ function App() {
                 <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_1" title="SentinelArg Red AI - Demo 1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
-                <h3 className="text-white font-bold text-lg">Escaneo Automatizado con Red AI</h3>
-                <p className="text-gray-400 text-sm mt-1">Demostración del flujo completo de pentesting</p>
+                <h3 className="text-white font-bold text-lg">{t('videos.v1.title', 'Escaneo Automatizado con Red AI')}</h3>
+                <p className="text-gray-400 text-sm mt-1">{t('videos.v1.desc', 'Demostración del flujo completo de pentesting')}</p>
               </div>
             </div>
 
@@ -581,8 +580,8 @@ function App() {
                 <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_2" title="SentinelArg Red AI - Demo 2" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
-                <h3 className="text-white font-bold text-lg">Generación de Reportes PDF</h3>
-                <p className="text-gray-400 text-sm mt-1">Reportes ejecutivos con CVEs y CVSS</p>
+                <h3 className="text-white font-bold text-lg">{t('videos.v2.title', 'Generación de Reportes PDF')}</h3>
+                <p className="text-gray-400 text-sm mt-1">{t('videos.v2.desc', 'Reportes ejecutivos con CVEs y CVSS')}</p>
               </div>
             </div>
 
@@ -591,8 +590,8 @@ function App() {
                 <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_3" title="SentinelArg Red AI - Demo 3" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
-                <h3 className="text-white font-bold text-lg">Análisis con IA Local</h3>
-                <p className="text-gray-400 text-sm mt-1">Priorización inteligente de vulnerabilidades</p>
+                <h3 className="text-white font-bold text-lg">{t('videos.v3.title', 'Análisis con IA Local')}</h3>
+                <p className="text-gray-400 text-sm mt-1">{t('videos.v3.desc', 'Priorización inteligente de vulnerabilidades')}</p>
               </div>
             </div>
 
@@ -601,15 +600,15 @@ function App() {
                 <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_4" title="SentinelArg Red AI - Demo 4" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
-                <h3 className="text-white font-bold text-lg">Versión Classic vs Pro</h3>
-                <p className="text-gray-400 text-sm mt-1">Comparativa entre ambas modalidades</p>
+                <h3 className="text-white font-bold text-lg">{t('videos.v4.title', 'Versión Classic vs Pro')}</h3>
+                <p className="text-gray-400 text-sm mt-1">{t('videos.v4.desc', 'Comparativa entre ambas modalidades')}</p>
               </div>
             </div>
           </div>
 
           <div className="text-center mt-12">
             <a href="#redai" className="inline-block bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg transition">
-              ← Volver a Red AI
+              {t('videos.back', '← Volver a Red AI')}
             </a>
           </div>
         </div>
@@ -618,7 +617,7 @@ function App() {
       {/* Call-to-action: Ver imágenes */}
       <div className="text-center py-6">
         <a href="/images.html" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-6 py-2 bg-primary hover:bg-sky-600 text-slate-900 rounded-lg font-medium transition shadow-lg">
-          🖼️ Ver imágenes de SentinelArg
+          🖼️ {t('images.btn', 'Ver imágenes de SentinelArg')}
         </a>
       </div>
 
@@ -828,18 +827,18 @@ function App() {
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Centro de Descargas</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{t('downloads.title', 'Centro de Descargas')}</h2>
             <div className="w-20 h-1 bg-[#8B0000] mx-auto"></div>
             <p className="mt-4 text-gray-400">
-              Cliente de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.
+              {t('downloads.subtitle', 'Cliente de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.')}
             </p>
           </div>
 
           <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8 shadow-2xl">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
               <div>
-                <h3 className="text-xl font-bold text-[#00FF00]">SentinelArg Red AI - Cliente v1.0.1</h3>
-                <p className="text-gray-400 text-sm mt-1">Compilado para Linux x86_64 (Sin dependencias de Python)</p>
+                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.file.title', 'SentinelArg Red AI - Cliente v1.0.1')}</h3>
+                <p className="text-gray-400 text-sm mt-1">{t('downloads.file.desc', 'Compilado para Linux x86_64 (Sin dependencias de Python)')}</p>
                 <p className="text-gray-500 text-xs mt-2 font-mono">
                   SHA256: <span className="text-[#00FFFF]">309d7af65911641e1c89b8a7a7a25aa86d8edc5c4b1f00663b09ac0e058f790c</span>
                 </p>
@@ -851,12 +850,12 @@ function App() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Descargar .tar.gz
+                {t('downloads.btn', 'Descargar .tar.gz')}
               </a>
             </div>
 
             <div className="bg-black rounded-lg p-4 border border-slate-800 relative group">
-              <p className="text-gray-500 text-xs mb-2 font-mono">Descarga directa vía terminal:</p>
+              <p className="text-gray-500 text-xs mb-2 font-mono">{t('downloads.terminal.label', 'Descarga directa vía terminal:')}</p>
               <code className="text-[#00FF00] font-mono text-sm break-all">
                 wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz
               </code>
@@ -864,12 +863,12 @@ function App() {
                 onClick={() => navigator.clipboard.writeText('wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz')}
                 className="absolute top-2 right-2 bg-slate-800 hover:bg-slate-700 text-gray-300 text-xs px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition border border-slate-600"
               >
-                Copiar
+                {t('downloads.terminal.copy', 'Copiar')}
               </button>
             </div>
             
             <p className="text-xs text-gray-500 mt-4 text-center">
-              ⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.
+              {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
             </p>
           </div>
         </div>
@@ -938,7 +937,7 @@ function App() {
             <button 
               onClick={() => setShowPaymentModal(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
-              aria-label="Cerrar"
+              aria-label={t('modal.close', 'Cerrar')}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -946,18 +945,18 @@ function App() {
             </button>
             
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Completa tus datos</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">{t('modal.title', 'Completa tus datos')}</h3>
               <p className="text-gray-400 text-sm">
-                Te enviaremos la clave de activación a este email inmediatamente después de confirmar tu pago.
+                {t('modal.desc', 'Te enviaremos la clave de activación a este email inmediatamente después de confirmar tu pago.')}
               </p>
               <p className="text-[#00FF00] text-xs mt-2 font-semibold">
-                {paymentMethod === 'mp' ? 'Serás redirigido a MercadoPago' : 'Serás redirigido a la pasarela segura (USD)'}
+                {paymentMethod === 'mp' ? t('modal.redirect.mp', 'Serás redirigido a MercadoPago') : t('modal.redirect.stripe', 'Serás redirigido a la pasarela segura (USD)')}
               </p>
             </div>
 
             <form onSubmit={handlePaymentSubmit} className="space-y-4">
               <div>
-                <label htmlFor="modal-name" className="block text-sm font-medium text-gray-300 mb-1">Nombre completo *</label>
+                <label htmlFor="modal-name" className="block text-sm font-medium text-gray-300 mb-1">{t('modal.form.name', 'Nombre completo *')}</label>
                 <input
                   type="text"
                   id="modal-name"
@@ -970,7 +969,7 @@ function App() {
               </div>
 
               <div>
-                <label htmlFor="modal-email" className="block text-sm font-medium text-gray-300 mb-1">Email *</label>
+                <label htmlFor="modal-email" className="block text-sm font-medium text-gray-300 mb-1">{t('modal.form.email', 'Email *')}</label>
                 <input
                   type="email"
                   id="modal-email"
@@ -983,7 +982,7 @@ function App() {
               </div>
 
               <div>
-                <label htmlFor="modal-company" className="block text-sm font-medium text-gray-300 mb-1">Empresa (opcional)</label>
+                <label htmlFor="modal-company" className="block text-sm font-medium text-gray-300 mb-1">{t('modal.form.company', 'Empresa (opcional)')}</label>
                 <input
                   type="text"
                   id="modal-company"
@@ -1003,13 +1002,13 @@ function App() {
                       : 'bg-[#00FF00] hover:bg-[#00cc00] text-black'
                   }`}
                 >
-                  Continuar al Pago →
+                  {t('modal.form.submit', 'Continuar al Pago →')}
                 </button>
               </div>
             </form>
             
             <p className="text-xs text-gray-500 text-center mt-4">
-               Tus datos están protegidos y se usarán únicamente para enviarte tu licencia.
+               {t('modal.form.privacy', 'Tus datos están protegidos y se usarán únicamente para enviarte tu licencia.')}
             </p>
           </div>
         </div>
