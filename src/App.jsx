@@ -600,8 +600,8 @@ function App() {
                 <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_4" title="SentinelArg Red AI - Demo 4" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
-                <h3 className="text-white font-bold text-lg">{t('videos.v4.title', 'Versión Classic vs Pro')}</h3>
-                <p className="text-gray-400 text-sm mt-1">{t('videos.v4.desc', 'Comparativa entre ambas modalidades')}</p>
+                <h3 className="text-white font-bold text-lg">{t('videos.v4.title', 'Laboratorio de Explotacion')}</h3>
+                <p className="text-gray-400 text-sm mt-1">{t('videos.v4.desc', 'Funcionamiento de exploits')}</p>
               </div>
             </div>
           </div>
