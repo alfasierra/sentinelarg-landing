@@ -526,12 +526,12 @@ function App() {
               <div>
                 <div className="text-[#00FF00] text-4xl mb-3">🔄</div>
                 <h4 className="text-white font-bold mb-2">Actualización Segura</h4>
-                <p className="text-gray-400 text-sm">Script `update.sh` que preserva tu base de datos y configuraciones mientras descarga las últimas plantillas de vulnerabilidades.</p>
+                
               </div>
               <div>
                 <div className="text-[#00FFFF] text-4xl mb-3">🔑</div>
                 <h4 className="text-white font-bold mb-2">Activación por Dispositivo</h4>
-                <p className="text-gray-400 text-sm">Licencia vinculada al hardware. Simplemente coloca el archivo `sentinelarg.license` y reinicia el contenedor.</p>
+                
               </div>
               <div>
                 <div className="text-[#8B0000] text-4xl mb-3">🛡️</div>
@@ -542,7 +542,7 @@ function App() {
             
             <div className="text-center mt-8 pt-8 border-t border-slate-800">
               <p className="text-gray-400 text-sm mb-4">¿Necesitas ver los comandos de instalación o la configuración avanzada?</p>
-              <a href="https://github.com/alfasierra/sentinelarg-landing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition">
+              <a href="https://github.com/alfasierra/sentinelarg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition">
                 Ir a la Documentación Técnica Completa (GitHub)
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>
