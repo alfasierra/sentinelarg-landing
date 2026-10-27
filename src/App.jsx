@@ -536,7 +536,7 @@ function App() {
               <div>
                 <div className="text-[#8B0000] text-4xl mb-3">🛡️</div>
                 <h4 className="text-white font-bold mb-2">Soporte Dedicado</h4>
-                <p className="text-gray-400 text-sm">Acceso a la Wiki completa, documentación de API y soporte técnico directo en <span className="text-white">soporte@sentinelarg.com.ar</span>.</p>
+                
               </div>
             </div>
             
