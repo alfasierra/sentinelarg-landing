@@ -20,7 +20,7 @@ const resources = {
         subtitle: "Ejecuta más de 150 herramientas de seguridad, correlaciona hallazgos con IA local y genera reportes ejecutivos en PDF en minutos, no en días."
       },
       cta: {
-        demo: "Descargar Prueba Gratuita",
+        demo: "Descargar",
         redai: "Ver Casos de Uso"
       },
       about: {
@@ -260,7 +260,7 @@ const resources = {
         subtitle: "Run 150+ security tools, correlate findings with local AI, and generate executive PDF reports in minutes, not days."
       },
       cta: {
-        demo: "Download Free Trial",
+        demo: "Download",
         redai: "View Use Cases"
       },
       about: {
