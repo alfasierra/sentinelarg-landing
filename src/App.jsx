@@ -190,7 +190,7 @@ function App() {
                 <button onClick={() => i18n.changeLanguage('en')} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('en') ? 'bg-slate-700 text-white' : 'text-gray-400 hover:text-gray-200'}`}>EN</button>
               </div>
               <a href="#downloads" className="bg-[#8B0000] hover:bg-red-800 text-white px-4 py-2 rounded font-medium transition">
-                {t('cta.demo', 'Descargar Prueba')}
+                {t('cta.demo', 'Descargar ')}
               </a>
             </div>
             <div className="md:hidden flex items-center">
@@ -238,7 +238,7 @@ function App() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#downloads" className="inline-flex items-center justify-center bg-[#8B0000] hover:bg-red-800 text-white font-bold py-4 px-8 rounded-lg text-lg transition shadow-lg shadow-red-900/50">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-              {t('cta.demo', 'Descargar Prueba Gratuita')}
+              {t('cta.demo', 'Descargar ')}
             </a>
             <a href="#videos" className="inline-flex items-center justify-center bg-transparent border-2 border-slate-700 hover:border-[#00FF00] text-gray-300 hover:text-[#00FF00] font-bold py-4 px-8 rounded-lg text-lg transition">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
