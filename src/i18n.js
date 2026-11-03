@@ -29,32 +29,32 @@ const resources = {
       },
       trustBar: {
         title: "Potenciado por las mejores herramientas de la industria"
-      }
+      },
       features: {
-        title: "Funcionalidades Clave",
-        correlation: {
-          title: "Correlación inteligente de amenazas",
-          desc: "Detecta ataques multietapa y movimientos laterales mediante reglas avanzadas y machine learning."
+        title: "Capacidades Principales",
+        ai: {
+          title: "Inteligencia Artificial Local",
+          desc: "Correlación automática de hallazgos y eliminación de falsos positivos sin enviar datos a la nube."
         },
-        siem: {
-          title: "Integración nativa con SIEMs",
-          desc: "Conecta Wazuh, Splunk y QRadar en un único panel con normalización de eventos y alertas unificadas."
+        automation: {
+          title: "Automatización Completa",
+          desc: "Ejecuta más de 150 herramientas de seguridad (Nmap, Nuclei, SQLMap) en un solo flujo orquestado."
         },
-        dashboards: {
-          title: "Dashboards por rol",
-          desc: "Interfaces personalizadas para analistas, operadores, auditores y administradores con visualizaciones D3.js."
+        reporting: {
+          title: "Reportes Ejecutivos",
+          desc: "Generación automática de informes en PDF con mapeo a MITRE ATT&CK, OWASP y CVSS."
         },
-        remediation: {
-          title: "Auto-remediación segura",
-          desc: "Ejecuta comandos de mitigación validados con confirmación humana y registro completo de acciones."
+        standalone: {
+          title: "100% Offline y Portable",
+          desc: "Compilado con Nuitka. No requiere instalar Python ni dependencias en el sistema anfitrión."
         },
-        forensic: {
-          title: "Módulo forense integrado",
-          desc: "Análisis de memoria con Volatility y reglas YARA para hunting avanzado y respuesta a incidentes."
+        compliance: {
+          title: "Mapeo de Compliance",
+          desc: "Alineación automática de vulnerabilidades con estándares como PCI-DSS, ISO 27001 y NIST."
         },
-        governance: {
-          title: "Gobernanza completa",
-          desc: "RBAC, OAuth 2.0, auditoría de acciones y seguimiento de estado de alertas con trazabilidad total."
+        docker: {
+          title: "Despliegue Dockerizado",
+          desc: "Todas las herramientas se ejecutan en contenedores aislados para garantizar la estabilidad y seguridad."
         }
       },
       useCases: {
@@ -146,9 +146,6 @@ const resources = {
       images: {
         btn: "Ver imágenes de SentinelArg"
       },
-      // ==========================================
-      // NUEVAS SECCIONES AGREGADAS
-      // ==========================================
       redai: {
         badge: "Nuevo Producto",
         subtitle: "Plataforma de Pentesting Automatizado con Inteligencia Artificial",
@@ -211,7 +208,7 @@ const resources = {
         v1: { title: "Escaneo Automatizado con Red AI", desc: "Demostración del flujo completo de pentesting" },
         v2: { title: "Generación de Reportes PDF", desc: "Reportes ejecutivos con CVEs y CVSS" },
         v3: { title: "Análisis con IA Local", desc: "Priorización inteligente de vulnerabilidades" },
-        v4: { title: "Versión Classic vs Pro", desc: "Comparativa entre ambas modalidades" },
+        v4: { title: "Laboratorio de Explotación", desc: "Funcionamiento de exploits" },
         back: "← Volver a Red AI"
       },
       downloads: {
@@ -272,32 +269,32 @@ const resources = {
       },
       trustBar: {
         title: "Powered by the industry's best tools"
-      }
+      },
       features: {
-        title: "Key Features",
-        correlation: {
-          title: "Intelligent Threat Correlation",
-          desc: "Detects multi-stage attacks and lateral movements using advanced rules and machine learning."
+        title: "Key Capabilities",
+        ai: {
+          title: "Local Artificial Intelligence",
+          desc: "Automatic correlation of findings and false positive elimination without sending data to the cloud."
         },
-        siem: {
-          title: "Native SIEM Integration",
-          desc: "Connects Wazuh, Splunk, and QRadar in a single panel with normalized events and unified alerts."
+        automation: {
+          title: "Complete Automation",
+          desc: "Runs 150+ security tools (Nmap, Nuclei, SQLMap) in a single orchestrated flow."
         },
-        dashboards: {
-          title: "Role-Based Dashboards",
-          desc: "Custom interfaces for analysts, operators, auditors, and administrators with D3.js visualizations."
+        reporting: {
+          title: "Executive Reporting",
+          desc: "Automatic generation of PDF reports with mapping to MITRE ATT&CK, OWASP, and CVSS."
         },
-        remediation: {
-          title: "Secure Auto-Remediation",
-          desc: "Executes validated mitigation commands with human confirmation and full action logging."
+        standalone: {
+          title: "100% Offline & Portable",
+          desc: "Compiled with Nuitka. No need to install Python or dependencies on the host system."
         },
-        forensic: {
-          title: "Integrated Forensic Module",
-          desc: "Memory analysis with Volatility and YARA rules for advanced hunting and incident response."
+        compliance: {
+          title: "Compliance Mapping",
+          desc: "Automatic alignment of vulnerabilities with standards like PCI-DSS, ISO 27001, and NIST."
         },
-        governance: {
-          title: "Complete Governance",
-          desc: "RBAC, OAuth 2.0, action auditing, and full alert state tracking with complete traceability."
+        docker: {
+          title: "Dockerized Deployment",
+          desc: "All tools run in isolated containers to guarantee stability and security."
         }
       },
       useCases: {
@@ -389,9 +386,6 @@ const resources = {
       images: {
         btn: "View SentinelArg Images"
       },
-      // ==========================================
-      // NEW SECTIONS ADDED (ENGLISH)
-      // ==========================================
       redai: {
         badge: "New Product",
         subtitle: "Automated Pentesting Platform with Artificial Intelligence",
@@ -454,7 +448,7 @@ const resources = {
         v1: { title: "Automated Scanning with Red AI", desc: "Demonstration of the complete pentesting flow" },
         v2: { title: "PDF Report Generation", desc: "Executive reports with CVEs and CVSS" },
         v3: { title: "Analysis with Local AI", desc: "Intelligent prioritization of vulnerabilities" },
-        v4: { title: "Classic vs Pro Version", desc: "Comparison between both modalities" },
+        v4: { title: "Exploitation Lab", desc: "How exploits work" },
         back: "← Back to Red AI"
       },
       downloads: {
