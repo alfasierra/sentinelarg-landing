@@ -16,17 +16,20 @@ const resources = {
         solicitarDemo: "Solicitar Demo"
       },
       hero: {
-        title: "Protección Cibernética Inteligente para Empresas Argentinas",
-        subtitle: "Plataforma unificada de seguridad que correlaciona amenazas, automatiza respuestas y simplifica la gestión de riesgos con integración nativa a tus herramientas existentes."
+        title: "Pentesting Automatizado con Inteligencia Artificial",
+        subtitle: "Ejecuta más de 150 herramientas de seguridad, correlaciona hallazgos con IA local y genera reportes ejecutivos en PDF en minutos, no en días."
       },
       cta: {
-        demo: "Ver Demo",
-        redai: "Conocer Red AI"
+        demo: "Descargar Prueba Gratuita",
+        redai: "Ver Casos de Uso"
       },
       about: {
-        title: "Sobre SentinelArg",
-        desc: "SentinelArg es una plataforma avanzada de ciberseguridad diseñada para detectar, investigar y responder a amenazas complejas en entornos empresariales. Combina inteligencia artificial con integraciones nativas para ofrecer una visibilidad completa de tu infraestructura."
+        title: "¿Por qué elegir SentinelArg Red AI?",
+        desc: "Deja de depender de scripts sueltos y reportes manuales. SentinelArg Red AI es la navaja suiza del pentesting moderno: orquesta herramientas de la industria, elimina falsos positivos con IA y entrega un informe profesional listo para tu cliente o gerencia, todo sin enviar datos sensibles a la nube."
       },
+      trustBar: {
+        title: "Potenciado por las mejores herramientas de la industria"
+      }
       features: {
         title: "Funcionalidades Clave",
         correlation: {
@@ -256,17 +259,20 @@ const resources = {
         solicitarDemo: "Request Demo"
       },
       hero: {
-        title: "Intelligent Cyber Defense for Argentine Enterprises",
-        subtitle: "Unified security platform that correlates threats, automates responses, and simplifies risk management with native integration to your existing tools."
+        title: "Automated Pentesting with Artificial Intelligence",
+        subtitle: "Run 150+ security tools, correlate findings with local AI, and generate executive PDF reports in minutes, not days."
       },
       cta: {
-        demo: "View Demo",
-        redai: "Learn about Red AI"
+        demo: "Download Free Trial",
+        redai: "View Use Cases"
       },
       about: {
-        title: "About SentinelArg",
-        desc: "SentinelArg is an advanced cybersecurity platform designed to detect, investigate, and respond to complex threats in enterprise environments. It combines artificial intelligence with native integrations to offer complete visibility of your infrastructure."
+        title: "Why choose SentinelArg Red AI?",
+        desc: "Stop relying on scattered scripts and manual reports. SentinelArg Red AI is the modern pentesting Swiss army knife: it orchestrates industry-standard tools, eliminates false positives with AI, and delivers a professional report ready for your client or management, all without sending sensitive data to the cloud."
       },
+      trustBar: {
+        title: "Powered by the industry's best tools"
+      }
       features: {
         title: "Key Features",
         correlation: {
