@@ -13,7 +13,7 @@ const resources = {
         descargas: "Descargas",
         sobreNosotros: "Sobre Nosotros",
         trabajaConNosotros: "Trabaja con Nosotros",
-        solicitarDemo: "Solicitar Demo"
+        solicitarDemo: "Solicitar Licencia"
       },
       hero: {
         title: "Pentesting Automatizado con Inteligencia Artificial",
