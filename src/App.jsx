@@ -502,12 +502,12 @@ function App() {
         </div>
       </section>
 
-      {/* Call-to-action: Ver imágenes */}
+      {/* Call-to-action: Ver imágenes 
       <div className="text-center py-6">
         <a href="/images.html" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-6 py-2 bg-primary hover:bg-sky-600 text-slate-900 rounded-lg font-medium transition shadow-lg">
           🖼️ {t('images.btn', 'Ver imágenes de SentinelArg')}
         </a>
-      </div>
+      </div> */}
 
       {/* About Us Section */}
       <section id="about-us" className="py-16 bg-dark/50">
