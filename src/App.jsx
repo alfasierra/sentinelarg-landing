@@ -22,7 +22,7 @@ function App() {
   }, [i18n.language]);
 
   const MP_LINK = "https://mpago.la/1tUxGKf";
-  const STRIPE_LINK = "https://link.payoneer.com/Token?t=2C83087C4FD34F07ADA463AB75F8F254&src=pl";
+  const STRIPE_LINK = "https://wise.com/pay/r/dTuxCzd5KTfhDH8";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
