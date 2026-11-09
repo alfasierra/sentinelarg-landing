@@ -370,7 +370,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe className="w-full h-full" src="https://www.youtube.com/watch?v=vP5BxrXwgzI" title="sentinelarg linuxscan" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe className="w-full h-full" src="https://www.youtube.com/embed/vP5BxrXwgzI" title="sentinelarg linuxscan" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">{t('videos.v1.title', 'Escaneo Automatizado con Red AI')}</h3>
@@ -388,7 +388,7 @@ function App() {
             </div>
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe className="w-full h-full" src="https://youtu.be/k6Ub66BYdPY" title="Análisis con IA Local" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe className="w-full h-full" src="https://www.youtube.com/embed/k6Ub66BYdPY" title="Análisis con IA Local" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">{t('videos.v3.title', 'Análisis con IA Local')}</h3>
