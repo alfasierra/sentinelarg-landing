@@ -161,7 +161,7 @@ function App() {
     {
       icon: "🤖",
       title: t('redai.features.ia.title', 'IA Local Privada'),
-      desc: t('redai.features.ia.desc', 'Análisis contextual inteligente sin enviar datos sensibles a la nube')
+      desc: t('redai.features.ia.desc', ' contextual inteligente sin enviar datos sensibles a la nube')
     },
     {
       icon: "⚡",
@@ -322,7 +322,7 @@ function App() {
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  {t('pricing.pro.feat1', 'IA local para análisis contextual')}
+                  {t('pricing.pro.feat1', 'IA local para  contextual')}
                 </li>
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -388,7 +388,7 @@ function App() {
             </div>
             <div className="bg-dark rounded-xl overflow-hidden border border-slate-800 shadow-lg">
               <div className="aspect-video">
-                <iframe className="w-full h-full" src="https://www.youtube.com/embed/ID_DEL_VIDEO_3" title="Demo 3" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe className="w-full h-full" src="https://youtu.be/k6Ub66BYdPY" title="Análisis con IA Local" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <div className="p-4">
                 <h3 className="text-white font-bold text-lg">{t('videos.v3.title', 'Análisis con IA Local')}</h3>
