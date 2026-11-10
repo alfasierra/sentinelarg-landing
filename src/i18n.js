@@ -223,6 +223,11 @@ const resources = {
           label: "Descarga directa vía terminal:",
           copy: "Copiar"
         },
+        manual: {
+          title: "Manual de Usuario",
+          desc: "Guía completa de instalación, configuración y operación. Incluye protocolos de escaneo, uso de la IA y mantenimiento del sistema (Versión 1.0).",
+          btn: "Ver Documentación"
+        },
         disclaimer: "⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg."
       },
       modal: {
@@ -462,6 +467,11 @@ const resources = {
         terminal: {
           label: "Direct download via terminal:",
           copy: "Copy"
+        },
+        manual: {
+          title: "User Manual",
+          desc: "Complete guide for installation, configuration, and operation. Includes scanning protocols, AI usage, and system maintenance (Version 1.0).",
+          btn: "View Documentation"
         },
         disclaimer: "⚠️ By downloading, you accept the Terms of Service and Ethical Use Policy of SentinelArg."
       },
