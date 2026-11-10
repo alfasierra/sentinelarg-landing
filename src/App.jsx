@@ -568,43 +568,71 @@ function App() {
         </div>
       </section>
 
-      {/* SECCIÓN: Centro de Descargas */}
+            {/* SECCIÓN: Centro de Descargas */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">{t('downloads.title', 'Centro de Descargas')}</h2>
             <div className="w-20 h-1 bg-[#8B0000] mx-auto"></div>
             <p className="mt-4 text-gray-400">
-              {t('downloads.subtitle', 'Cliente de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.')}
+              {t('downloads.subtitle', 'Recursos oficiales de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.')}
             </p>
           </div>
-          <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 md:p-8 shadow-2xl">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-              <div>
-                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.file.title', 'SentinelArg Red AI - Cliente v1.0.1')}</h3>
-                <p className="text-gray-400 text-sm mt-1">{t('downloads.file.desc', 'Compilado para Linux x86_64 (Sin dependencias de Python)')}</p>
-                <p className="text-gray-500 text-xs mt-2 font-mono">
-                  SHA256: <span className="text-[#00FFFF]">309d7af65911641e1c89b8a7a7a25aa86d8edc5c4b1f00663b09ac0e058f790c</span>
-                </p>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Tarjeta 1: Cliente Principal */}
+            <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-[#8B0000]/20 rounded-lg">
+                  <svg className="w-8 h-8 text-[#8B0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.client.title', 'Cliente v1.0.1')}</h3>
               </div>
-              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz" className="bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg transition flex items-center gap-2 whitespace-nowrap">
+              <p className="text-gray-400 text-sm mb-4 flex-grow">
+                {t('downloads.client.desc', 'Software principal compilado para Linux x86_64. Incluye todas las herramientas y el motor de IA local sin dependencias de Python.')}
+              </p>
+              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4">
+                <p className="text-gray-500 text-xs font-mono mb-1">SHA256:</p>
+                <p className="text-[#00FFFF] text-xs font-mono break-all">309d7af65911641e1c89b8a7a7a25aa86d8edc5c4b1f00663b09ac0e058f790c</p>
+              </div>
+              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                {t('downloads.btn', 'Descargar .tar.gz')}
+                {t('downloads.client.btn', 'Descargar .tar.gz')}
               </a>
             </div>
-            <div className="bg-black rounded-lg p-4 border border-slate-800 relative group">
-              <p className="text-gray-500 text-xs mb-2 font-mono">{t('downloads.terminal.label', 'Descarga directa vía terminal:')}</p>
-              <code className="text-[#00FF00] font-mono text-sm break-all">
-                wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz
-              </code>
-              <button onClick={() => navigator.clipboard.writeText('wget https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz')} className="absolute top-2 right-2 bg-slate-800 hover:bg-slate-700 text-gray-300 text-xs px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition border border-slate-600">
-                {t('downloads.terminal.copy', 'Copiar')}
-              </button>
+
+            {/* Tarjeta 2: Manual de Usuario PDF */}
+            <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-primary/20 rounded-lg">
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-primary">{t('downloads.manual.title', 'Manual de Usuario')}</h3>
+              </div>
+              <p className="text-gray-400 text-sm mb-4 flex-grow">
+                {t('downloads.manual.desc', 'Guía completa de instalación, configuración y operación. Incluye protocolos de escaneo, uso de la IA y mantenimiento del sistema (Versión 1.0).')}
+              </p>
+              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4">
+                <p className="text-gray-500 text-xs font-mono mb-1">Formato:</p>
+                <p className="text-white text-xs font-mono">PDF (Documento Oficial)</p>
+              </div>
+              <a href="/SentinelArg_Manual.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                {t('downloads.manual.btn', 'Ver Documentación')}
+              </a>
             </div>
-            <p className="text-xs text-gray-500 mt-4 text-center">
-              {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
-            </p>
           </div>
+
+          <p className="text-xs text-gray-500 mt-8 text-center">
+            {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
+          </p>
         </div>
       </section>
 
