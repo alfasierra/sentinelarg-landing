@@ -595,7 +595,7 @@ function App() {
               </p>
               <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4">
                 <p className="text-gray-500 text-xs font-mono mb-1">SHA256:</p>
-                <p className="text-[#00FFFF] text-xs font-mono break-all">309d7af65911641e1c89b8a7a7a25aa86d8edc5c4b1f00663b09ac0e058f790c</p>
+                <p className="text-[#00FFFF] text-xs font-mono break-all">a39c59346cfdfea29d7d125a8888f724c1151c5fabf9ac0411b1947a82c38ff9</p>
               </div>
               <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
