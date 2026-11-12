@@ -21,8 +21,8 @@ function App() {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
-  const MP_LINK = "https://mpago.la/1tUxGKf";
-  const STRIPE_LINK = "https://wise.com/pay/r/dTuxCzd5KTfhDH8";
+  const MP_LINK = "https://mpago.li/28jgy5y";
+  const STRIPE_LINK = "https://wise.com/pay/r/NA0VC4jDYYtqvbQ";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -314,9 +314,9 @@ function App() {
                 {t('pricing.pro.desc', 'Plataforma completa de pentesting automatizado con inteligencia artificial local. Ideal para equipos de seguridad, consultores y empresas que necesitan auditorías profundas con reportes ejecutivos automáticos.')}
               </p>
               <div className="mb-8 flex items-baseline gap-2 flex-wrap">
-                <span className="text-4xl font-bold text-white">$54.342 ARS</span>
+                <span className="text-4xl font-bold text-white">$161.938 ARS</span>
                 <span className="text-gray-500">{t('pricing.or', 'o')}</span>
-                <span className="text-3xl font-bold text-[#00FF00]">USD $33</span>
+                <span className="text-3xl font-bold text-[#00FF00]">USD $149</span>
                 <span className="text-gray-400 text-lg">/ {t('pricing.per_year', 'año')}</span>
               </div>
               <ul className="space-y-3 mb-8 flex-grow">
