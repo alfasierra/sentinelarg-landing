@@ -639,7 +639,9 @@ function App() {
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 text-sm border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p>{t('footer.copyright', `© ${new Date().getFullYear()} SentinelArg. Todos los derechos reservados.`)}</p>
+          {/* Año hardcodeado dinámicamente para garantizar que el crawler de Creem.io lo vea renderizado */}
+          <p>© {new Date().getFullYear()} SentinelArg. Todos los derechos reservados.</p>
+          
           <p className="mt-3">
             <a href="/privacy" className="hover:text-primary transition mx-2">{t('footer.privacy', 'Política de Privacidad')}</a>
             <span>•</span>
