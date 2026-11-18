@@ -179,12 +179,12 @@ const resources = {
       },
       legal: {
         title: "Aviso Legal y Uso Responsable",
-        intro: "SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada ÚNICAMENTE para uso autorizado. Su uso está restringido a:",
+        intro: "SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada ÚNICAMENTE para uso autorizado. Queda estrictamente prohibido el uso de esta herramienta o de sus funciones de IA para generar, procesar, analizar o distribuir contenido sexual, adulto, NSFW (Not Safe For Work) o pornográfico. Su uso legítimo está restringido a:",
         item1: "Pruebas de penetración con autorización explícita.",
-        item2: "Auditorías de seguridad y Red Team operations.",
+        item2: "Auditorías de seguridad y operaciones de Red Team.",
         item3: "Competiciones CTF y entornos de laboratorio controlados.",
         item4: "Investigación de seguridad ética.",
-        footer: "El uso no autorizado es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA)."
+        footer: "El uso no autorizado o para fines prohibidos es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA) y esta Política de Uso Aceptable."
       },
       specs: {
         title: "Arquitectura y Capacidades",
@@ -424,12 +424,12 @@ const resources = {
       },
       legal: {
         title: "Legal Notice and Responsible Use",
-        intro: "SentinelArg is an offensive security assessment tool intended SOLELY for authorized use. Its use is restricted to:",
+        intro: "SentinelArg is an offensive security assessment tool intended SOLELY for authorized use. It is strictly prohibited to use this tool or its AI features to generate, process, analyze, or distribute sexual, adult, NSFW (Not Safe For Work), or pornographic content. Its legitimate use is restricted to:",
         item1: "Penetration testing with explicit authorization.",
         item2: "Security audits and Red Team operations.",
         item3: "CTF competitions and controlled laboratory environments.",
         item4: "Ethical security research.",
-        footer: "Unauthorized use is ILLEGAL. By using SentinelArg, you agree to the terms of the End User License Agreement (EULA)."
+        footer: "Unauthorized use or use for prohibited purposes is ILLEGAL. By using SentinelArg, you agree to the terms of the End User License Agreement (EULA) and this Acceptable Use Policy."
       },
       specs: {
         title: "Architecture and Capabilities",
