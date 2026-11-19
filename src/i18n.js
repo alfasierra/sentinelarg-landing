@@ -174,7 +174,7 @@ const resources = {
         },
         btn: {
           mp: "Pagar con MercadoPago (ARS)",
-          stripe: "Pagar con Tarjeta Internacional (USD)"
+          creem: "Pagar con Tarjeta Internacional (USD)"
         }
       },
       legal: {
@@ -237,7 +237,7 @@ const resources = {
         desc: "Te enviaremos la clave de activación a este email inmediatamente después de confirmar tu pago.",
         redirect: {
           mp: "Serás redirigido a MercadoPago",
-          stripe: "Serás redirigido a la pasarela segura (USD)"
+        
         },
         form: {
           name: "Nombre completo *",
@@ -419,7 +419,7 @@ const resources = {
         },
         btn: {
           mp: "Pay with MercadoPago (ARS)",
-          stripe: "Pay with International Card (USD)"
+          creem: "Pay with International Card (USD)"
         }
       },
       legal: {
@@ -482,7 +482,7 @@ const resources = {
         desc: "We will send the activation key to this email immediately after confirming your payment.",
         redirect: {
           mp: "You will be redirected to MercadoPago",
-          stripe: "You will be redirected to the secure gateway (USD)"
+          
         },
         form: {
           name: "Full Name *",
