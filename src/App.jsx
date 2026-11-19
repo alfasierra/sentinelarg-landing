@@ -11,8 +11,8 @@ function App() {
   const [isSubmittingCareers, setIsSubmittingCareers] = useState(false);
   const [submitSuccessCareers, setSubmitSuccessCareers] = useState(false);
 
+  // El modal SOLO se usa para MercadoPago (ARS). USD va directo a Creem.
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState('mp');
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerCompany, setCustomerCompany] = useState('');
@@ -22,7 +22,7 @@ function App() {
   }, [i18n.language]);
 
   const MP_LINK = "https://mpago.li/28jgy5y";
-  const STRIPE_LINK = "https://wise.com/pay/r/NA0VC4jDYYtqvbQ";
+  const CREEM_LINK = "https://www.creem.io/payment/prod_3NR3RvGfTxihTnT8KfDHY4";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,11 +76,14 @@ function App() {
     }
   };
 
-  const openPaymentModal = (method) => {
-    setPaymentMethod(method);
-    setShowPaymentModal(true);
+  // USD: abre Creem directo, sin modal (Creem ya captura los datos).
+  const openCreemCheckout = () => {
+    window.open(CREEM_LINK, '_blank', 'noopener,noreferrer');
   };
 
+  const openPaymentModal = () => setShowPaymentModal(true);
+
+  // Solo para MercadoPago: guardamos el prospecto local y redirigimos.
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
     if (!customerName || !customerEmail) {
@@ -92,19 +95,17 @@ function App() {
       email: customerEmail,
       company: customerCompany,
       plan: 'pro',
-      method: paymentMethod,
+      method: 'mp',
       timestamp: new Date().toISOString()
     };
     localStorage.setItem('sentinelarg_prospect', JSON.stringify(prospectData));
     setShowPaymentModal(false);
-    const targetLink = paymentMethod === 'mp' ? MP_LINK : STRIPE_LINK;
-    window.open(targetLink, '_blank');
+    window.open(MP_LINK, '_blank', 'noopener,noreferrer');
     setCustomerName('');
     setCustomerEmail('');
     setCustomerCompany('');
   };
 
-  // FUNCIONALIDADES RE-ENFOCADAS EN RED AI (Ya no menciona SIEM)
   const features = [
     {
       title: t('features.ai.title', 'Inteligencia Artificial Local'),
@@ -138,36 +139,11 @@ function App() {
     }
   ];
 
-  const integrations = [
-    { name: "Nmap", color: "text-green-500" },
-    { name: "Nuclei", color: "text-orange-500" },
-    { name: "SQLMap", color: "text-blue-500" },
-    { name: "Gobuster", color: "text-yellow-400" },
-    { name: "Metasploit", color: "text-red-500" },
-    { name: "Nikto", color: "text-purple-400" }
-  ];
-
   const redAIFeatures = [
-    {
-      icon: "🛡️",
-      title: t('redai.features.tools.title', '150+ Herramientas Integradas'),
-      desc: t('redai.features.tools.desc', 'Nmap, Nuclei, SQLMap, Gobuster, FFuf, Nikto y más ejecutándose simultáneamente')
-    },
-    {
-      icon: "📄",
-      title: t('redai.features.reports.title', 'Reportes PDF Ejecutivos'),
-      desc: t('redai.features.reports.desc', 'Generación automática con CVEs, CVSS y recomendaciones listas para gerencia')
-    },
-    {
-      icon: "🤖",
-      title: t('redai.features.ia.title', 'IA Local Privada'),
-      desc: t('redai.features.ia.desc', ' contextual inteligente sin enviar datos sensibles a la nube')
-    },
-    {
-      icon: "⚡",
-      title: t('redai.features.standalone.title', 'Sin Dependencias'),
-      desc: t('redai.features.standalone.desc', 'No requiere Python ni librerías. Compilado y listo para usar')
-    }
+    { icon: "🛡️", title: t('redai.features.tools.title', '150+ Herramientas Integradas'), desc: t('redai.features.tools.desc', 'Nmap, Nuclei, SQLMap, Gobuster, FFuf, Nikto y más ejecutándose simultáneamente') },
+    { icon: "📄", title: t('redai.features.reports.title', 'Reportes PDF Ejecutivos'), desc: t('redai.features.reports.desc', 'Generación automática con CVEs, CVSS y recomendaciones listas para gerencia') },
+    { icon: "🤖", title: t('redai.features.ia.title', 'IA Local Privada'), desc: t('redai.features.ia.desc', 'Análisis contextual inteligente sin enviar datos sensibles a la nube') },
+    { icon: "⚡", title: t('redai.features.standalone.title', 'Sin Dependencias'), desc: t('redai.features.standalone.desc', 'No requiere Python ni librerías. Compilado y listo para usar') }
   ];
 
   return (
@@ -190,7 +166,7 @@ function App() {
                 <button onClick={() => i18n.changeLanguage('en')} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('en') ? 'bg-slate-700 text-white' : 'text-gray-400 hover:text-gray-200'}`}>EN</button>
               </div>
               <a href="#downloads" className="bg-[#8B0000] hover:bg-red-800 text-white px-4 py-2 rounded font-medium transition">
-                {t('cta.demo', 'Descargar ')}
+                {t('cta.demo', 'Descargar Prueba Gratuita')}
               </a>
             </div>
             <div className="md:hidden flex items-center">
@@ -217,7 +193,7 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section: 100% enfocado en Red AI */}
+      {/* Hero Section */}
       <header id="home" className="py-20 md:py-32 bg-darker relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8B0000]/20 via-slate-950 to-slate-950"></div>
@@ -227,7 +203,7 @@ function App() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
             </span>
-            v1.0.3 Disponible 
+            v1.0.3 Disponible
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6">
             {t('hero.title', 'Pentesting Automatizado con Inteligencia Artificial')}
@@ -238,7 +214,7 @@ function App() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#downloads" className="inline-flex items-center justify-center bg-[#8B0000] hover:bg-red-800 text-white font-bold py-4 px-8 rounded-lg text-lg transition shadow-lg shadow-red-900/50">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-              {t('cta.demo', 'Descargar ')}
+              {t('cta.demo', 'Descargar Prueba Gratuita')}
             </a>
             <a href="#videos" className="inline-flex items-center justify-center bg-transparent border-2 border-slate-700 hover:border-[#00FF00] text-gray-300 hover:text-[#00FF00] font-bold py-4 px-8 rounded-lg text-lg transition">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -260,7 +236,7 @@ function App() {
         </div>
       </div>
 
-      {/* About Section: Reenfocada en Red AI */}
+      {/* About Section */}
       <section id="about" className="py-20 bg-darker">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -273,7 +249,7 @@ function App() {
         </div>
       </section>
 
-      {/* SECCIÓN: SentinelArg Red AI Features Grid */}
+      {/* SECCIÓN: SentinelArg Red AI */}
       <section id="redai" className="py-20 bg-gradient-to-b from-gray-950 to-dark border-t-4 border-[#8B0000]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -322,7 +298,7 @@ function App() {
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  {t('pricing.pro.feat1', 'IA local para  contextual')}
+                  {t('pricing.pro.feat1', 'IA local para análisis contextual')}
                 </li>
                 <li className="flex items-center text-gray-300">
                   <svg className="w-5 h-5 text-[#8B0000] mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -338,12 +314,12 @@ function App() {
                 </li>
               </ul>
               <div className="space-y-3 mt-auto">
-                <button onClick={() => openPaymentModal('mp')} className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                <button onClick={openPaymentModal} className="w-full bg-[#009EE3] hover:bg-[#0088cc] text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                   {t('pricing.btn.mp', 'Pagar con MercadoPago (ARS)')}
                 </button>
-                <button onClick={() => openPaymentModal('stripe')} className="w-full border border-[#00FF00] hover:bg-[#00FF00]/10 text-[#00FF00] font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
-                  🌍 {t('pricing.btn.stripe', 'Pagar con Tarjeta Internacional (USD)')}
+                <button onClick={openCreemCheckout} className="w-full border border-[#00FF00] hover:bg-[#00FF00]/10 text-[#00FF00] font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                  🌍 {t('pricing.btn.creem', 'Pagar con Tarjeta Internacional (USD)')}
                 </button>
               </div>
             </div>
@@ -355,7 +331,7 @@ function App() {
         </div>
       </section>
 
-      {/* SECCIÓN: Videos de Red AI */}
+      {/* SECCIÓN: Videos */}
       <section id="videos" className="py-20 bg-darker">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -413,7 +389,7 @@ function App() {
         </div>
       </section>
 
-      {/* SECCIÓN: Capacidades Principales (Reemplaza al antiguo SIEM) */}
+      {/* SECCIÓN: Capacidades Principales */}
       <section id="features" className="py-20 bg-dark/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -441,7 +417,7 @@ function App() {
               {t('legal.title', 'Aviso Legal y Uso Responsable')}
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              {t('legal.intro', 'SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada ÚNICAMENTE para uso autorizado. Su uso está restringido a:')}
+              {t('legal.intro', 'SentinelArg es una herramienta de evaluación de seguridad ofensiva destinada ÚNICAMENTE para uso autorizado. Queda estrictamente prohibido el uso de esta herramienta o de sus funciones de IA para generar, procesar, analizar o distribuir contenido sexual, adulto, NSFW (Not Safe For Work) o pornográfico. Su uso legítimo está restringido a:')}
             </p>
             <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-400">
               <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> {t('legal.item1', 'Pruebas de penetración con autorización explícita.')}</li>
@@ -450,7 +426,7 @@ function App() {
               <li className="flex items-center"><span className="text-[#00FF00] mr-2">✅</span> {t('legal.item4', 'Investigación de seguridad ética.')}</li>
             </ul>
             <p className="text-gray-500 text-xs mt-4 italic">
-              {t('legal.footer', 'El uso no autorizado es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA).')}
+              {t('legal.footer', 'El uso no autorizado o para fines prohibidos es ILEGAL. Al utilizar SentinelArg, usted acepta los términos del Acuerdo de Licencia (EULA) y esta Política de Uso Aceptable.')}
             </p>
           </div>
 
@@ -501,13 +477,6 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/* Call-to-action: Ver imágenes 
-      <div className="text-center py-6">
-        <a href="/images.html" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-6 py-2 bg-primary hover:bg-sky-600 text-slate-900 rounded-lg font-medium transition shadow-lg">
-          🖼️ {t('images.btn', 'Ver imágenes de SentinelArg')}
-        </a>
-      </div> */}
 
       {/* About Us Section */}
       <section id="about-us" className="py-16 bg-dark/50">
@@ -568,7 +537,7 @@ function App() {
         </div>
       </section>
 
-            {/* SECCIÓN: Centro de Descargas */}
+      {/* SECCIÓN: Centro de Descargas */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -578,15 +547,11 @@ function App() {
               {t('downloads.subtitle', 'Recursos oficiales de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.')}
             </p>
           </div>
-          
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Tarjeta 1: Cliente Principal */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-[#8B0000]/20 rounded-lg">
-                  <svg className="w-8 h-8 text-[#8B0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
+                  <svg className="w-8 h-8 text-[#8B0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.client.title', 'Cliente v1.0.1')}</h3>
               </div>
@@ -602,14 +567,10 @@ function App() {
                 {t('downloads.client.btn', 'Descargar .tar.gz')}
               </a>
             </div>
-
-            {/* Tarjeta 2: Manual de Usuario PDF */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-primary/20 rounded-lg">
-                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                 </div>
                 <h3 className="text-xl font-bold text-primary">{t('downloads.manual.title', 'Manual de Usuario')}</h3>
               </div>
@@ -621,15 +582,11 @@ function App() {
                 <p className="text-white text-xs font-mono">PDF (Documento Oficial)</p>
               </div>
               <a href="/SentinelArg_Manual.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                 {t('downloads.manual.btn', 'Ver Documentación')}
               </a>
             </div>
           </div>
-
           <p className="text-xs text-gray-500 mt-8 text-center">
             {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
           </p>
@@ -639,9 +596,7 @@ function App() {
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 text-sm border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Año hardcodeado dinámicamente para garantizar que el crawler de Creem.io lo vea renderizado */}
           <p>© {new Date().getFullYear()} SentinelArg. Todos los derechos reservados.</p>
-          
           <p className="mt-3">
             <a href="/privacy" className="hover:text-primary transition mx-2">{t('footer.privacy', 'Política de Privacidad')}</a>
             <span>•</span>
@@ -664,7 +619,7 @@ function App() {
         </div>
       </footer>
 
-      {/* Botones flotantes de contacto */}
+      {/* Botones flotantes */}
       <div className="fixed bottom-6 right-6 flex flex-col space-y-3 z-50">
         <a href="https://wa.me/5492234548879?text=Hola,%20estoy%20interesado%20en%20una%20demo%20de%20SentinelArg" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg transition-all transform hover:scale-110" aria-label={t('footer.whatsapp', 'Contactar por WhatsApp')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.644-.506-.157-.006-.335-.006-.509-.006-.174 0-.471.074-.719.372-.247.297-.94 1.016-.94 2.478 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -674,7 +629,7 @@ function App() {
         </a>
       </div>
 
-      {/* MODAL DE CAPTURA DE DATOS DE PAGO */}
+      {/* MODAL (solo MercadoPago) */}
       {showPaymentModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-gray-900 border border-gray-700 rounded-2xl p-8 max-w-md w-full shadow-2xl relative">
@@ -684,9 +639,7 @@ function App() {
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-white mb-2">{t('modal.title', 'Completa tus datos')}</h3>
               <p className="text-gray-400 text-sm">{t('modal.desc', 'Te enviaremos la clave de activación a este email inmediatamente después de confirmar tu pago.')}</p>
-              <p className="text-[#00FF00] text-xs mt-2 font-semibold">
-                {paymentMethod === 'mp' ? t('modal.redirect.mp', 'Serás redirigido a MercadoPago') : t('modal.redirect.stripe', 'Serás redirigido a la pasarela segura (USD)')}
-              </p>
+              <p className="text-[#00FF00] text-xs mt-2 font-semibold">{t('modal.redirect.mp', 'Serás redirigido a MercadoPago')}</p>
             </div>
             <form onSubmit={handlePaymentSubmit} className="space-y-4">
               <div>
@@ -702,7 +655,7 @@ function App() {
                 <input type="text" id="modal-company" value={customerCompany} onChange={(e) => setCustomerCompany(e.target.value)} className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-[#009EE3] text-white" placeholder="Empresa S.A." />
               </div>
               <div className="pt-2">
-                <button type="submit" className={`w-full font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2 ${paymentMethod === 'mp' ? 'bg-[#009EE3] hover:bg-[#0088cc] text-white' : 'bg-[#00FF00] hover:bg-[#00cc00] text-black'}`}>
+                <button type="submit" className="w-full font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2 bg-[#009EE3] hover:bg-[#0088cc] text-white">
                   {t('modal.form.submit', 'Continuar al Pago →')}
                 </button>
               </div>
