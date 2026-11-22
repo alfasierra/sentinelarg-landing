@@ -213,20 +213,21 @@ const resources = {
       },
       downloads: {
         title: "Centro de Descargas",
-        subtitle: "Cliente de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.",
-        file: {
-          title: "SentinelArg Red AI - Cliente v1.0.1",
-          desc: "Compilado para Linux x86_64 (Sin dependencias de Python)"
+        subtitle: "Recursos oficiales de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.",
+        linux: {
+          title: "Linux (Kali/Ubuntu/Debian)",
+          file: "sentinelarg-linux-v1.0.3.tar.gz",
+          requires: "Requiere: Docker + Docker Compose",
+          btn: "Descargar .tar.gz"
         },
-        btn: "Descargar .tar.gz",
-        terminal: {
-          label: "Descarga directa vía terminal:",
-          copy: "Copiar"
-        },
-        manual: {
-          title: "Manual de Usuario",
-          desc: "Guía completa de instalación, configuración y operación. Incluye protocolos de escaneo, uso de la IA y mantenimiento del sistema (Versión 1.0).",
-          btn: "Ver Documentación"
+        windows: {
+          title: "Windows 10/11",
+          file: "SentinelArg_Windows.zip",
+          requires: "Requiere: Docker Desktop + 8 GB RAM",
+          includes: "Incluye: Scripts abiertos",
+          transparency: "Modelo de transparencia: auditable línea por línea",
+          btn: "Descargar .zip",
+          infoBtn: "Más información"
         },
         disclaimer: "⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg."
       },
@@ -458,20 +459,21 @@ const resources = {
       },
       downloads: {
         title: "Download Center",
-        subtitle: "SentinelArg Red AI Client. Use of this tool is restricted to authorized audits.",
-        file: {
-          title: "SentinelArg Red AI - Client v1.0.1",
-          desc: "Compiled for Linux x86_64 (No Python dependencies)"
+        subtitle: "Official SentinelArg Red AI resources. Use of this tool is restricted to authorized audits.",
+        linux: {
+          title: "Linux (Kali/Ubuntu/Debian)",
+          file: "sentinelarg-linux-v1.0.3.tar.gz",
+          requires: "Requires: Docker + Docker Compose",
+          btn: "Download .tar.gz"
         },
-        btn: "Download .tar.gz",
-        terminal: {
-          label: "Direct download via terminal:",
-          copy: "Copy"
-        },
-        manual: {
-          title: "User Manual",
-          desc: "Complete guide for installation, configuration, and operation. Includes scanning protocols, AI usage, and system maintenance (Version 1.0).",
-          btn: "View Documentation"
+        windows: {
+          title: "Windows 10/11",
+          file: "SentinelArg_Windows.zip",
+          requires: "Requires: Docker Desktop + 8 GB RAM",
+          includes: "Includes: Open scripts",
+          transparency: "Transparency model: auditable line by line",
+          btn: "Download .zip",
+          infoBtn: "More information"
         },
         disclaimer: "⚠️ By downloading, you accept the Terms of Service and Ethical Use Policy of SentinelArg."
       },
