@@ -11,11 +11,14 @@ function App() {
   const [isSubmittingCareers, setIsSubmittingCareers] = useState(false);
   const [submitSuccessCareers, setSubmitSuccessCareers] = useState(false);
 
-  // El modal SOLO se usa para MercadoPago (ARS). USD va directo a Creem.
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerCompany, setCustomerCompany] = useState('');
+
+  // Nuevo estado para el modal de información de Windows
+  const [showWindowsInfoModal, setShowWindowsInfoModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('readme');
 
   useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -76,14 +79,12 @@ function App() {
     }
   };
 
-  // USD: abre Creem directo, sin modal (Creem ya captura los datos).
   const openCreemCheckout = () => {
     window.open(CREEM_LINK, '_blank', 'noopener,noreferrer');
   };
 
   const openPaymentModal = () => setShowPaymentModal(true);
 
-  // Solo para MercadoPago: guardamos el prospecto local y redirigimos.
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
     if (!customerName || !customerEmail) {
@@ -537,7 +538,7 @@ function App() {
         </div>
       </section>
 
-      {/* SECCIÓN: Centro de Descargas */}
+      {/* SECCIÓN: Centro de Descargas (REDISEÑADA) */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -547,46 +548,57 @@ function App() {
               {t('downloads.subtitle', 'Recursos oficiales de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.')}
             </p>
           </div>
+          
           <div className="grid md:grid-cols-2 gap-6">
+            {/* Tarjeta 1: Linux */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-[#8B0000]/20 rounded-lg">
-                  <svg className="w-8 h-8 text-[#8B0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                  <span className="text-3xl">🐧</span>
                 </div>
-                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.client.title', 'Cliente v1.0.1')}</h3>
+                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.linux.title', 'Linux (Kali/Ubuntu/Debian)')}</h3>
               </div>
-              <p className="text-gray-400 text-sm mb-4 flex-grow">
-                {t('downloads.client.desc', 'Software principal compilado para Linux x86_64. Incluye todas las herramientas y el motor de IA local sin dependencias de Python.')}
-              </p>
-              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4">
-                <p className="text-gray-500 text-xs font-mono mb-1">SHA256:</p>
-                <p className="text-[#00FFFF] text-xs font-mono break-all">a39c59346cfdfea29d7d125a8888f724c1151c5fabf9ac0411b1947a82c38ff9</p>
+              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4 flex-grow">
+                <p className="text-gray-300 font-mono text-sm mb-2">{t('downloads.linux.file', 'sentinelarg-linux-v1.0.3.tar.gz')}</p>
+                <p className="text-gray-500 text-xs">{t('downloads.linux.requires', 'Requiere: Docker + Docker Compose')}</p>
               </div>
-              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.1/sentinelarg-v1.0.1-client.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-linux-v1.0.3.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                {t('downloads.client.btn', 'Descargar .tar.gz')}
+                {t('downloads.linux.btn', 'Descargar .tar.gz')}
               </a>
             </div>
-            <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
+
+            {/* Tarjeta 2: Windows */}
+            <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-[#00FF00] text-black text-xs font-bold px-3 py-1 rounded-bl-lg">NUEVO v1.0.3</div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-primary/20 rounded-lg">
-                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                  <span className="text-3xl">🪟</span>
                 </div>
-                <h3 className="text-xl font-bold text-primary">{t('downloads.manual.title', 'Manual de Usuario')}</h3>
+                <h3 className="text-xl font-bold text-primary">{t('downloads.windows.title', 'Windows 10/11')}</h3>
               </div>
-              <p className="text-gray-400 text-sm mb-4 flex-grow">
-                {t('downloads.manual.desc', 'Guía completa de instalación, configuración y operación. Incluye protocolos de escaneo, uso de la IA y mantenimiento del sistema (Versión 1.0).')}
-              </p>
-              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4">
-                <p className="text-gray-500 text-xs font-mono mb-1">Formato:</p>
-                <p className="text-white text-xs font-mono">PDF (Documento Oficial)</p>
+              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4 flex-grow space-y-2">
+                <p className="text-gray-300 font-mono text-sm">{t('downloads.windows.file', 'SentinelArg_Windows.zip')}</p>
+                <p className="text-gray-500 text-xs">{t('downloads.windows.requires', 'Requiere: Docker Desktop + 8 GB RAM')}</p>
+                <p className="text-gray-500 text-xs">{t('downloads.windows.includes', 'Incluye: Scripts abiertos')}</p>
+                <p className="text-[#00FF00] text-xs font-semibold">✅ {t('downloads.windows.transparency', 'Modelo de transparencia: auditable línea por línea')}</p>
               </div>
-              <a href="/SentinelArg_Manual.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                {t('downloads.manual.btn', 'Ver Documentación')}
-              </a>
+              <div className="space-y-3">
+                <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/SentinelArg_Windows.zip" className="w-full bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                  {t('downloads.windows.btn', 'Descargar .zip')}
+                </a>
+                <button 
+                  onClick={() => setShowWindowsInfoModal(true)}
+                  className="w-full border border-slate-600 hover:border-[#00FF00] hover:text-[#00FF00] text-gray-300 font-medium py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  {t('downloads.windows.infoBtn', 'Más información')}
+                </button>
+              </div>
             </div>
           </div>
+
           <p className="text-xs text-gray-500 mt-8 text-center">
             {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
           </p>
@@ -629,7 +641,7 @@ function App() {
         </a>
       </div>
 
-      {/* MODAL (solo MercadoPago) */}
+      {/* MODAL DE CAPTURA DE DATOS DE PAGO (Solo MP) */}
       {showPaymentModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-gray-900 border border-gray-700 rounded-2xl p-8 max-w-md w-full shadow-2xl relative">
@@ -664,6 +676,186 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* MODAL DE INFORMACIÓN DE WINDOWS */}
+      {showWindowsInfoModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl">
+            {/* Header del Modal */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-700">
+              <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                🪟 {t('downloads.windows.title', 'Windows 10/11')} - Documentación
+              </h3>
+              <button onClick={() => setShowWindowsInfoModal(false)} className="text-gray-400 hover:text-white transition">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+            
+            {/* Tabs */}
+            <div className="flex border-b border-gray-700 bg-gray-800/50 overflow-x-auto">
+              {[
+                { id: 'readme', label: '📖 Instalación' },
+                { id: 'security', label: '🛡️ Modelo de Seguridad' },
+                { id: 'troubleshooting', label: '🆘 Solución de Problemas' },
+                { id: 'changelog', label: '📝 Changelog' }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-6 py-3 text-sm font-medium transition whitespace-nowrap ${
+                    activeTab === tab.id 
+                      ? 'text-[#00FF00] border-b-2 border-[#00FF00] bg-gray-800' 
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Contenido con scroll */}
+            <div className="p-6 overflow-y-auto flex-1 text-gray-300 text-sm leading-relaxed">
+              {activeTab === 'readme' && (
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-white">🛡️ Modelo de Distribución: Transparencia sobre Conveniencia</h4>
+                  <p>SentinelArg se distribuye como código fuente ejecutable (.bat + .ps1), no como un instalador .exe firmado. Esto es una <strong className="text-[#00FF00]">decisión de seguridad intencional</strong>, no una limitación técnica.</p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border border-gray-700 rounded-lg text-sm">
+                      <thead className="bg-gray-800 text-gray-200">
+                        <tr>
+                          <th className="p-3 border-b border-gray-700">Instalador .exe tradicional</th>
+                          <th className="p-3 border-b border-gray-700 text-[#00FF00]">SentinelArg (este paquete)</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-700">
+                        <tr><td className="p-3">Binario compilado, imposible de auditar</td><td className="p-3">Scripts abiertos, revisables línea por línea</td></tr>
+                        <tr><td className="p-3">Requiere certificado de code signing (~$300/año)</td><td className="p-3">Sin costos ocultos trasladados al cliente</td></tr>
+                        <tr><td className="p-3">SmartScreen de Windows lo bloquea hasta tener "reputación"</td><td className="p-3">No depende de reputación de Microsoft</td></tr>
+                        <tr><td className="p-3">El usuario delega confianza al firmante</td><td className="p-3">El usuario <strong>verifica</strong> lo que ejecuta</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-gray-400 italic border-l-2 border-gray-600 pl-3">Si su política de seguridad corporativa exige un .exe firmado, contáctenos a soporte@sentinelarg.com.ar y le proporcionaremos el instalador firmado con nuestro certificado EV (disponible bajo solicitud para clientes Enterprise).</p>
+                  
+                  <h4 className="text-xl font-bold text-white mt-6">📋 Requisitos Previos</h4>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong>Sistema Operativo:</strong> Windows 10/11 (64-bit) — Pro, Enterprise o Education</li>
+                    <li><strong>RAM:</strong> 8 GB mínimo (16 GB recomendados para el motor de IA)</li>
+                    <li><strong>Espacio en disco:</strong> 10 GB libres</li>
+                    <li><strong>Docker Desktop:</strong> Instalado y en ejecución. ⚠️ Importante: activar <strong>"Use WSL 2 based engine"</strong> en Settings. Si tiene GPU NVIDIA: activar también <strong>"CUDA support"</strong>.</li>
+                  </ul>
+
+                  <h4 className="text-xl font-bold text-white mt-6">🚀 Instalación Rápida</h4>
+                  <ol className="list-decimal pl-5 space-y-2">
+                    <li>Haga <strong>clic derecho</strong> sobre <code className="bg-gray-800 px-1 rounded text-[#00FFFF]">1_Instalar_SentinelArg.bat</code></li>
+                    <li>Seleccione <strong>"Ejecutar como administrador"</strong> y confirme el aviso UAC.</li>
+                    <li>Siga las instrucciones en pantalla (se le preguntará por el motor de IA local y detectará GPU NVIDIA automáticamente).</li>
+                    <li>Se descargará la imagen de Docker (~2.5 GB). Esto puede tardar 5-15 minutos.</li>
+                  </ol>
+                  <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 mt-4">
+                    <p className="mb-2"><strong>Activar la licencia:</strong> Ejecute como administrador <code className="bg-gray-900 px-1 rounded text-[#00FFFF]">2_Activar_Licencia.bat</code> y pegue su clave recibida por email.</p>
+                    <p><strong>Verificación final:</strong> Abra su navegador en: <a href="http://127.0.0.1:8888/dashboard" className="text-[#00FFFF] hover:underline">http://127.0.0.1:8888/dashboard</a></p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'security' && (
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-white">Por qué distribuimos scripts, no un .exe</h4>
+                  <p>En la industria del software comercial, lo "normal" es entregar un instalador <code className="bg-gray-800 px-1 rounded">.exe</code> firmado digitalmente. SentinelArg deliberadamente rompe con esa convención por tres razones de seguridad:</p>
+                  <div className="space-y-4 mt-4">
+                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-[#00FF00] mb-2">1. Auditabilidad total</h5>
+                      <p>Un <code className="bg-gray-900 px-1 rounded">.exe</code> es un binario compilado. Nuestros scripts <code className="bg-gray-900 px-1 rounded">.bat</code> y <code className="bg-gray-900 px-1 rounded">.ps1</code> son <strong>texto plano</strong>: puede abrirlos, leerlos, y entender cada comando antes de ejecutarlo.</p>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-[#00FF00] mb-2">2. Independencia de la reputación de Microsoft</h5>
+                      <p>SmartScreen de Windows bloquea cualquier <code className="bg-gray-900 px-1 rounded">.exe</code> que no tenga "reputación" acumulada. En lugar de gastar $300-500 USD/año en certificados EV para "comprar" reputación, preferimos entregar algo que Windows no puede bloquear: scripts que el usuario ejecuta bajo su propia responsabilidad.</p>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-[#00FF00] mb-2">3. Control granular</h5>
+                      <p>Con nuestros scripts, <strong>usted decide</strong>: puede modificar los parámetros de Docker Compose antes de instalar, elegir no instalar el motor de IA, y auditar exactamente qué contenedores se levantan.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'troubleshooting' && (
+                <div className="space-y-6">
+                  <h4 className="text-xl font-bold text-white">Solución de Problemas — v1.0.3</h4>
+                  <div className="space-y-4">
+                    <div className="bg-gray-800/30 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-white mb-1">El archivo .bat no se ejecuta al hacer doble clic</h5>
+                      <p>Clic derecho sobre el archivo .bat → <strong>Propiedades</strong> → Pestaña <strong>General</strong> → Marcar checkbox <strong>"Desbloquear"</strong> → Aplicar → Aceptar.</p>
+                    </div>
+                    <div className="bg-gray-800/30 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-white mb-1">"No se puede ejecutar scripts en este sistema"</h5>
+                      <p>Abra PowerShell como administrador y ejecute: <code className="bg-gray-900 px-1 rounded text-[#00FF00]">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code></p>
+                    </div>
+                    <div className="bg-gray-800/30 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-white mb-1">Docker no se detecta</h5>
+                      <p>Verifique que Docker Desktop está abierto (ícono de ballena en la bandeja). En Settings → General → marque <strong>"Use the WSL 2 based engine"</strong>. Reinicie Docker Desktop.</p>
+                    </div>
+                    <div className="bg-gray-800/30 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-white mb-1">El dashboard no carga en el navegador</h5>
+                      <p>Use <code className="bg-gray-900 px-1 rounded text-[#00FFFF]">http://127.0.0.1:8888/dashboard</code> en lugar de localhost. Verifique que los contenedores están corriendo con <code className="bg-gray-900 px-1 rounded">docker ps</code>.</p>
+                    </div>
+                    <div className="bg-gray-800/30 p-4 rounded-lg border border-gray-700">
+                      <h5 className="font-bold text-white mb-1">Rendimiento lento de la IA</h5>
+                      <p>Verifique que tiene GPU NVIDIA. En Docker Desktop: Settings → Resources → WSL 2 → Active <strong>"CUDA support"</strong>. Reinicie Docker Desktop y verifique con <code className="bg-gray-900 px-1 rounded">nvidia-smi</code> en WSL.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'changelog' && (
+                <div className="space-y-6">
+                  <h4 className="text-xl font-bold text-white">Changelog — SentinelArg</h4>
+                  
+                  <div className="border-l-2 border-[#8B0000] pl-4 space-y-2">
+                    <h5 className="text-lg font-bold text-white">v1.0.3 (2026-11-18)</h5>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-300">
+                      <li><strong className="text-[#00FF00]">Nuevas funcionalidades:</strong> Instalador nativo para Windows, scripts PowerShell, detección automática de GPU NVIDIA, exportación PDF/DOCX, análisis de IA con filtrado anti-alucinaciones, contexto Ollama ampliado a 8192 tokens.</li>
+                      <li><strong className="text-yellow-400">Correcciones:</strong> Fix codificación ANSI en PDF, fix truncamiento de prompt en Ollama, fix crash por variable no definida, fix detección GPU AMD/Intel en WSL2, fix Nikto (libnet-ssleay-perl), fix Gobuster (wordlist dirb), fix race condition en healthcheck.</li>
+                      <li><strong className="text-blue-400">Mejoras técnicas:</strong> Separación de docker-compose en base + override por GPU, scripts .bat con detección robusta de directorio, filtro anti-alucinación de CVEs, backup de datos con docker compose cp.</li>
+                    </ul>
+                  </div>
+
+                  <div className="border-l-2 border-gray-600 pl-4 space-y-2">
+                    <h5 className="text-lg font-bold text-gray-300">v1.0.2 (2026-11-15)</h5>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-400">
+                      <li>Dashboard web con visualización en tiempo real.</li>
+                      <li>Sistema de licencias con validación online.</li>
+                      <li>Motor de IA local con Ollama (qwen2.5-coder:3b).</li>
+                    </ul>
+                  </div>
+
+                  <div className="border-l-2 border-gray-600 pl-4 space-y-2">
+                    <h5 className="text-lg font-bold text-gray-300">v1.0.1 (2026-11-10)</h5>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-400">
+                      <li>Primera versión pública.</li>
+                      <li>Escaneo web básico con Nmap, Nuclei, WhatWeb.</li>
+                      <li>Reportes PDF.</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer del Modal */}
+            <div className="p-4 border-t border-gray-700 bg-gray-800/50 flex justify-between items-center rounded-b-2xl">
+              <p className="text-xs text-gray-500">¿Necesitas ayuda? <a href="mailto:soporte@sentinelarg.com.ar" className="text-[#00FFFF] hover:underline">soporte@sentinelarg.com.ar</a></p>
+              <button 
+                onClick={() => setShowWindowsInfoModal(false)}
+                className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
