@@ -584,7 +584,7 @@ function App() {
                 <p className="text-[#00FF00] text-xs font-semibold">✅ {t('downloads.windows.transparency', 'Modelo de transparencia: auditable línea por línea')}</p>
               </div>
               <div className="space-y-3">
-                <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/SentinelArg_Windows.zip" className="w-full bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/windows_v1.0.3/SentinelArg_Windows.zip" className="w-full bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                   {t('downloads.windows.btn', 'Descargar .zip')}
                 </a>
