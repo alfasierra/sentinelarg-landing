@@ -562,7 +562,7 @@ function App() {
                 <p className="text-gray-300 font-mono text-sm mb-2">{t('downloads.linux.file', 'sentinelarg-linux-v1.0.3.tar.gz')}</p>
                 <p className="text-gray-500 text-xs">{t('downloads.linux.requires', 'Requiere: Docker + Docker Compose')}</p>
               </div>
-              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-linux-v1.0.3.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                 {t('downloads.linux.btn', 'Descargar .tar.gz')}
               </a>
