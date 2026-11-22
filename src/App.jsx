@@ -552,7 +552,8 @@ function App() {
         </div>
       </section>
 
-      {/* SECCIÓN: Centro de Descargas (REDISEÑADA) */}
+      
+      {/* SECCIÓN: Centro de Descargas */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -564,7 +565,7 @@ function App() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Tarjeta 1: Linux */}
+            {/* Tarjeta 1: Linux (con wget) */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-[#8B0000]/20 rounded-lg">
@@ -578,7 +579,7 @@ function App() {
                 <p className="text-gray-500 text-xs">{t('downloads.linux.requires', 'Requiere: Docker + Docker Compose')}</p>
               </div>
 
-              {/* Nuevo bloque: comando wget recomendado */}
+              {/* Bloque: comando wget recomendado */}
               <div className="bg-black rounded-lg p-3 border border-slate-800 mb-4 relative group flex-grow">
                 <p className="text-gray-500 text-xs font-mono mb-2">{t('downloads.linux.wgetLabel', 'Se recomienda ejecutar:')}</p>
                 <code className="text-[#00FF00] font-mono text-xs break-all leading-relaxed">
@@ -601,24 +602,8 @@ function App() {
                 {t('downloads.linux.btn', 'Descargar .tar.gz')}
               </a>
             </div>
-            <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 bg-[#8B0000]/20 rounded-lg">
-                  <span className="text-3xl">🐧</span>
-                </div>
-                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.linux.title', 'Linux (Kali/Ubuntu/Debian)')}</h3>
-              </div>
-              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-4 flex-grow">
-                <p className="text-gray-300 font-mono text-sm mb-2">{t('downloads.linux.file', 'sentinelarg-linux-v1.0.3.tar.gz')}</p>
-                <p className="text-gray-500 text-xs">{t('downloads.linux.requires', 'Requiere: Docker + Docker Compose')}</p>
-              </div>
-              <a href="https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz" className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                {t('downloads.linux.btn', 'Descargar .tar.gz')}
-              </a>
-            </div>
 
-            {/* Tarjeta 2: Windows */}
+            {/* Tarjeta 2: Windows (con modal) */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-[#00FF00] text-black text-xs font-bold px-3 py-1 rounded-bl-lg">NUEVO v1.0.3</div>
               <div className="flex items-center gap-3 mb-4">
