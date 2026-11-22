@@ -6,8 +6,6 @@ import i18n from './i18n';
 function App() {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isSubmittingCareers, setIsSubmittingCareers] = useState(false);
   const [submitSuccessCareers, setSubmitSuccessCareers] = useState(false);
 
@@ -16,10 +14,19 @@ function App() {
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerCompany, setCustomerCompany] = useState('');
 
-  // Nuevo estado para el modal de información de Windows
   const [showWindowsInfoModal, setShowWindowsInfoModal] = useState(false);
   const [activeTab, setActiveTab] = useState('readme');
 
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  const MP_LINK = "https://mpago.li/28jgy5y";
+  const CREEM_LINK = "https://www.creem.io/payment/prod_3NR3RvGfTxihTnT8KfDHY4";
+  
+  // ÚNICOS enlaces a GitHub permitidos: los Releases de descarga
+  const LINUX_RELEASE_URL = "https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz";
+  const LINUX_WGET_CMD = `wget ${LINUX_RELEASE_URL}`;
   const [linuxCopied, setLinuxCopied] = useState(false);
 
   const copyLinuxCmd = async () => {
@@ -29,41 +36,6 @@ function App() {
       setTimeout(() => setLinuxCopied(false), 2500);
     } catch (err) {
       console.error('Error al copiar:', err);
-    }
-  };
-  useEffect(() => {
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
-
-  const MP_LINK = "https://mpago.li/28jgy5y";
-  const CREEM_LINK = "https://www.creem.io/payment/prod_3NR3RvGfTxihTnT8KfDHY4";
-
-  const LINUX_RELEASE_URL = "https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz";
-  const LINUX_WGET_CMD = `wget ${LINUX_RELEASE_URL}`;
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    const formData = new FormData(e.target);
-    formData.set('form-name', 'demo-request');
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString(),
-      });
-      if (response.ok) {
-        setSubmitSuccess(true);
-        e.target.reset();
-        setTimeout(() => setSubmitSuccess(false), 5000);
-      } else {
-        alert(t('errors.formError', 'Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.'));
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert(t('errors.connectionError', 'Error de conexión. Verifica tu internet e inténtalo de nuevo.'));
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -175,6 +147,7 @@ function App() {
               <a href="#features" className="hover:text-primary transition">{t('nav.funcionalidades', 'Funcionalidades')}</a>
               <a href="#videos" className="hover:text-primary transition">{t('nav.integraciones', 'Integraciones')}</a>
               <a href="#downloads" className="hover:text-primary transition">{t('nav.descargas', 'Descargas')}</a>
+              <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">Docs</a>
               <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
               <div className="flex items-center space-x-1">
                 <button onClick={() => i18n.changeLanguage('es')} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('es') ? 'bg-slate-700 text-white' : 'text-gray-400 hover:text-gray-200'}`}>ES</button>
@@ -198,6 +171,7 @@ function App() {
               <a href="#features" className="block py-2 hover:text-primary">{t('nav.funcionalidades', 'Funcionalidades')}</a>
               <a href="#videos" className="block py-2 hover:text-primary">Videos</a>
               <a href="#downloads" className="block py-2 hover:text-primary">{t('nav.descargas', 'Descargas')}</a>
+              <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="block py-2 hover:text-primary">Documentación</a>
               <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
               <div className="flex justify-center space-x-2 mt-4">
                 <button onClick={() => { i18n.changeLanguage('es'); setIsMenuOpen(false); }} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('es') ? 'bg-slate-700 text-white' : 'text-gray-400'}`}>ES</button>
@@ -482,11 +456,22 @@ function App() {
                 <h4 className="text-white font-bold mb-2">{t('specs.bottom3.title', 'Soporte Dedicado')}</h4>
               </div>
             </div>
+            
+            {/* ÚNICO BOTÓN: Documentación Completa (Sin GitHub) */}
             <div className="text-center mt-8 pt-8 border-t border-slate-800">
-              <p className="text-gray-400 text-sm mb-4">{t('specs.docs.prompt', '¿Necesitas ver los comandos de instalación o la configuración avanzada?')}</p>
-              <a href="https://github.com/alfasierra/sentinelarg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition">
-                {t('specs.docs.link', 'Ir a la Documentación Técnica Completa (GitHub)')}
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <p className="text-gray-400 text-sm mb-4">
+                {t('specs.docs.prompt', '¿Necesitas ver los comandos de instalación o la configuración avanzada?')}
+              </p>
+              <a 
+                href="https://docs.sentinelarg.com.ar" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition"
+              >
+                {t('specs.docs.link', 'Ir a la Documentación Técnica Completa')}
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
             </div>
           </div>
@@ -512,47 +497,96 @@ function App() {
         </div>
       </section>
 
-      {/* Demo Request Section */}
-      <section id="demo" className="py-16">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">{t('demo.title', 'Solicita una Demostración')}</h2>
+      {/* Careers Section */}
+      <section id="careers" className="py-16 bg-dark/50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">{t('careers.title', 'Trabaja con Nosotros')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
-            <p className="mt-4 text-gray-400">{t('demo.subtitle', 'Agenda una sesión personalizada y descubre cómo SentinelArg puede proteger tu organización.')}</p>
+            <p className="mt-4 text-gray-400">{t('careers.subtitle', 'Únete a nuestro equipo y construye el futuro de la ciberseguridad')}</p>
           </div>
-          {submitSuccess ? (
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
+            <h3 className="text-xl font-semibold text-primary mb-3">{t('careers.whyJoin.title', '¿Por qué unirte a SentinelArg?')}</h3>
+            <p className="text-gray-300">{t('careers.whyJoin.desc', 'Somos una startup en crecimiento que valora el talento, la innovación y el impacto real en la seguridad de empresas argentinas.')}</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit1', 'Trabajo remoto flexible')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit2', 'Proyectos desafiantes con tecnologías de vanguardia')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit3', 'Crecimiento profesional y capacitación continua')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300">{t('careers.whyJoin.benefit4', 'Equipo colaborativo y cultura de aprendizaje')}</span>
+              </div>
+            </div>
+          </div>
+
+          {submitSuccessCareers ? (
             <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-6 rounded-lg text-center">
-              {t('demo.success', '¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve para coordinar tu demostración.')}
+              {t('careers.success', '¡Gracias por tu interés! Hemos recibido tu postulación y te contactaremos si hay una oportunidad que coincida con tu perfil.')}
             </div>
           ) : (
-            <form name="demo-request" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-6">
-              <input type="hidden" name="form-name" value="demo-request" />
+            <form name="job-application" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmitCareers} className="space-y-6">
+              <input type="hidden" name="form-name" value="job-application" />
               <input type="hidden" name="bot-field" />
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
-                <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                <label htmlFor="career-name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
+                <input type="text" id="career-name" name="name" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
-                <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                <label htmlFor="career-email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
+                <input type="email" id="career-email" name="email" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
-                <label htmlFor="company" className="block text-sm font-medium mb-1">{t('form.company', 'Empresa')}</label>
-                <input type="text" id="company" name="company" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                <label htmlFor="career-phone" className="block text-sm font-medium mb-1">{t('careers.form.phone', 'Teléfono')}</label>
+                <input type="tel" id="career-phone" name="phone" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">{t('form.message', 'Mensaje (opcional)')}</label>
-                <textarea id="message" name="message" rows="4" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                <label htmlFor="career-position" className="block text-sm font-medium mb-1">{t('careers.form.position', 'Posición de interés')}</label>
+                <select id="career-position" name="position" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                  <option value="">{t('careers.form.selectPosition', 'Selecciona una posición...')}</option>
+                  <option value="desarrollador-fullstack">{t('careers.positions.fullstack', 'Desarrollador Fullstack')}</option>
+                  <option value="desarrollador-frontend">{t('careers.positions.frontend', 'Desarrollador Frontend')}</option>
+                  <option value="desarrollador-backend">{t('careers.positions.backend', 'Desarrollador Backend')}</option>
+                  <option value="analista-ciberseguridad">{t('careers.positions.securityAnalyst', 'Analista de Ciberseguridad')}</option>
+                  <option value="devops">{t('careers.positions.devops', 'DevOps / SRE')}</option>
+                  <option value="otro">{t('careers.positions.other', 'Otro (especificar en mensaje)')}</option>
+                </select>
               </div>
-              <button type="submit" disabled={isSubmitting} className={`w-full py-3 px-6 rounded-lg font-bold transition ${isSubmitting ? 'bg-slate-600 cursor-not-allowed' : 'bg-primary hover:bg-sky-600 text-slate-900'}`}>
-                {isSubmitting ? t('form.sending', 'Enviando...') : t('form.send', 'Enviar solicitud')}
+              <div>
+                <label htmlFor="career-linkedin" className="block text-sm font-medium mb-1">{t('careers.form.linkedin', 'Perfil de LinkedIn (opcional)')}</label>
+                <input type="url" id="career-linkedin" name="linkedin" placeholder="https://linkedin.com/in/tu-perfil" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+              </div>
+              <div>
+                <label htmlFor="career-github" className="block text-sm font-medium mb-1">{t('careers.form.github', 'Perfil de GitHub (opcional)')}</label>
+                <input type="url" id="career-github" name="github" placeholder="https://github.com/tu-usuario" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+              </div>
+              <div>
+                <label htmlFor="career-cv" className="block text-sm font-medium mb-1">{t('careers.form.cv', 'Curriculum Vitae (CV)')}</label>
+                <input type="file" id="career-cv" name="cv" accept=".pdf,.doc,.docx" required className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-slate-900 hover:file:bg-sky-600" />
+                <p className="text-xs text-gray-500 mt-1">{t('careers.form.cvHelp', 'Formatos aceptados: PDF, DOC, DOCX (máx. 5MB)')}</p>
+              </div>
+              <div>
+                <label htmlFor="career-message" className="block text-sm font-medium mb-1">{t('careers.form.message', 'Carta de presentación o mensaje')}</label>
+                <textarea id="career-message" name="message" rows="4" placeholder={t('careers.form.messagePlaceholder', 'Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...')} className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+              </div>
+              <button type="submit" disabled={isSubmittingCareers} className={`w-full py-3 px-6 rounded-lg font-bold transition ${isSubmittingCareers ? 'bg-slate-600 cursor-not-allowed' : 'bg-primary hover:bg-sky-600 text-slate-900'}`}>
+                {isSubmittingCareers ? t('form.sending', 'Enviando...') : t('careers.form.submit', 'Enviar postulación')}
               </button>
             </form>
           )}
         </div>
       </section>
 
-      
       {/* SECCIÓN: Centro de Descargas */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -565,7 +599,7 @@ function App() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Tarjeta 1: Linux (con wget) */}
+            {/* Tarjeta 1: Linux */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-[#8B0000]/20 rounded-lg">
@@ -579,7 +613,6 @@ function App() {
                 <p className="text-gray-500 text-xs">{t('downloads.linux.requires', 'Requiere: Docker + Docker Compose')}</p>
               </div>
 
-              {/* Bloque: comando wget recomendado */}
               <div className="bg-black rounded-lg p-3 border border-slate-800 mb-4 relative group flex-grow">
                 <p className="text-gray-500 text-xs font-mono mb-2">{t('downloads.linux.wgetLabel', 'Se recomienda ejecutar:')}</p>
                 <code className="text-[#00FF00] font-mono text-xs break-all leading-relaxed">
@@ -603,7 +636,7 @@ function App() {
               </a>
             </div>
 
-            {/* Tarjeta 2: Windows (con modal) */}
+            {/* Tarjeta 2: Windows */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-[#00FF00] text-black text-xs font-bold px-3 py-1 rounded-bl-lg">NUEVO v1.0.3</div>
               <div className="flex items-center gap-3 mb-4">
@@ -634,7 +667,25 @@ function App() {
             </div>
           </div>
 
-          <p className="text-xs text-gray-500 mt-8 text-center">
+          {/* Link a documentación debajo de las descargas */}
+          <div className="text-center mt-8 pt-6 border-t border-slate-800">
+            <p className="text-gray-400 text-sm mb-3">
+              ¿Necesitas ayuda con la instalación o configuración?
+            </p>
+            <a 
+              href="https://docs.sentinelarg.com.ar/es/01-quick-start" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-[#00FF00] hover:text-white font-semibold transition"
+            >
+              Ver guía de instalación paso a paso
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+
+          <p className="text-xs text-gray-500 mt-6 text-center">
             {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
           </p>
         </div>
@@ -648,6 +699,8 @@ function App() {
             <a href="/privacy" className="hover:text-primary transition mx-2">{t('footer.privacy', 'Política de Privacidad')}</a>
             <span>•</span>
             <a href="/terms" className="hover:text-primary transition mx-2">{t('footer.terms', 'Términos de Servicio')}</a>
+            <span>•</span>
+            <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition mx-2">Documentación</a>
           </p>
           <p className="mt-3">
             <a href="mailto:contacto@sentinelarg.com.ar" className="hover:text-primary transition">{t('footer.contact', 'contacto@sentinelarg.com.ar')}</a>
@@ -716,7 +769,6 @@ function App() {
       {showWindowsInfoModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl">
-            {/* Header del Modal */}
             <div className="flex items-center justify-between p-6 border-b border-gray-700">
               <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                 🪟 {t('downloads.windows.title', 'Windows 10/11')} - Documentación
@@ -726,7 +778,6 @@ function App() {
               </button>
             </div>
             
-            {/* Tabs */}
             <div className="flex border-b border-gray-700 bg-gray-800/50 overflow-x-auto">
               {[
                 { id: 'readme', label: '📖 Instalación' },
@@ -748,7 +799,6 @@ function App() {
               ))}
             </div>
 
-            {/* Contenido con scroll */}
             <div className="p-6 overflow-y-auto flex-1 text-gray-300 text-sm leading-relaxed">
               {activeTab === 'readme' && (
                 <div className="space-y-4">
@@ -787,9 +837,15 @@ function App() {
                     <li>Siga las instrucciones en pantalla (se le preguntará por el motor de IA local y detectará GPU NVIDIA automáticamente).</li>
                     <li>Se descargará la imagen de Docker (~2.5 GB). Esto puede tardar 5-15 minutos.</li>
                   </ol>
+                  
+                  {/* Soporte limpio, sin GitHub */}
                   <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 mt-4">
                     <p className="mb-2"><strong>Activar la licencia:</strong> Ejecute como administrador <code className="bg-gray-900 px-1 rounded text-[#00FFFF]">2_Activar_Licencia.bat</code> y pegue su clave recibida por email.</p>
-                    <p><strong>Verificación final:</strong> Abra su navegador en: <a href="http://127.0.0.1:8888/dashboard" className="text-[#00FFFF] hover:underline">http://127.0.0.1:8888/dashboard</a></p>
+                    <p className="mb-2"><strong>Verificación final:</strong> Abra su navegador en: <a href="http://127.0.0.1:8888/dashboard" className="text-[#00FFFF] hover:underline">http://127.0.0.1:8888/dashboard</a></p>
+                    <div className="mt-4 pt-4 border-t border-gray-700 space-y-1 text-sm">
+                      <p><strong>📚 Documentación completa:</strong> <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="text-[#00FFFF] hover:underline">docs.sentinelarg.com.ar</a></p>
+                      <p><strong>🆘 Soporte y bugs:</strong> <a href="mailto:soporte@sentinelarg.com.ar" className="text-[#00FFFF] hover:underline">soporte@sentinelarg.com.ar</a></p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -877,7 +933,6 @@ function App() {
               )}
             </div>
 
-            {/* Footer del Modal */}
             <div className="p-4 border-t border-gray-700 bg-gray-800/50 flex justify-between items-center rounded-b-2xl">
               <p className="text-xs text-gray-500">¿Necesitas ayuda? <a href="mailto:soporte@sentinelarg.com.ar" className="text-[#00FFFF] hover:underline">soporte@sentinelarg.com.ar</a></p>
               <button 

@@ -199,7 +199,7 @@ const resources = {
         bottom3: { title: "Soporte Dedicado" },
         docs: {
           prompt: "¿Necesitas ver los comandos de instalación o la configuración avanzada?",
-          link: "Ir a la Documentación Técnica Completa (GitHub)"
+          link: "Ir a la Documentación Técnica Completa"
         }
       },
       videos: {
@@ -240,8 +240,7 @@ const resources = {
         title: "Completa tus datos",
         desc: "Te enviaremos la clave de activación a este email inmediatamente después de confirmar tu pago.",
         redirect: {
-          mp: "Serás redirigido a MercadoPago",
-        
+          mp: "Serás redirigido a MercadoPago"
         },
         form: {
           name: "Nombre completo *",
@@ -448,7 +447,7 @@ const resources = {
         bottom3: { title: "Dedicated Support" },
         docs: {
           prompt: "Need to see installation commands or advanced configuration?",
-          link: "Go to Complete Technical Documentation (GitHub)"
+          link: "Go to Complete Technical Documentation"
         }
       },
       videos: {
@@ -489,8 +488,7 @@ const resources = {
         title: "Complete your details",
         desc: "We will send the activation key to this email immediately after confirming your payment.",
         redirect: {
-          mp: "You will be redirected to MercadoPago",
-          
+          mp: "You will be redirected to MercadoPago"
         },
         form: {
           name: "Full Name *",
