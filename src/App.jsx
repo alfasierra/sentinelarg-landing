@@ -20,6 +20,17 @@ function App() {
   const [showWindowsInfoModal, setShowWindowsInfoModal] = useState(false);
   const [activeTab, setActiveTab] = useState('readme');
 
+  const [linuxCopied, setLinuxCopied] = useState(false);
+
+  const copyLinuxCmd = async () => {
+    try {
+      await navigator.clipboard.writeText(LINUX_WGET_CMD);
+      setLinuxCopied(true);
+      setTimeout(() => setLinuxCopied(false), 2500);
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
+  };
   useEffect(() => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
@@ -27,6 +38,9 @@ function App() {
   const MP_LINK = "https://mpago.li/28jgy5y";
   const CREEM_LINK = "https://www.creem.io/payment/prod_3NR3RvGfTxihTnT8KfDHY4";
 
+  const LINUX_RELEASE_URL = "https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz";
+  const LINUX_WGET_CMD = `wget ${LINUX_RELEASE_URL}`;
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -551,6 +565,42 @@ function App() {
           
           <div className="grid md:grid-cols-2 gap-6">
             {/* Tarjeta 1: Linux */}
+            <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-[#8B0000]/20 rounded-lg">
+                  <span className="text-3xl">🐧</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#00FF00]">{t('downloads.linux.title', 'Linux (Kali/Ubuntu/Debian)')}</h3>
+              </div>
+
+              <div className="bg-black/50 rounded-lg p-3 border border-slate-800 mb-3">
+                <p className="text-gray-300 font-mono text-sm mb-2">{t('downloads.linux.file', 'sentinelarg-linux-v1.0.3.tar.gz')}</p>
+                <p className="text-gray-500 text-xs">{t('downloads.linux.requires', 'Requiere: Docker + Docker Compose')}</p>
+              </div>
+
+              {/* Nuevo bloque: comando wget recomendado */}
+              <div className="bg-black rounded-lg p-3 border border-slate-800 mb-4 relative group flex-grow">
+                <p className="text-gray-500 text-xs font-mono mb-2">{t('downloads.linux.wgetLabel', 'Se recomienda ejecutar:')}</p>
+                <code className="text-[#00FF00] font-mono text-xs break-all leading-relaxed">
+                  {LINUX_WGET_CMD}
+                </code>
+                <button
+                  onClick={copyLinuxCmd}
+                  className={`absolute top-2 right-2 text-xs px-3 py-1.5 rounded border transition ${
+                    linuxCopied
+                      ? 'bg-[#00FF00] text-black border-[#00FF00] opacity-100'
+                      : 'bg-slate-800 hover:bg-slate-700 text-gray-300 border-slate-600 opacity-0 group-hover:opacity-100'
+                  }`}
+                >
+                  {linuxCopied ? t('downloads.linux.wgetCopied', '✓ Copiado') : t('downloads.linux.wgetCopy', 'Copiar')}
+                </button>
+              </div>
+
+              <a href={LINUX_RELEASE_URL} className="w-full bg-[#8B0000] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                {t('downloads.linux.btn', 'Descargar .tar.gz')}
+              </a>
+            </div>
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-[#8B0000]/20 rounded-lg">
