@@ -1,7 +1,5 @@
 
----
-title: "User Manual"
----
+
 # SentinelArg — Manual de Usuario / User Manual
 **Versión del Software:** 1.0.3 | **Versión del Documento:** 2.0 | **Fecha:** Noviembre 2026
 

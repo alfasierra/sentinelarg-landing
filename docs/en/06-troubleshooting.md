@@ -1,7 +1,5 @@
 
----
-title: "Troubleshooting and Frequently Asked Questions (FAQ)"
----
+
 # Troubleshooting and Frequently Asked Questions (FAQ)
 
 ## Q: Windows SmartScreen or Defender blocks the `.exe` or `.bat` installer.
@@ -52,3 +50,26 @@ Verify the GPU is detected: nvidia-smi from a WSL terminal.
 Re-run 1_Install_SentinelArg.bat — it will detect the GPU automatically.
 Q: Nikto fails with "TLS/SSL is not available".
 A: Fixed in v1.0.3. The libnet-ssleay-perl library is now included in the Docker image. Update with sudo ./update.sh (Linux) or .\3_Update_System.bat (Windows).
+
+
+## Disk Space Management and Uninstallation (Windows)
+
+### Why does Docker take up so much disk space?
+
+Docker Desktop on Windows uses a virtual disk (`ext4.vhdx`) to store images, containers, and volumes. This file **grows automatically** when you download new images (like SentinelArg's), but **does not shrink on its own** when you delete them. Over time, it can consume tens of unnecessary GBs.
+
+### 7.2 How to free up disk space
+
+To recover space occupied by Docker without affecting your SentinelArg installation:
+1. Close SentinelArg and Docker Desktop.
+2. Right-click on `Clean_Docker_Space.bat` and select **"Run as administrator"**.
+3. The script will stop Docker, compact the virtual disk, and free up the space.
+4. Once finished, Docker Desktop will restart automatically.
+
+### How to completely uninstall SentinelArg
+
+If you want to remove SentinelArg and all its data (including scan databases and AI models):
+1. Right-click on `Uninstall_SentinelArg.bat` and select **"Run as administrator"**.
+2. Confirm the action by typing `YES` when prompted.
+3. The script will remove containers, data volumes, and the installation folder.
+> ⚠️ **WARNING:** This action is irreversible. All local scans and configurations will be lost.

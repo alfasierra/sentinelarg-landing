@@ -1,7 +1,5 @@
 
----
-title: "Solución de Problemas y Preguntas Frecuentes"
----
+
 # Solución de Problemas y Preguntas Frecuentes (FAQ)
 
 ## P: Windows SmartScreen o Defender bloquea el instalador `.exe` o `.bat`.
@@ -52,3 +50,24 @@ Verifica que la GPU es detectada: nvidia-smi desde una terminal de WSL.
 Vuelve a ejecutar 1_Instalar_SentinelArg.bat — detectará la GPU automáticamente.
 P: Nikto falla con "TLS/SSL is not available".
 R: Corregido en v1.0.3. La librería libnet-ssleay-perl ahora está incluida en la imagen Docker. Actualiza con sudo ./update.sh (Linux) o .\3_Actualizar_Sistema.bat (Windows).
+
+
+
+##  Gestión de Espacio en Disco y Desinstalación (Windows)
+
+### ¿Por qué Docker ocupa tanto espacio en mi disco?
+Docker Desktop en Windows utiliza un disco virtual (`ext4.vhdx`) para almacenar imágenes, contenedores y volúmenes. Este archivo **crece automáticamente** cuando descargas nuevas imágenes (como las de SentinelArg), pero **no se encoge solo** cuando las borras. Con el tiempo, puede ocupar decenas de GB innecesarios.
+
+###  Cómo liberar espacio en disco
+Para recuperar el espacio ocupado por Docker sin afectar tu instalación de SentinelArg:
+1. Cierra SentinelArg y Docker Desktop.
+2. Haz clic derecho sobre `Limpiar_Espacio_Docker.bat` y selecciona **"Ejecutar como administrador"**.
+3. El script detendrá Docker, compactará el disco virtual y liberará el espacio.
+4. Al finalizar, Docker Desktop se reiniciará automáticamente.
+
+###  Cómo desinstalar SentinelArg completamente
+Si deseas eliminar SentinelArg y todos sus datos (incluyendo la base de datos de escaneos y modelos de IA):
+1. Haz clic derecho sobre `Desinstalar_SentinelArg.bat` y selecciona **"Ejecutar como administrador"**.
+2. Confirma la acción escribiendo `SI` cuando se te solicite.
+3. El script eliminará los contenedores, los volúmenes de datos y la carpeta de instalación.
+> ⚠️ **ADVERTENCIA:** Esta acción es irreversible. Se perderán todos los escaneos y configuraciones locales.

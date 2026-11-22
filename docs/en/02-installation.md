@@ -1,7 +1,5 @@
 
----
-title: "Detailed Installation Guide"
----
+
 # Detailed Installation Guide
 
 SentinelArg is fully deployed using Docker containers, ensuring an isolated, secure, and reproducible environment.

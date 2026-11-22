@@ -1,7 +1,5 @@
 
----
-title: "Historial de Cambios "
----
+
 # Historial de Cambios (Changelog)
 
 ## [1.0.3] - 2026-11-18
@@ -12,6 +10,10 @@ title: "Historial de Cambios "
 - **Truncamiento de Contexto:** Aumentado el contexto de Ollama a 8192 tokens y filtrado de hallazgos por severidad para evitar que la IA ignore datos.
 - **Códigos ANSI en PDF:** Corregido el parser para eliminar caracteres de color (`1m[34m`) en los reportes exportados, mejorando la legibilidad.
 - **Dependencias de Herramientas:** Agregados `dirb`, `seclists` y `libnet-ssleay-perl` a la imagen Docker para corregir fallos en Gobuster y Nikto (HTTPS).
+
+### 🛠️ Nuevas Utilidades de Sistema
+- **`Limpiar_Espacio_Docker.bat`**: Script oficial para compactar el disco virtual de Docker (`ext4.vhdx`) y recuperar espacio en disco en Windows sin perder datos de SentinelArg.
+- **`Desinstalar_SentinelArg.bat`**: Proceso de desinstalación limpia que elimina contenedores, volúmenes y archivos de configuración de forma segura.
 
 ### 🚀 Nuevas Características
 

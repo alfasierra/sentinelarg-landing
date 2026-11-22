@@ -12,6 +12,10 @@ title: "Changelog"
 - **ANSI Codes in PDF:** Fixed parser to remove color characters (`1m[34m`) in exported reports, improving readability.
 - **Tool Dependencies:** Added `dirb`, `seclists`, and `libnet-ssleay-perl` to the Docker image to fix Gobuster and Nikto (HTTPS) failures.
 
+### 🛠️ New System Utilities
+- **`Clean_Docker_Space.bat`**: Official script to compact Docker's virtual disk (`ext4.vhdx`) and recover disk space on Windows without losing SentinelArg data.
+- **`Uninstall_SentinelArg.bat`**: Clean uninstallation process that safely removes containers, volumes, and configuration files.
+
 ### 🚀 New Features
 
 - **Professional Windows Installer:** Optimized `.bat` and `.ps1` scripts with UAC directory detection and Docker verification.

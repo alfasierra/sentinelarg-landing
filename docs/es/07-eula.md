@@ -1,7 +1,4 @@
 
----
-title: "Acuerdo de Licencia de Usuario Final"
----
 
 # Acuerdo de Licencia de Usuario Final (EULA)
 

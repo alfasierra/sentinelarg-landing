@@ -1,7 +1,5 @@
 
----
-title: "Configuración y Ajuste de la Inteligencia Artificial"
----
+
 
 # Configuración y Ajuste de la Inteligencia Artificial
 
