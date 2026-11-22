@@ -218,6 +218,9 @@ const resources = {
           title: "Linux (Kali/Ubuntu/Debian)",
           file: "sentinelarg-linux-v1.0.3.tar.gz",
           requires: "Requiere: Docker + Docker Compose",
+          wgetLabel: "Se recomienda ejecutar:",
+          wgetCopy: "Copiar",
+          wgetCopied: "✓ Copiado",
           btn: "Descargar .tar.gz"
         },
         windows: {
@@ -464,6 +467,9 @@ const resources = {
           title: "Linux (Kali/Ubuntu/Debian)",
           file: "sentinelarg-linux-v1.0.3.tar.gz",
           requires: "Requires: Docker + Docker Compose",
+          wgetLabel: "Recommended command:",
+          wgetCopy: "Copy",
+          wgetCopied: "✓ Copied",
           btn: "Download .tar.gz"
         },
         windows: {
