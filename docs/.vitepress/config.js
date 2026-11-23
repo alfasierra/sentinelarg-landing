@@ -85,4 +85,7 @@ export default {
       { icon: 'github', link: 'https://github.com/alfasierra/sentinelarg' }
     ]
   }
+    head: [
+    ['meta', { name: 'msvalidate.01', content:"884FD10899AFCD7133529F98ACE0B211" /> }]
+  ],
 }
