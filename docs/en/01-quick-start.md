@@ -19,6 +19,10 @@ Download the `SentinelArg_Windows_v1.0.3.zip` or `sentinelarg-linux-v1.0.3.tar.g
 2. Right-click `1_Install_SentinelArg.bat` and select **"Run as administrator"**.
 3. Follow the on-screen instructions (accept installing Ollama if you have enough RAM).
 
+**Video Windows Install:** https://youtu.be/jyS0oi1HnD8
+
+**Video Linux Install:** https://youtu.be/47uMSZySgP8
+
 **On Linux:**
 ```bash
 cd sentinelarg-client-release

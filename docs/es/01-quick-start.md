@@ -19,6 +19,10 @@ Descarga el paquete `SentinelArg_Windows_v1.0.3.zip` o `sentinelarg-linux-v1.0.3
 2. Haz clic derecho en `1_Instalar_SentinelArg.bat` y selecciona **"Ejecutar como administrador"**.
 3. Sigue las instrucciones en pantalla (acepta instalar Ollama si tienes RAM suficiente).
 
+**Video instalacion en Windows:** https://youtu.be/jyS0oi1HnD8
+
+**Video instalacion en Linux:** https://youtu.be/47uMSZySgP8
+
 **En Linux:**
 ```bash
 cd sentinelarg-client-release
@@ -31,5 +35,9 @@ Windows: .\2_Activar_Licencia.bat (como Administrador)
 Linux: sudo ./activate.sh TU_CLAVE_DE_LICENCIA
 Acceder al Dashboard
 Abre tu navegador y ve a: http://127.0.0.1:8888/dashboard
+
+
+
+
 
 
