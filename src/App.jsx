@@ -6,8 +6,6 @@ import i18n from './i18n';
 function App() {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSubmittingCareers, setIsSubmittingCareers] = useState(false);
-  const [submitSuccessCareers, setSubmitSuccessCareers] = useState(false);
 
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [customerName, setCustomerName] = useState('');
@@ -36,32 +34,6 @@ function App() {
       setTimeout(() => setLinuxCopied(false), 2500);
     } catch (err) {
       console.error('Error al copiar:', err);
-    }
-  };
-
-  const handleSubmitCareers = async (e) => {
-    e.preventDefault();
-    setIsSubmittingCareers(true);
-    const formData = new FormData(e.target);
-    formData.set('form-name', 'job-application');
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString(),
-      });
-      if (response.ok) {
-        setSubmitSuccessCareers(true);
-        e.target.reset();
-        setTimeout(() => setSubmitSuccessCareers(false), 5000);
-      } else {
-        alert(t('errors.formError', 'Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.'));
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert(t('errors.connectionError', 'Error de conexión. Verifica tu internet e inténtalo de nuevo.'));
-    } finally {
-      setIsSubmittingCareers(false);
     }
   };
 
@@ -497,96 +469,6 @@ function App() {
         </div>
       </section>
 
-      {/* Careers Section */}
-      <section id="careers" className="py-16 bg-dark/50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('careers.title', 'Trabaja con Nosotros')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
-            <p className="mt-4 text-gray-400">{t('careers.subtitle', 'Únete a nuestro equipo y construye el futuro de la ciberseguridad')}</p>
-          </div>
-
-          <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-            <h3 className="text-xl font-semibold text-primary mb-3">{t('careers.whyJoin.title', '¿Por qué unirte a SentinelArg?')}</h3>
-            <p className="text-gray-300">{t('careers.whyJoin.desc', 'Somos una startup en crecimiento que valora el talento, la innovación y el impacto real en la seguridad de empresas argentinas.')}</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-              <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-gray-300">{t('careers.whyJoin.benefit1', 'Trabajo remoto flexible')}</span>
-              </div>
-              <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-gray-300">{t('careers.whyJoin.benefit2', 'Proyectos desafiantes con tecnologías de vanguardia')}</span>
-              </div>
-              <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-gray-300">{t('careers.whyJoin.benefit3', 'Crecimiento profesional y capacitación continua')}</span>
-              </div>
-              <div className="flex items-start">
-                <svg className="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-gray-300">{t('careers.whyJoin.benefit4', 'Equipo colaborativo y cultura de aprendizaje')}</span>
-              </div>
-            </div>
-          </div>
-
-          {submitSuccessCareers ? (
-            <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-6 rounded-lg text-center">
-              {t('careers.success', '¡Gracias por tu interés! Hemos recibido tu postulación y te contactaremos si hay una oportunidad que coincida con tu perfil.')}
-            </div>
-          ) : (
-            <form name="job-application" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmitCareers} className="space-y-6">
-              <input type="hidden" name="form-name" value="job-application" />
-              <input type="hidden" name="bot-field" />
-              <div>
-                <label htmlFor="career-name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
-                <input type="text" id="career-name" name="name" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div>
-                <label htmlFor="career-email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
-                <input type="email" id="career-email" name="email" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div>
-                <label htmlFor="career-phone" className="block text-sm font-medium mb-1">{t('careers.form.phone', 'Teléfono')}</label>
-                <input type="tel" id="career-phone" name="phone" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div>
-                <label htmlFor="career-position" className="block text-sm font-medium mb-1">{t('careers.form.position', 'Posición de interés')}</label>
-                <select id="career-position" name="position" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                  <option value="">{t('careers.form.selectPosition', 'Selecciona una posición...')}</option>
-                  <option value="desarrollador-fullstack">{t('careers.positions.fullstack', 'Desarrollador Fullstack')}</option>
-                  <option value="desarrollador-frontend">{t('careers.positions.frontend', 'Desarrollador Frontend')}</option>
-                  <option value="desarrollador-backend">{t('careers.positions.backend', 'Desarrollador Backend')}</option>
-                  <option value="analista-ciberseguridad">{t('careers.positions.securityAnalyst', 'Analista de Ciberseguridad')}</option>
-                  <option value="devops">{t('careers.positions.devops', 'DevOps / SRE')}</option>
-                  <option value="otro">{t('careers.positions.other', 'Otro (especificar en mensaje)')}</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="career-linkedin" className="block text-sm font-medium mb-1">{t('careers.form.linkedin', 'Perfil de LinkedIn (opcional)')}</label>
-                <input type="url" id="career-linkedin" name="linkedin" placeholder="https://linkedin.com/in/tu-perfil" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div>
-                <label htmlFor="career-github" className="block text-sm font-medium mb-1">{t('careers.form.github', 'Perfil de GitHub (opcional)')}</label>
-                <input type="url" id="career-github" name="github" placeholder="https://github.com/tu-usuario" className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div>
-                <label htmlFor="career-cv" className="block text-sm font-medium mb-1">{t('careers.form.cv', 'Curriculum Vitae (CV)')}</label>
-                <input type="file" id="career-cv" name="cv" accept=".pdf,.doc,.docx" required className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-slate-900 hover:file:bg-sky-600" />
-                <p className="text-xs text-gray-500 mt-1">{t('careers.form.cvHelp', 'Formatos aceptados: PDF, DOC, DOCX (máx. 5MB)')}</p>
-              </div>
-              <div>
-                <label htmlFor="career-message" className="block text-sm font-medium mb-1">{t('careers.form.message', 'Carta de presentación o mensaje')}</label>
-                <textarea id="career-message" name="message" rows="4" placeholder={t('careers.form.messagePlaceholder', 'Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...')} className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-              </div>
-              <button type="submit" disabled={isSubmittingCareers} className={`w-full py-3 px-6 rounded-lg font-bold transition ${isSubmittingCareers ? 'bg-slate-600 cursor-not-allowed' : 'bg-primary hover:bg-sky-600 text-slate-900'}`}>
-                {isSubmittingCareers ? t('form.sending', 'Enviando...') : t('careers.form.submit', 'Enviar postulación')}
-              </button>
-            </form>
-          )}
-        </div>
-      </section>
-
       {/* SECCIÓN: Centro de Descargas */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -673,7 +555,7 @@ function App() {
               ¿Necesitas ayuda con la instalación o configuración?
             </p>
             <a 
-              href="https://docs.sentinelarg.com.ar/es/01-quick-start" 
+              href="https://docs.sentinelarg.com.ar/01-quick-start" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center text-[#00FF00] hover:text-white font-semibold transition"
@@ -688,6 +570,59 @@ function App() {
           <p className="text-xs text-gray-500 mt-6 text-center">
             {t('downloads.disclaimer', '⚠️ Al descargar, aceptas los Términos de Servicio y la Política de Uso Ético de SentinelArg.')}
           </p>
+        </div>
+      </section>
+
+      {/* SECCIÓN: Careers (versión compacta) */}
+      <section id="careers" className="py-16 bg-dark/50 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-white">{t('careers.title', 'Trabaja con Nosotros')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+              {t('careers.subtitle', 'Únete a nuestro equipo y construye el futuro de la ciberseguridad')}
+            </p>
+          </div>
+
+          <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-6 mb-8">
+            <h3 className="text-xl font-semibold text-primary mb-3">{t('careers.whyJoin.title', '¿Por qué unirte a SentinelArg?')}</h3>
+            <p className="text-gray-300 mb-4">{t('careers.whyJoin.desc', 'Somos una startup en crecimiento que valora el talento, la innovación y el impacto real en la seguridad de empresas argentinas.')}</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300 text-sm">{t('careers.whyJoin.benefit1', 'Trabajo remoto flexible')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300 text-sm">{t('careers.whyJoin.benefit2', 'Proyectos desafiantes con tecnologías de vanguardia')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300 text-sm">{t('careers.whyJoin.benefit3', 'Crecimiento profesional y capacitación continua')}</span>
+              </div>
+              <div className="flex items-start">
+                <svg className="h-5 w-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <span className="text-gray-300 text-sm">{t('careers.whyJoin.benefit4', 'Equipo colaborativo y cultura de aprendizaje')}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA simple: email directo, sin formulario */}
+          <div className="text-center">
+            <p className="text-gray-400 text-sm mb-3">
+              ¿Te interesa sumarte al equipo? Envíanos tu CV y cuéntanos qué te motiva.
+            </p>
+            <a 
+              href="mailto:contacto@sentinelarg.com.ar?subject=Postulación%20-%20SentinelArg&body=Hola,%20me%20interesa%20unirme%20al%20equipo%20de%20SentinelArg.%20Adjunto%20mi%20CV."
+              className="inline-flex items-center bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-6 rounded-lg transition"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              contacto@sentinelarg.com.ar
+            </a>
+          </div>
         </div>
       </section>
 

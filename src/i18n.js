@@ -109,26 +109,7 @@ const resources = {
           benefit3: "Crecimiento profesional y capacitación continua",
           benefit4: "Equipo colaborativo y cultura de aprendizaje"
         },
-        form: {
-          phone: "Teléfono",
-          position: "Posición de interés",
-          selectPosition: "Selecciona una posición...",
-          linkedin: "Perfil de LinkedIn (opcional)",
-          github: "Perfil de GitHub (opcional)",
-          cv: "Curriculum Vitae (CV)",
-          cvHelp: "Formatos aceptados: PDF, DOC, DOCX (máx. 5MB)",
-          message: "Carta de presentación o mensaje",
-          messagePlaceholder: "Cuéntanos por qué te interesa trabajar con nosotros y qué aportas al equipo...",
-          submit: "Enviar postulación"
-        },
-        positions: {
-          fullstack: "Desarrollador Fullstack",
-          frontend: "Desarrollador Frontend",
-          backend: "Desarrollador Backend",
-          securityAnalyst: "Analista de Ciberseguridad",
-          devops: "DevOps / SRE",
-          other: "Otro (especificar en mensaje)"
-        }
+        
       },
       errors: {
         formError: "Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.",
@@ -337,47 +318,7 @@ const resources = {
         subtitle: "Schedule a personalized session and discover how SentinelArg can protect your organization.",
         success: "Thank you! We have received your request. We will contact you shortly to coordinate your demonstration."
       },
-      form: {
-        name: "Full Name",
-        email: "Email Address",
-        company: "Company",
-        message: "Message (optional)",
-        sending: "Sending...",
-        send: "Send Request"
-      },
-      careers: {
-        title: "Work With Us",
-        subtitle: "Join our team and build the future of cybersecurity",
-        success: "Thank you for your interest! We have received your application and will contact you if there is an opportunity that matches your profile.",
-        whyJoin: {
-          title: "Why join SentinelArg?",
-          desc: "We are a growing startup that values talent, innovation, and real impact on the security of Argentine companies.",
-          benefit1: "Flexible remote work",
-          benefit2: "Challenging projects with cutting-edge technologies",
-          benefit3: "Professional growth and continuous training",
-          benefit4: "Collaborative team and learning culture"
-        },
-        form: {
-          phone: "Phone",
-          position: "Position of interest",
-          selectPosition: "Select a position...",
-          linkedin: "LinkedIn Profile (optional)",
-          github: "GitHub Profile (optional)",
-          cv: "Curriculum Vitae (CV)",
-          cvHelp: "Accepted formats: PDF, DOC, DOCX (max. 5MB)",
-          message: "Cover letter or message",
-          messagePlaceholder: "Tell us why you are interested in working with us and what you bring to the team...",
-          submit: "Submit Application"
-        },
-        positions: {
-          fullstack: "Fullstack Developer",
-          frontend: "Frontend Developer",
-          backend: "Backend Developer",
-          securityAnalyst: "Cybersecurity Analyst",
-          devops: "DevOps / SRE",
-          other: "Other (specify in message)"
-        }
-      },
+      
       errors: {
         formError: "There was an error submitting the form. Please try again.",
         connectionError: "Connection error. Please check your internet and try again."
