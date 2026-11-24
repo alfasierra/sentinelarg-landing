@@ -20,7 +20,11 @@ SentinelArg is fully deployed using Docker containers, ensuring an isolated, sec
 3. **Run the Installer:** Right-click `1_Install_SentinelArg.bat` > *Run as administrator*.
    > *Note: If Windows SmartScreen blocks the file, click "More info" > "Run anyway", or use the `.ps1` scripts directly.*
 
+Video Windows Install : https://youtu.be/jyS0oi1HnD8
+
 ## Linux Installation (Kali/Ubuntu/Debian)
+
+Video Linux Install: https://youtu.be/47uMSZySgP8
 
 The `install.sh` script automatically detects your system and configures dependencies:
 
@@ -40,3 +44,6 @@ To verify everything is working:
 
 sudo docker compose ps
 You should see sentinelarg-core and sentinelarg-ollama with the status Up.
+
+
+
