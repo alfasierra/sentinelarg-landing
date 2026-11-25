@@ -9,7 +9,7 @@ const resources = {
       nav: {
         producto: "Producto",
         funcionalidades: "Funcionalidades",
-        integraciones: "Integraciones",
+        casosUso: "Casos de Uso",
         descargas: "Descargas",
         sobreNosotros: "Sobre Nosotros",
         trabajaConNosotros: "Trabaja con Nosotros",
@@ -108,8 +108,20 @@ const resources = {
           benefit2: "Proyectos desafiantes con tecnologías de vanguardia",
           benefit3: "Crecimiento profesional y capacitación continua",
           benefit4: "Equipo colaborativo y cultura de aprendizaje"
-        },
-        
+        }
+      },
+      support: {
+        title: "Soporte y Reporte de Incidencias",
+        subtitle: "¿Encontraste un bug o tienes una sugerencia de mejora? Envíanos los detalles y te responderemos a la brevedad.",
+        type: "Tipo de reporte",
+        type_bug: "Reportar un Bug / Error",
+        type_feature: "Sugerir una Mejora / Funcionalidad",
+        type_other: "Otra consulta",
+        message: "Detalles del reporte",
+        messagePlaceholder: "Describe el problema o la mejora con el mayor detalle posible (pasos para reproducir, versión del sistema, etc.).",
+        sending: "Enviando...",
+        send: "Enviar Reporte",
+        success: "¡Gracias! Hemos recibido tu reporte. Nuestro equipo de soporte revisará tu caso y te contactará por email."
       },
       errors: {
         formError: "Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.",
@@ -238,11 +250,11 @@ const resources = {
       nav: {
         producto: "Product",
         funcionalidades: "Features",
-        integraciones: "Integrations",
+        casosUso: "Use Cases",
         descargas: "Downloads",
         sobreNosotros: "About Us",
         trabajaConNosotros: "Careers",
-        solicitarDemo: "Request Demo"
+        solicitarDemo: "Request License"
       },
       hero: {
         title: "Automated Pentesting with Artificial Intelligence",
@@ -318,7 +330,40 @@ const resources = {
         subtitle: "Schedule a personalized session and discover how SentinelArg can protect your organization.",
         success: "Thank you! We have received your request. We will contact you shortly to coordinate your demonstration."
       },
-      
+      form: {
+        name: "Full Name",
+        email: "Email Address",
+        company: "Company",
+        message: "Message (optional)",
+        sending: "Sending...",
+        send: "Send Request"
+      },
+      careers: {
+        title: "Work With Us",
+        subtitle: "Join our team and build the future of cybersecurity",
+        success: "Thank you for your interest! We have received your application and will contact you if there is an opportunity that matches your profile.",
+        whyJoin: {
+          title: "Why join SentinelArg?",
+          desc: "We are a growing startup that values talent, innovation, and real impact on the security of Argentine companies.",
+          benefit1: "Flexible remote work",
+          benefit2: "Challenging projects with cutting-edge technologies",
+          benefit3: "Professional growth and continuous training",
+          benefit4: "Collaborative team and learning culture"
+        }
+      },
+      support: {
+        title: "Support & Incident Reporting",
+        subtitle: "Found a bug or have a feature suggestion? Send us the details and we will get back to you shortly.",
+        type: "Report type",
+        type_bug: "Report a Bug / Error",
+        type_feature: "Suggest a Feature / Improvement",
+        type_other: "Other inquiry",
+        message: "Report details",
+        messagePlaceholder: "Describe the issue or improvement in as much detail as possible (steps to reproduce, system version, etc.).",
+        sending: "Sending...",
+        send: "Submit Report",
+        success: "Thank you! We have received your report. Our support team will review your case and contact you via email."
+      },
       errors: {
         formError: "There was an error submitting the form. Please try again.",
         connectionError: "Connection error. Please check your internet and try again."

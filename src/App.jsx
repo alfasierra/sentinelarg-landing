@@ -15,6 +15,10 @@ function App() {
   const [showWindowsInfoModal, setShowWindowsInfoModal] = useState(false);
   const [activeTab, setActiveTab] = useState('readme');
 
+  // Estados para el formulario de soporte
+  const [isSubmittingSupport, setIsSubmittingSupport] = useState(false);
+  const [submitSuccessSupport, setSubmitSuccessSupport] = useState(false);
+
   useEffect(() => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
@@ -22,7 +26,6 @@ function App() {
   const MP_LINK = "https://mpago.li/28jgy5y";
   const CREEM_LINK = "https://www.creem.io/payment/prod_3NR3RvGfTxihTnT8KfDHY4";
   
-  // ÚNICOS enlaces a GitHub permitidos: los Releases de descarga
   const LINUX_RELEASE_URL = "https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz";
   const LINUX_WGET_CMD = `wget ${LINUX_RELEASE_URL}`;
   const [linuxCopied, setLinuxCopied] = useState(false);
@@ -63,6 +66,33 @@ function App() {
     setCustomerName('');
     setCustomerEmail('');
     setCustomerCompany('');
+  };
+
+  // Handler para el formulario de soporte
+  const handleSubmitSupport = async (e) => {
+    e.preventDefault();
+    setIsSubmittingSupport(true);
+    const formData = new FormData(e.target);
+    formData.set('form-name', 'support-request');
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+      if (response.ok) {
+        setSubmitSuccessSupport(true);
+        e.target.reset();
+        setTimeout(() => setSubmitSuccessSupport(false), 5000);
+      } else {
+        alert(t('errors.formError', 'Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.'));
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert(t('errors.connectionError', 'Error de conexión. Verifica tu internet e inténtalo de nuevo.'));
+    } finally {
+      setIsSubmittingSupport(false);
+    }
   };
 
   const features = [
@@ -117,7 +147,7 @@ function App() {
             <div className="hidden md:flex items-center space-x-4">
               <a href="#about" className="hover:text-primary transition">{t('nav.producto', 'Producto')}</a>
               <a href="#features" className="hover:text-primary transition">{t('nav.funcionalidades', 'Funcionalidades')}</a>
-              <a href="#videos" className="hover:text-primary transition">{t('nav.integraciones', 'Integraciones')}</a>
+              <a href="#videos" className="hover:text-primary transition">{t('nav.casosUso', 'Casos de Uso')}</a>
               <a href="#downloads" className="hover:text-primary transition">{t('nav.descargas', 'Descargas')}</a>
               <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">Docs</a>
               <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
@@ -141,7 +171,7 @@ function App() {
             <div className="md:hidden py-4 border-t border-slate-800">
               <a href="#about" className="block py-2 hover:text-primary">{t('nav.producto', 'Producto')}</a>
               <a href="#features" className="block py-2 hover:text-primary">{t('nav.funcionalidades', 'Funcionalidades')}</a>
-              <a href="#videos" className="block py-2 hover:text-primary">Videos</a>
+              <a href="#videos" className="block py-2 hover:text-primary">{t('nav.casosUso', 'Casos de Uso')}</a>
               <a href="#downloads" className="block py-2 hover:text-primary">{t('nav.descargas', 'Descargas')}</a>
               <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="block py-2 hover:text-primary">Documentación</a>
               <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
@@ -429,7 +459,6 @@ function App() {
               </div>
             </div>
             
-            {/* ÚNICO BOTÓN: Documentación Completa (Sin GitHub) */}
             <div className="text-center mt-8 pt-8 border-t border-slate-800">
               <p className="text-gray-400 text-sm mb-4">
                 {t('specs.docs.prompt', '¿Necesitas ver los comandos de instalación o la configuración avanzada?')}
@@ -549,7 +578,6 @@ function App() {
             </div>
           </div>
 
-          {/* Link a documentación debajo de las descargas */}
           <div className="text-center mt-8 pt-6 border-t border-slate-800">
             <p className="text-gray-400 text-sm mb-3">
               ¿Necesitas ayuda con la instalación o configuración?
@@ -608,7 +636,6 @@ function App() {
             </div>
           </div>
 
-          {/* CTA simple: email directo, sin formulario */}
           <div className="text-center">
             <p className="text-gray-400 text-sm mb-3">
               ¿Te interesa sumarte al equipo? Envíanos tu CV y cuéntanos qué te motiva.
@@ -623,6 +650,59 @@ function App() {
               contacto@sentinelarg.com.ar
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* NUEVA SECCIÓN: Soporte y Reporte de Incidencias */}
+      <section id="support" className="py-16 bg-darker border-t border-slate-800">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-white">{t('support.title', 'Soporte y Reporte de Incidencias')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            <p className="mt-4 text-gray-400">
+              {t('support.subtitle', '¿Encontraste un bug o tienes una sugerencia de mejora? Envíanos los detalles y te responderemos a la brevedad.')}
+            </p>
+          </div>
+
+          {submitSuccessSupport ? (
+            <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-6 rounded-lg text-center">
+              {t('support.success', '¡Gracias! Hemos recibido tu reporte. Nuestro equipo de soporte revisará tu caso y te contactará por email.')}
+            </div>
+          ) : (
+            <form name="support-request" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmitSupport} className="space-y-6">
+              <input type="hidden" name="form-name" value="support-request" />
+              <input type="hidden" name="bot-field" />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="support-name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
+                  <input type="text" id="support-name" name="name" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white" />
+                </div>
+                <div>
+                  <label htmlFor="support-email" className="block text-sm font-medium mb-1">{t('form.email', 'Correo electrónico')}</label>
+                  <input type="email" id="support-email" name="email" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="support-type" className="block text-sm font-medium mb-1">{t('support.type', 'Tipo de reporte')}</label>
+                <select id="support-type" name="type" required className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white">
+                  <option value="bug">{t('support.type_bug', 'Reportar un Bug / Error')}</option>
+                  <option value="feature">{t('support.type_feature', 'Sugerir una Mejora / Funcionalidad')}</option>
+                  <option value="other">{t('support.type_other', 'Otra consulta')}</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="support-message" className="block text-sm font-medium mb-1">{t('support.message', 'Detalles del reporte')}</label>
+                <textarea id="support-message" name="message" rows="5" required placeholder={t('support.messagePlaceholder', 'Describe el problema o la mejora con el mayor detalle posible (pasos para reproducir, versión del sistema, etc.).')} className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"></textarea>
+              </div>
+
+              <button type="submit" disabled={isSubmittingSupport} className={`w-full py-3 px-6 rounded-lg font-bold transition ${isSubmittingSupport ? 'bg-slate-600 cursor-not-allowed' : 'bg-primary hover:bg-sky-600 text-slate-900'}`}>
+                {isSubmittingSupport ? t('support.sending', 'Enviando...') : t('support.send', 'Enviar Reporte')}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
@@ -773,7 +853,6 @@ function App() {
                     <li>Se descargará la imagen de Docker (~2.5 GB). Esto puede tardar 5-15 minutos.</li>
                   </ol>
                   
-                  {/* Soporte limpio, sin GitHub */}
                   <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 mt-4">
                     <p className="mb-2"><strong>Activar la licencia:</strong> Ejecute como administrador <code className="bg-gray-900 px-1 rounded text-[#00FFFF]">2_Activar_Licencia.bat</code> y pegue su clave recibida por email.</p>
                     <p className="mb-2"><strong>Verificación final:</strong> Abra su navegador en: <a href="http://127.0.0.1:8888/dashboard" className="text-[#00FFFF] hover:underline">http://127.0.0.1:8888/dashboard</a></p>
