@@ -70,5 +70,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Registro oculto para Netlify Forms (no afecta la UI) -->
+    <form name="support-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <select name="type">
+        <option value="bug">Bug</option>
+        <option value="feature">Feature</option>
+        <option value="other">Other</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
   </body>
 </html>
