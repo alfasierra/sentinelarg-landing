@@ -19,13 +19,17 @@ function App() {
   const [isSubmittingSupport, setIsSubmittingSupport] = useState(false);
   const [submitSuccessSupport, setSubmitSuccessSupport] = useState(false);
 
+  // Estados para el formulario de demo (licencia de evaluación)
+  const [isSubmittingDemo, setIsSubmittingDemo] = useState(false);
+  const [submitSuccessDemo, setSubmitSuccessDemo] = useState(false);
+
   useEffect(() => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
   const MP_LINK = "https://mpago.li/28jgy5y";
   const CREEM_LINK = "https://www.creem.io/payment/prod_3NR3RvGfTxihTnT8KfDHY4";
-  
+
   const LINUX_RELEASE_URL = "https://github.com/alfasierra/sentinelarg-landing/releases/download/v1.0.3/sentinelarg-v1.0.3-client.tar.gz";
   const LINUX_WGET_CMD = `wget ${LINUX_RELEASE_URL}`;
   const [linuxCopied, setLinuxCopied] = useState(false);
@@ -95,6 +99,33 @@ function App() {
     }
   };
 
+  // Handler para el formulario de demo (sin filtro de email corporativo)
+  const handleSubmitDemo = async (e) => {
+    e.preventDefault();
+    setIsSubmittingDemo(true);
+    const formData = new FormData(e.target);
+    formData.set('form-name', 'demo-request');
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+      if (response.ok) {
+        setSubmitSuccessDemo(true);
+        e.target.reset();
+        setTimeout(() => setSubmitSuccessDemo(false), 8000);
+      } else {
+        alert(t('errors.formError', 'Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.'));
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert(t('errors.connectionError', 'Error de conexión. Verifica tu internet e inténtalo de nuevo.'));
+    } finally {
+      setIsSubmittingDemo(false);
+    }
+  };
+
   const features = [
     {
       title: t('features.ai.title', 'Inteligencia Artificial Local'),
@@ -151,6 +182,7 @@ function App() {
               <a href="#downloads" className="hover:text-primary transition">{t('nav.descargas', 'Descargas')}</a>
               <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">Docs</a>
               <a href="#about-us" className="hover:text-primary transition">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
+              <a href="#demo" className="hover:text-primary transition font-semibold text-[#00FF00]">{t('nav.solicitarDemo', 'Solicitar Demo')}</a>
               <div className="flex items-center space-x-1">
                 <button onClick={() => i18n.changeLanguage('es')} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('es') ? 'bg-slate-700 text-white' : 'text-gray-400 hover:text-gray-200'}`}>ES</button>
                 <button onClick={() => i18n.changeLanguage('en')} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('en') ? 'bg-slate-700 text-white' : 'text-gray-400 hover:text-gray-200'}`}>EN</button>
@@ -175,6 +207,7 @@ function App() {
               <a href="#downloads" className="block py-2 hover:text-primary">{t('nav.descargas', 'Descargas')}</a>
               <a href="https://docs.sentinelarg.com.ar" target="_blank" rel="noopener noreferrer" className="block py-2 hover:text-primary">Documentación</a>
               <a href="#about-us" className="block py-2 hover:text-primary">{t('nav.sobreNosotros', 'Sobre Nosotros')}</a>
+              <a href="#demo" className="block py-2 hover:text-primary font-semibold text-[#00FF00]">{t('nav.solicitarDemo', 'Solicitar Demo')}</a>
               <div className="flex justify-center space-x-2 mt-4">
                 <button onClick={() => { i18n.changeLanguage('es'); setIsMenuOpen(false); }} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('es') ? 'bg-slate-700 text-white' : 'text-gray-400'}`}>ES</button>
                 <button onClick={() => { i18n.changeLanguage('en'); setIsMenuOpen(false); }} className={`px-2 py-1 text-xs rounded ${i18n.language.startsWith('en') ? 'bg-slate-700 text-white' : 'text-gray-400'}`}>EN</button>
@@ -458,15 +491,15 @@ function App() {
                 <h4 className="text-white font-bold mb-2">{t('specs.bottom3.title', 'Soporte Dedicado')}</h4>
               </div>
             </div>
-            
+
             <div className="text-center mt-8 pt-8 border-t border-slate-800">
               <p className="text-gray-400 text-sm mb-4">
                 {t('specs.docs.prompt', '¿Necesitas ver los comandos de instalación o la configuración avanzada?')}
               </p>
-              <a 
-                href="https://docs.sentinelarg.com.ar" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://docs.sentinelarg.com.ar"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center text-[#00FFFF] hover:text-white font-semibold transition"
               >
                 {t('specs.docs.link', 'Ir a la Documentación Técnica Completa')}
@@ -498,6 +531,183 @@ function App() {
         </div>
       </section>
 
+      {/* SECCIÓN: Solicitar Licencia de Evaluación (Demo 7 días) */}
+      <section id="demo" className="py-20 bg-darker border-t border-slate-800">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="inline-block mb-4">
+              <span className="bg-[#00FF00]/10 text-[#00FF00] border border-[#00FF00]/30 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
+                7 días gratis
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              {t('demo.title', 'Solicitar Licencia de Evaluación')}
+            </h2>
+            <div className="w-20 h-1 bg-[#8B0000] mx-auto mt-4"></div>
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+              {t('demo.subtitle', 'Obtené una licencia gratuita de 7 días para evaluar SentinelArg Red AI en tu entorno. Te contactaremos en menos de 24 horas hábiles.')}
+            </p>
+          </div>
+
+          {submitSuccessDemo ? (
+            <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-300 p-8 rounded-xl text-center">
+              <svg className="w-16 h-16 mx-auto mb-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-lg font-semibold">
+                {t('demo.form.success', '¡Gracias! Recibimos tu solicitud. Te enviaremos la licencia de evaluación a tu email en las próximas 24 horas hábiles.')}
+              </p>
+            </div>
+          ) : (
+            <form
+              name="demo-request"
+              method="post"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmitDemo}
+              className="bg-slate-900/50 border border-slate-700 rounded-xl p-6 md:p-8 space-y-5"
+            >
+              <input type="hidden" name="form-name" value="demo-request" />
+              <input type="hidden" name="bot-field" />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="demo-name" className="block text-sm font-medium text-gray-300 mb-1">
+                    {t('demo.form.name', 'Nombre completo')} <span className="text-[#8B0000]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="demo-name"
+                    name="name"
+                    required
+                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="demo-company" className="block text-sm font-medium text-gray-300 mb-1">
+                    {t('demo.form.company', 'Empresa')} <span className="text-[#8B0000]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="demo-company"
+                    name="company"
+                    required
+                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="demo-role" className="block text-sm font-medium text-gray-300 mb-1">
+                    {t('demo.form.role', 'Cargo / Rol')} <span className="text-[#8B0000]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="demo-role"
+                    name="role"
+                    required
+                    placeholder={t('demo.form.rolePlaceholder', 'Ej: CISO, Pentester, Sysadmin')}
+                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="demo-email" className="block text-sm font-medium text-gray-300 mb-1">
+                    {t('demo.form.email', 'Email corporativo')} <span className="text-[#8B0000]">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="demo-email"
+                    name="email"
+                    required
+                    placeholder="tu.nombre@empresa.com"
+                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    {t('demo.form.emailHint', 'Te enviaremos la licencia a este email. Un correo corporativo agiliza la validación.')}
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="demo-phone" className="block text-sm font-medium text-gray-300 mb-1">
+                  {t('demo.form.phone', 'Teléfono / WhatsApp')}
+                </label>
+                <input
+                  type="tel"
+                  id="demo-phone"
+                  name="phone"
+                  placeholder="+54 11 1234-5678"
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  {t('demo.form.phoneHint', 'Opcional, pero nos ayuda a contactarte más rápido.')}
+                </p>
+              </div>
+
+              <div>
+                <label htmlFor="demo-source" className="block text-sm font-medium text-gray-300 mb-1">
+                  {t('demo.form.source', '¿Cómo conociste SentinelArg?')}
+                </label>
+                <select
+                  id="demo-source"
+                  name="source"
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                >
+                  <option value="">{t('demo.form.sourcePlaceholder', 'Selecciona una opción')}</option>
+                  <option value="google">{t('demo.form.source_google', 'Búsqueda en Google')}</option>
+                  <option value="colleague">{t('demo.form.source_colleague', 'Recomendación de un colega')}</option>
+                  <option value="social">{t('demo.form.source_social', 'Redes sociales (LinkedIn / Twitter)')}</option>
+                  <option value="event">{t('demo.form.source_event', 'Evento / Conferencia')}</option>
+                  <option value="article">{t('demo.form.source_article', 'Artículo / Blog')}</option>
+                  <option value="other">{t('demo.form.source_other', 'Otro')}</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="demo-evaluate" className="block text-sm font-medium text-gray-300 mb-1">
+                  {t('demo.form.evaluate', '¿Qué querés evaluar?')}
+                </label>
+                <textarea
+                  id="demo-evaluate"
+                  name="evaluate"
+                  rows="4"
+                  placeholder={t('demo.form.evaluatePlaceholder', 'Contanos brevemente tu caso de uso, tamaño de la infraestructura, o qué te gustaría probar primero...')}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmittingDemo}
+                className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition flex items-center justify-center gap-2 ${
+                  isSubmittingDemo
+                    ? 'bg-slate-600 cursor-not-allowed text-gray-400'
+                    : 'bg-[#8B0000] hover:bg-red-800 text-white shadow-lg shadow-red-900/30'
+                }`}
+              >
+                {isSubmittingDemo ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {t('demo.form.sending', 'Enviando solicitud...')}
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    {t('demo.form.send', 'Solicitar licencia de 7 días')}
+                  </>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+
       {/* SECCIÓN: Centro de Descargas */}
       <section id="downloads" className="py-20 bg-dark border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -508,7 +718,7 @@ function App() {
               {t('downloads.subtitle', 'Recursos oficiales de SentinelArg Red AI. El uso de esta herramienta está restringido a auditorías autorizadas.')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {/* Tarjeta 1: Linux */}
             <div className="bg-slate-900 rounded-xl border border-slate-700 p-6 shadow-2xl flex flex-col">
@@ -567,7 +777,7 @@ function App() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                   {t('downloads.windows.btn', 'Descargar .zip')}
                 </a>
-                <button 
+                <button
                   onClick={() => setShowWindowsInfoModal(true)}
                   className="w-full border border-slate-600 hover:border-[#00FF00] hover:text-[#00FF00] text-gray-300 font-medium py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
                 >
@@ -582,9 +792,9 @@ function App() {
             <p className="text-gray-400 text-sm mb-3">
               ¿Necesitas ayuda con la instalación o configuración?
             </p>
-            <a 
-              href="https://docs.sentinelarg.com.ar/01-quick-start" 
-              target="_blank" 
+            <a
+              href="https://docs.sentinelarg.com.ar/01-quick-start"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-[#00FF00] hover:text-white font-semibold transition"
             >
@@ -615,7 +825,7 @@ function App() {
           <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-6 mb-8">
             <h3 className="text-xl font-semibold text-primary mb-3">{t('careers.whyJoin.title', '¿Por qué unirte a SentinelArg?')}</h3>
             <p className="text-gray-300 mb-4">{t('careers.whyJoin.desc', 'Somos una startup en crecimiento que valora el talento, la innovación y el impacto real en la seguridad de empresas argentinas.')}</p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="flex items-start">
                 <svg className="h-5 w-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -640,8 +850,8 @@ function App() {
             <p className="text-gray-400 text-sm mb-3">
               ¿Te interesa sumarte al equipo? Envíanos tu CV y cuéntanos qué te motiva.
             </p>
-            <a 
-              href="mailto:contacto@sentinelarg.com.ar?subject=Postulación%20-%20SentinelArg&body=Hola,%20me%20interesa%20unirme%20al%20equipo%20de%20SentinelArg.%20Adjunto%20mi%20CV."
+            <a
+              href="mailto:contacto@sentinelarg.com.ar?subject=Postulacion%20-%20SentinelArg&body=Hola,%20me%20interesa%20unirme%20al%20equipo%20de%20SentinelArg.%20Adjunto%20mi%20CV."
               className="inline-flex items-center bg-primary hover:bg-sky-600 text-slate-900 font-bold py-3 px-6 rounded-lg transition"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -653,7 +863,7 @@ function App() {
         </div>
       </section>
 
-      {/* NUEVA SECCIÓN: Soporte y Reporte de Incidencias */}
+      {/* SECCIÓN: Soporte y Reporte de Incidencias */}
       <section id="support" className="py-16 bg-darker border-t border-slate-800">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
@@ -672,7 +882,7 @@ function App() {
             <form name="support-request" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmitSupport} className="space-y-6">
               <input type="hidden" name="form-name" value="support-request" />
               <input type="hidden" name="bot-field" />
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="support-name" className="block text-sm font-medium mb-1">{t('form.name', 'Nombre completo')}</label>
@@ -792,7 +1002,7 @@ function App() {
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
-            
+
             <div className="flex border-b border-gray-700 bg-gray-800/50 overflow-x-auto">
               {[
                 { id: 'readme', label: '📖 Instalación' },
@@ -804,8 +1014,8 @@ function App() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-3 text-sm font-medium transition whitespace-nowrap ${
-                    activeTab === tab.id 
-                      ? 'text-[#00FF00] border-b-2 border-[#00FF00] bg-gray-800' 
+                    activeTab === tab.id
+                      ? 'text-[#00FF00] border-b-2 border-[#00FF00] bg-gray-800'
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
@@ -836,7 +1046,7 @@ function App() {
                     </table>
                   </div>
                   <p className="text-gray-400 italic border-l-2 border-gray-600 pl-3">Si su política de seguridad corporativa exige un .exe firmado, contáctenos a soporte@sentinelarg.com.ar y le proporcionaremos el instalador firmado con nuestro certificado EV (disponible bajo solicitud para clientes Enterprise).</p>
-                  
+
                   <h4 className="text-xl font-bold text-white mt-6">📋 Requisitos Previos</h4>
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Sistema Operativo:</strong> Windows 10/11 (64-bit) — Pro, Enterprise o Education</li>
@@ -852,7 +1062,7 @@ function App() {
                     <li>Siga las instrucciones en pantalla (se le preguntará por el motor de IA local y detectará GPU NVIDIA automáticamente).</li>
                     <li>Se descargará la imagen de Docker (~2.5 GB). Esto puede tardar 5-15 minutos.</li>
                   </ol>
-                  
+
                   <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 mt-4">
                     <p className="mb-2"><strong>Activar la licencia:</strong> Ejecute como administrador <code className="bg-gray-900 px-1 rounded text-[#00FFFF]">2_Activar_Licencia.bat</code> y pegue su clave recibida por email.</p>
                     <p className="mb-2"><strong>Verificación final:</strong> Abra su navegador en: <a href="http://127.0.0.1:8888/dashboard" className="text-[#00FFFF] hover:underline">http://127.0.0.1:8888/dashboard</a></p>
@@ -916,7 +1126,7 @@ function App() {
               {activeTab === 'changelog' && (
                 <div className="space-y-6">
                   <h4 className="text-xl font-bold text-white">Changelog — SentinelArg</h4>
-                  
+
                   <div className="border-l-2 border-[#8B0000] pl-4 space-y-2">
                     <h5 className="text-lg font-bold text-white">v1.0.3 (2026-11-18)</h5>
                     <ul className="list-disc pl-5 space-y-1 text-gray-300">
@@ -949,7 +1159,7 @@ function App() {
 
             <div className="p-4 border-t border-gray-700 bg-gray-800/50 flex justify-between items-center rounded-b-2xl">
               <p className="text-xs text-gray-500">¿Necesitas ayuda? <a href="mailto:soporte@sentinelarg.com.ar" className="text-[#00FFFF] hover:underline">soporte@sentinelarg.com.ar</a></p>
-              <button 
+              <button
                 onClick={() => setShowWindowsInfoModal(false)}
                 className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
               >

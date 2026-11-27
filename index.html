@@ -5,19 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <meta name="google-site-verification" content="K5HRTn0-ztNQ_Nhufy1epf4v5Z4FheqMMSqGJZ-A8xU" />
     <meta name="msvalidate.01" content="884FD10899AFCD7133529F98ACE0B211" />
 
-    <!-- Primary Meta Tags (Actualizado para Red AI) -->
+    <!-- Primary Meta Tags -->
     <title>SentinelArg | Pentesting Automatizado con Inteligencia Artificial</title>
     <meta name="title" content="SentinelArg | Plataforma de Pentesting Automatizado con IA">
     <meta name="description" content="SentinelArg Red AI: pentesting automatizado con IA local. 150+ herramientas, detección de CVEs y reportes ejecutivos en minutos.">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sentinelarg.com.ar/" />
     <meta property="og:title" content="SentinelArg | Pentesting Automatizado con Inteligencia Artificial" />
-    <meta property="twitter:description" content="SentinelArg Red AI: pentesting automatizado con IA local. 150+ herramientas, detección de CVEs y reportes ejecutivos en minutos." />
+    <meta property="og:description" content="SentinelArg Red AI: pentesting automatizado con IA local. 150+ herramientas, detección de CVEs y reportes ejecutivos en minutos." />
     <meta property="og:image" content="https://sentinelarg.com.ar/og-image.jpg" />
 
     <!-- Twitter -->
@@ -35,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Plausible Analytics (sin cookies, GDPR-friendly) - AHORA SÍ DENTRO DEL HEAD -->
+    <!-- Plausible Analytics (sin cookies, GDPR-friendly) -->
     <script defer data-domain="sentinelarg.com.ar" src="https://plausible.io/js/script.js"></script>
 
     <style>
@@ -45,7 +46,8 @@
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       }
     </style>
-        <!-- Datos Estructurados para IA y Buscadores -->
+
+    <!-- Datos Estructurados para IA y Buscadores -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -70,6 +72,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
     <!-- Registro oculto para Netlify Forms (no afecta la UI) -->
     <form name="support-request" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
@@ -80,6 +83,23 @@
         <option value="other">Other</option>
       </select>
       <textarea name="message"></textarea>
+    </form>
+
+    <form name="demo-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="text" name="role" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="source">
+        <option value="google">Google</option>
+        <option value="colleague">Colleague</option>
+        <option value="social">Social media</option>
+        <option value="event">Event</option>
+        <option value="article">Article</option>
+        <option value="other">Other</option>
+      </select>
+      <textarea name="evaluate"></textarea>
     </form>
   </body>
 </html>

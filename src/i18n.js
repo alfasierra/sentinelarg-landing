@@ -13,7 +13,7 @@ const resources = {
         descargas: "Descargas",
         sobreNosotros: "Sobre Nosotros",
         trabajaConNosotros: "Trabaja con Nosotros",
-        solicitarDemo: "Solicitar Licencia"
+        solicitarDemo: "Solicitar Demo"
       },
       hero: {
         title: "Pentesting Automatizado con Inteligencia Artificial",
@@ -85,9 +85,31 @@ const resources = {
         signature: "El equipo de SentinelArg"
       },
       demo: {
-        title: "Solicita una Demostración",
-        subtitle: "Agenda una sesión personalizada y descubre cómo SentinelArg puede proteger tu organización.",
-        success: "¡Gracias! Hemos recibido tu solicitud. Nos contactaremos contigo en breve para coordinar tu demostración."
+        title: "Solicitar Licencia de Evaluación",
+        subtitle: "Obtené una licencia gratuita de 7 días para evaluar SentinelArg Red AI en tu entorno. Te contactaremos en menos de 24 horas hábiles.",
+        form: {
+          name: "Nombre completo",
+          company: "Empresa",
+          role: "Cargo / Rol",
+          rolePlaceholder: "Ej: CISO, Pentester, Sysadmin",
+          email: "Email corporativo",
+          emailHint: "Te enviaremos la licencia a este email. Un correo corporativo agiliza la validación.",
+          phone: "Teléfono / WhatsApp",
+          phoneHint: "Opcional, pero nos ayuda a contactarte más rápido.",
+          source: "¿Cómo conociste SentinelArg?",
+          sourcePlaceholder: "Selecciona una opción",
+          source_google: "Búsqueda en Google",
+          source_colleague: "Recomendación de un colega",
+          source_social: "Redes sociales (LinkedIn / Twitter)",
+          source_event: "Evento / Conferencia",
+          source_article: "Artículo / Blog",
+          source_other: "Otro",
+          evaluate: "¿Qué querés evaluar?",
+          evaluatePlaceholder: "Contanos brevemente tu caso de uso, tamaño de la infraestructura, o qué te gustaría probar primero...",
+          sending: "Enviando solicitud...",
+          send: "Solicitar licencia de 7 días",
+          success: "¡Gracias! Recibimos tu solicitud. Te enviaremos la licencia de evaluación a tu email en las próximas 24 horas hábiles."
+        }
       },
       form: {
         name: "Nombre completo",
@@ -254,7 +276,7 @@ const resources = {
         descargas: "Downloads",
         sobreNosotros: "About Us",
         trabajaConNosotros: "Careers",
-        solicitarDemo: "Request License"
+        solicitarDemo: "Request Demo"
       },
       hero: {
         title: "Automated Pentesting with Artificial Intelligence",
@@ -326,9 +348,31 @@ const resources = {
         signature: "The SentinelArg Team"
       },
       demo: {
-        title: "Request a Demonstration",
-        subtitle: "Schedule a personalized session and discover how SentinelArg can protect your organization.",
-        success: "Thank you! We have received your request. We will contact you shortly to coordinate your demonstration."
+        title: "Request Evaluation License",
+        subtitle: "Get a free 7-day license to evaluate SentinelArg Red AI in your environment. We will contact you within 24 business hours.",
+        form: {
+          name: "Full name",
+          company: "Company",
+          role: "Position / Role",
+          rolePlaceholder: "e.g. CISO, Pentester, Sysadmin",
+          email: "Corporate email",
+          emailHint: "We will send the license to this email. A corporate email speeds up validation.",
+          phone: "Phone / WhatsApp",
+          phoneHint: "Optional, but helps us contact you faster.",
+          source: "How did you hear about SentinelArg?",
+          sourcePlaceholder: "Select an option",
+          source_google: "Google search",
+          source_colleague: "Colleague recommendation",
+          source_social: "Social media (LinkedIn / Twitter)",
+          source_event: "Event / Conference",
+          source_article: "Article / Blog",
+          source_other: "Other",
+          evaluate: "What do you want to evaluate?",
+          evaluatePlaceholder: "Briefly describe your use case, infrastructure size, or what you'd like to test first...",
+          sending: "Sending request...",
+          send: "Request 7-day license",
+          success: "Thank you! We received your request. We will send the evaluation license to your email within 24 business hours."
+        }
       },
       form: {
         name: "Full Name",
